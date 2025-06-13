@@ -1,11 +1,10 @@
 import Link from "next/link"
-import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { ArrowLeft } from "lucide-react"
+import { SkillsGrid } from "@/components/skills/skills-grid"
 import { ResumeDownloadButton } from "@/components/resume-download-button"
-import { projects } from "@/data/projects"
 
-export default function ProjectsPage() {
+export default function SkillsPage() {
   return (
     <div className="flex min-h-screen flex-col">
       <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -28,71 +27,63 @@ export default function ProjectsPage() {
             </Link>
           </nav>
           <ResumeDownloadButton size="sm" className="hidden md:flex" />
-          <Button variant="ghost" size="icon" className="md:hidden">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="h-6 w-6"
-            >
-              <line x1="4" x2="20" y1="12" y2="12" />
-              <line x1="4" x2="20" y1="6" y2="6" />
-              <line x1="4" x2="20" y1="18" y2="18" />
-            </svg>
-          </Button>
         </div>
       </header>
       <main className="flex-1">
         <section className="container py-12 md:py-24">
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-4 mb-8">
             <Button variant="ghost" size="sm" className="w-fit" asChild>
               <Link href="/">
                 <ArrowLeft className="mr-2 h-4 w-4" />
                 Back to Home
               </Link>
             </Button>
-            <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Featured Projects</h1>
+            <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Skills & Expertise</h1>
             <p className="max-w-[85%] text-muted-foreground sm:text-lg">
-              A collection of my work in blockchain, IoT, and software development.
+              A comprehensive overview of my technical skills, domain knowledge, and professional expertise.
             </p>
           </div>
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 py-12">
-            {projects.map((project, index) => (
-              <div key={index} className="group relative overflow-hidden rounded-lg border">
-                <Link
-                  href={`/projects/${project.title.toLowerCase().replace(/\s+/g, "-")}`}
-                  className="absolute inset-0 z-10"
-                >
-                  <span className="sr-only">View Project</span>
-                </Link>
-                <div className="relative aspect-[16/10] overflow-hidden">
-                  <Image
-                    src={project.image || "/placeholder.svg?height=450&width=720"}
-                    alt={project.title}
-                    width={720}
-                    height={450}
-                    className="object-cover transition-transform duration-300 group-hover:scale-105"
-                  />
+
+          <div className="max-w-4xl mx-auto">
+            <SkillsGrid />
+
+            <div className="mt-16">
+              <h2 className="text-2xl font-bold mb-6">Professional Approach</h2>
+              <div className="grid md:grid-cols-2 gap-8">
+                <div className="gradient-border p-6 bg-card">
+                  <h3 className="text-xl font-semibold mb-4">Technical Leadership</h3>
+                  <ul className="list-disc list-inside space-y-2 text-muted-foreground">
+                    <li>Architecture design and system planning</li>
+                    <li>Code quality and standards enforcement</li>
+                    <li>Technical mentorship and team development</li>
+                    <li>Research and innovation initiatives</li>
+                    <li>Cross-functional team collaboration</li>
+                  </ul>
                 </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-bold">{project.title}</h3>
-                  <p className="mt-2 text-muted-foreground line-clamp-3">{project.description}</p>
-                  <div className="mt-4 flex flex-wrap gap-2">
-                    {project.tags?.slice(0, 3).map((tag, tagIndex) => (
-                      <div key={tagIndex} className="rounded-full bg-muted px-2.5 py-0.5 text-xs font-semibold">
-                        {tag}
-                      </div>
-                    ))}
-                  </div>
+                <div className="gradient-border p-6 bg-card">
+                  <h3 className="text-xl font-semibold mb-4">Project Management</h3>
+                  <ul className="list-disc list-inside space-y-2 text-muted-foreground">
+                    <li>Agile methodologies implementation</li>
+                    <li>Sprint planning and execution</li>
+                    <li>Resource allocation and optimization</li>
+                    <li>Risk assessment and mitigation</li>
+                    <li>Stakeholder communication</li>
+                  </ul>
                 </div>
               </div>
-            ))}
+            </div>
+
+            <div className="mt-12 text-center">
+              <p className="text-muted-foreground mb-6">
+                Interested in learning more about my skills and experience? Download my resume or get in touch.
+              </p>
+              <div className="flex justify-center gap-4">
+                <ResumeDownloadButton />
+                <Button variant="outline" asChild>
+                  <Link href="/#contact">Contact Me</Link>
+                </Button>
+              </div>
+            </div>
           </div>
         </section>
       </main>

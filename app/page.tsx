@@ -9,7 +9,12 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { useToast } from "@/hooks/use-toast"
-import { Download, Send, Linkedin, Mail, Phone, MapPin, Menu, X, Github, FileText } from "lucide-react"
+import { Send, Linkedin, Mail, Phone, MapPin, Menu, X, Github, FileText, ArrowRight } from "lucide-react"
+import { ResumeDownloadButton } from "@/components/resume-download-button"
+import { ResumePreview } from "@/components/resume-preview"
+import { ProgressBar } from "@/components/ui/progress-bar"
+import { ResumeGeneratorButton } from "@/components/resume-generator-button"
+import { projects } from "@/data/projects"
 
 export default function Home() {
   const { toast } = useToast()
@@ -76,6 +81,17 @@ export default function Home() {
     setMobileMenuOpen(false)
   }
 
+  // Featured skills with progress bars for the homepage
+  const featuredSkills = [
+    { name: "Blockchain", level: 90 },
+    { name: "IoT", level: 85 },
+    { name: "Python", level: 95 },
+    { name: "Azure", level: 90 },
+  ]
+
+  // Featured projects for the homepage
+  const featuredProjects = projects.slice(0, 3)
+
   return (
     <div className="min-h-screen flex flex-col dark">
       {/* Header */}
@@ -117,12 +133,7 @@ export default function Home() {
             >
               Contact
             </button>
-            <Button asChild size="sm">
-              <a href="/resume.pdf" download>
-                <Download className="mr-2 h-4 w-4" />
-                Resume
-              </a>
-            </Button>
+            <ResumeDownloadButton size="sm" />
           </nav>
 
           {/* Mobile Menu Button */}
@@ -152,12 +163,7 @@ export default function Home() {
             <button onClick={() => scrollToSection("contact")} className="text-sm font-medium py-2 hover:text-primary">
               Contact
             </button>
-            <Button asChild size="sm" className="w-full">
-              <a href="/resume.pdf" download>
-                <Download className="mr-2 h-4 w-4" />
-                Resume
-              </a>
-            </Button>
+            <ResumeDownloadButton size="sm" className="w-full" />
           </div>
         )}
       </header>
@@ -249,13 +255,10 @@ export default function Home() {
                   </div>
                 </div>
 
-                <div className="flex justify-center pt-6">
-                  <Button asChild>
-                    <a href="/resume.pdf" download>
-                      <Download className="mr-2 h-4 w-4" />
-                      Download Full Resume
-                    </a>
-                  </Button>
+                <div className="flex flex-wrap justify-center gap-4 pt-6">
+                  <ResumeDownloadButton text="Download Resume" />
+                  <ResumePreview />
+                  <ResumeGeneratorButton text="Generate Custom Resume" />
                 </div>
               </div>
             </div>
@@ -325,33 +328,6 @@ export default function Home() {
                   <li>Implemented support and feedback loops</li>
                 </ul>
               </div>
-
-              {/* Freelance Projects */}
-              <div className="gradient-border p-6 bg-card">
-                <h3 className="text-xl font-bold mb-4">Freelance Projects</h3>
-
-                <div className="mb-6">
-                  <div className="flex flex-col md:flex-row justify-between mb-2">
-                    <h4 className="text-lg font-semibold">Goldseat Pvt Ltd</h4>
-                    <p className="text-muted-foreground">Nov 2019 - Jan 2020</p>
-                  </div>
-                  <ul className="list-disc list-inside space-y-2 text-muted-foreground">
-                    <li>Built Python3 tool to automate Raspberry Pi SD card backups</li>
-                    <li>Enabled quick system image replication across devices</li>
-                  </ul>
-                </div>
-
-                <div>
-                  <div className="flex flex-col md:flex-row justify-between mb-2">
-                    <h4 className="text-lg font-semibold">Aarohi Impex</h4>
-                    <p className="text-muted-foreground">Jan 2019 - Jul 2019</p>
-                  </div>
-                  <ul className="list-disc list-inside space-y-2 text-muted-foreground">
-                    <li>Created ALPR system using Python3, OCR, and image processing</li>
-                    <li>Built detection + segmentation pipeline for real-world plates</li>
-                  </ul>
-                </div>
-              </div>
             </div>
           </div>
         </section>
@@ -359,86 +335,120 @@ export default function Home() {
         {/* Skills Section */}
         <section id="skills" className="py-20 bg-secondary/20">
           <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold mb-12 text-center">Skills & Expertise</h2>
+            <h2 className="text-3xl font-bold mb-8 text-center">Skills & Expertise</h2>
 
-            <div className="max-w-3xl mx-auto grid md:grid-cols-2 gap-6">
-              <div className="gradient-border p-6 bg-card">
-                <h3 className="text-xl font-semibold mb-4">Technical Skills</h3>
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <h4 className="font-medium mb-2">Languages</h4>
-                    <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
-                      <li>Python</li>
-                      <li>C#/.NET</li>
-                      <li>Solidity</li>
-                      <li>JavaScript</li>
-                      <li>SQL</li>
-                    </ul>
-                  </div>
-                  <div>
-                    <h4 className="font-medium mb-2">Frameworks</h4>
-                    <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
-                      <li>Django</li>
-                      <li>Blazor</li>
-                      <li>Radzen</li>
-                      <li>EVM</li>
-                    </ul>
-                  </div>
+            <div className="max-w-3xl mx-auto">
+              <div className="gradient-border p-6 bg-card mb-8">
+                <h3 className="text-xl font-semibold mb-6">Core Competencies</h3>
+                <div className="space-y-6">
+                  {featuredSkills.map((skill) => (
+                    <ProgressBar
+                      key={skill.name}
+                      label={skill.name}
+                      value={skill.level}
+                      color={
+                        skill.level >= 90
+                          ? "bg-green-500"
+                          : skill.level >= 80
+                            ? "bg-blue-500"
+                            : skill.level >= 70
+                              ? "bg-yellow-500"
+                              : "bg-red-500"
+                      }
+                    />
+                  ))}
                 </div>
               </div>
 
-              <div className="gradient-border p-6 bg-card">
-                <h3 className="text-xl font-semibold mb-4">Domains & Tools</h3>
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <h4 className="font-medium mb-2">Domains</h4>
-                    <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
-                      <li>Blockchain</li>
-                      <li>IoT</li>
-                      <li>AI/ML</li>
-                      <li>Computer Vision</li>
-                      <li>ALPR</li>
-                    </ul>
-                  </div>
-                  <div>
-                    <h4 className="font-medium mb-2">Tools</h4>
-                    <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
-                      <li>Azure</li>
-                      <li>Jira</li>
-                      <li>ClickUp</li>
-                      <li>Azure Boards</li>
-                      <li>Raspberry Pi</li>
-                    </ul>
-                  </div>
+              <div className="grid md:grid-cols-2 gap-6 mb-8">
+                <div className="gradient-border p-6 bg-card">
+                  <h3 className="text-xl font-semibold mb-4">Technical Skills</h3>
+                  <ul className="list-disc list-inside text-muted-foreground space-y-1">
+                    <li>Python, C#/.NET, Solidity</li>
+                    <li>Django, Blazor, Radzen</li>
+                    <li>Azure, Raspberry Pi</li>
+                    <li>Blockchain, IoT, AI/ML</li>
+                    <li>Computer Vision, OCR</li>
+                  </ul>
+                </div>
+
+                <div className="gradient-border p-6 bg-card">
+                  <h3 className="text-xl font-semibold mb-4">Professional Skills</h3>
+                  <ul className="list-disc list-inside text-muted-foreground space-y-1">
+                    <li>Technical Leadership</li>
+                    <li>Agile Project Management</li>
+                    <li>Team Mentorship</li>
+                    <li>Technical Writing</li>
+                    <li>Training & Development</li>
+                  </ul>
                 </div>
               </div>
 
-              <div className="gradient-border p-6 bg-card md:col-span-2">
-                <h3 className="text-xl font-semibold mb-4">Certifications</h3>
-                <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
-                  <div className="p-3 bg-secondary/30 rounded-lg text-center">
-                    <p className="text-sm">gEDA PCB Design</p>
+              <div className="text-center">
+                <Button asChild>
+                  <Link href="/skills" className="flex items-center">
+                    View Detailed Skills Profile
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Projects Section */}
+        <section id="projects" className="py-20">
+          <div className="container mx-auto px-4">
+            <h2 className="text-3xl font-bold mb-8 text-center">Featured Projects</h2>
+
+            <div className="max-w-6xl mx-auto">
+              <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+                {featuredProjects.map((project, index) => (
+                  <div key={index} className="group relative overflow-hidden rounded-lg border">
+                    <Link
+                      href={`/projects/${project.title.toLowerCase().replace(/\s+/g, "-")}`}
+                      className="absolute inset-0 z-10"
+                    >
+                      <span className="sr-only">View Project</span>
+                    </Link>
+                    <div className="relative aspect-[16/10] overflow-hidden">
+                      <Image
+                        src={project.image || "/placeholder.svg?height=450&width=720"}
+                        alt={project.title}
+                        width={720}
+                        height={450}
+                        className="object-cover transition-transform duration-300 group-hover:scale-105"
+                      />
+                    </div>
+                    <div className="p-6">
+                      <h3 className="text-xl font-bold">{project.title}</h3>
+                      <p className="mt-2 text-muted-foreground line-clamp-3">{project.description}</p>
+                      <div className="mt-4 flex flex-wrap gap-2">
+                        {project.tags?.slice(0, 3).map((tag, tagIndex) => (
+                          <div key={tagIndex} className="rounded-full bg-muted px-2.5 py-0.5 text-xs font-semibold">
+                            {tag}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
                   </div>
-                  <div className="p-3 bg-secondary/30 rounded-lg text-center">
-                    <p className="text-sm">Intel OpenVINO Fundamental</p>
-                  </div>
-                  <div className="p-3 bg-secondary/30 rounded-lg text-center">
-                    <p className="text-sm">PIC Microcontroller (18F4520)</p>
-                  </div>
-                  <div className="p-3 bg-secondary/30 rounded-lg text-center">
-                    <p className="text-sm">Subnet Architecture</p>
-                  </div>
-                  <div className="p-3 bg-secondary/30 rounded-lg text-center">
-                    <p className="text-sm">Build a Face Recognition App (Python)</p>
-                  </div>
-                </div>
+                ))}
+              </div>
+
+              <div className="mt-12 text-center">
+                <Button asChild>
+                  <Link href="/projects" className="flex items-center">
+                    View All Projects
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
               </div>
             </div>
           </div>
         </section>
 
         {/* Contact Section */}
-        <section id="contact" className="py-20">
+        <section id="contact" className="py-20 bg-secondary/20">
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto">
               <h2 className="text-3xl font-bold mb-8 text-center">Get In Touch</h2>

@@ -2,88 +2,18 @@ import Link from "next/link"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { ArrowLeft, ExternalLink } from "lucide-react"
-
-// This would typically come from a database or CMS
-const projectsData = {
-  "blockchain-iot": {
-    title: "Blockchain IoT Integration",
-    description: "Architected a secure IoT data platform using blockchain for data integrity and smart contracts.",
-    client: "MCN Solutions",
-    duration: "8 months",
-    role: "Technical Lead",
-    tags: ["Blockchain", "IoT", "Solidity", "Azure"],
-    overview:
-      "Led the development of an integrated blockchain and IoT solution that enables secure, tamper-proof data collection and processing from distributed IoT devices. The system uses smart contracts to automate actions based on sensor data and provides a transparent audit trail for all transactions.",
-    challenge:
-      "The main challenge was ensuring data integrity from IoT devices to the blockchain while maintaining performance at scale. Additionally, we needed to design smart contracts that could efficiently process high-volume sensor data without excessive gas costs.",
-    process: [
-      {
-        title: "Architecture Design",
-        description:
-          "Designed a scalable architecture that included edge computing for data preprocessing before blockchain submission.",
-      },
-      {
-        title: "Smart Contract Development",
-        description: "Created optimized Solidity smart contracts for data validation and automated actions.",
-      },
-      {
-        title: "IoT Integration",
-        description: "Implemented secure communication protocols between IoT devices and blockchain nodes.",
-      },
-      {
-        title: "Testing & Security Audit",
-        description: "Conducted extensive testing and security audits to ensure data integrity and system resilience.",
-      },
-      {
-        title: "Deployment & Monitoring",
-        description: "Deployed the solution with comprehensive monitoring and alerting systems.",
-      },
-    ],
-    outcome:
-      "The solution successfully reduced data tampering incidents by 100% while providing real-time visibility into IoT operations. The blockchain integration enabled automated settlements between parties based on verified sensor data, reducing dispute resolution time by 85% and operational costs by 35%.",
-  },
-  "alpr-system": {
-    title: "ALPR System",
-    description: "Developed an Automatic License Plate Recognition system using Python and computer vision techniques.",
-    client: "Aarohi Impex",
-    duration: "6 months",
-    role: "Software Engineer",
-    tags: ["Python", "OCR", "Computer Vision", "Image Processing"],
-    overview:
-      "Created a robust Automatic License Plate Recognition (ALPR) system capable of detecting and reading license plates from images and video streams in various lighting and weather conditions. The system was designed for real-world applications with high accuracy requirements.",
-    challenge:
-      "License plate detection in real-world scenarios presents numerous challenges including varying lighting conditions, different plate formats, dirt and damage on plates, and capturing plates from moving vehicles at different angles.",
-    process: [
-      {
-        title: "Research & Algorithm Selection",
-        description:
-          "Researched state-of-the-art computer vision techniques and selected optimal algorithms for plate detection.",
-      },
-      {
-        title: "Image Preprocessing",
-        description: "Implemented robust preprocessing to handle various lighting and environmental conditions.",
-      },
-      {
-        title: "Plate Detection",
-        description: "Developed algorithms to accurately locate and isolate license plates within images.",
-      },
-      {
-        title: "Character Segmentation",
-        description: "Created character segmentation techniques to separate individual characters on the plate.",
-      },
-      {
-        title: "OCR Integration",
-        description: "Integrated and optimized OCR to accurately read the segmented characters.",
-      },
-    ],
-    outcome:
-      "The ALPR system achieved 94% accuracy in real-world testing across various conditions. It successfully processed images from stationary cameras and moving vehicles, with recognition times averaging under 0.5 seconds per plate. The system was deployed for vehicle access control and traffic monitoring applications.",
-  },
-}
+import { ResumeDownloadButton } from "@/components/resume-download-button"
+import { projects } from "@/data/projects"
+import { notFound } from "next/navigation"
 
 export default function ProjectPage({ params }: { params: { slug: string } }) {
-  // In a real application, you would fetch project data based on the slug
-  const projectData = projectsData[params.slug as keyof typeof projectsData] || projectsData["blockchain-iot"]
+  // Find the project based on the slug
+  const project = projects.find((p) => p.title.toLowerCase().replace(/\s+/g, "-") === params.slug)
+
+  // If project not found, return 404
+  if (!project) {
+    notFound()
+  }
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -106,9 +36,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
               Contact
             </Link>
           </nav>
-          <Button size="sm" className="hidden md:flex">
-            Resume
-          </Button>
+          <ResumeDownloadButton size="sm" className="hidden md:flex" />
           <Button variant="ghost" size="icon" className="md:hidden">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -140,8 +68,8 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
 
           <div className="relative aspect-[21/9] w-full overflow-hidden rounded-lg">
             <Image
-              src="/placeholder.svg?height=900&width=1900"
-              alt={projectData.title}
+              src={project.image || "/placeholder.svg?height=900&width=1900"}
+              alt={project.title}
               width={1900}
               height={900}
               className="object-cover"
@@ -150,26 +78,26 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
           </div>
 
           <div className="mx-auto max-w-3xl py-12">
-            <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">{projectData.title}</h1>
-            <p className="mt-4 text-xl text-muted-foreground">{projectData.description}</p>
+            <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">{project.title}</h1>
+            <p className="mt-4 text-xl text-muted-foreground">{project.description}</p>
 
             <div className="mt-8 grid gap-4 sm:grid-cols-2 md:grid-cols-3">
               <div>
                 <h3 className="font-medium">Client</h3>
-                <p className="text-muted-foreground">{projectData.client}</p>
-              </div>
-              <div>
-                <h3 className="font-medium">Duration</h3>
-                <p className="text-muted-foreground">{projectData.duration}</p>
+                <p className="text-muted-foreground">{project.client}</p>
               </div>
               <div>
                 <h3 className="font-medium">Role</h3>
-                <p className="text-muted-foreground">{projectData.role}</p>
+                <p className="text-muted-foreground">{project.role}</p>
+              </div>
+              <div>
+                <h3 className="font-medium">Environment</h3>
+                <p className="text-muted-foreground">{project.environment}</p>
               </div>
             </div>
 
             <div className="mt-4 flex flex-wrap gap-2">
-              {projectData.tags.map((tag, index) => (
+              {project.tags?.map((tag, index) => (
                 <div key={index} className="rounded-full bg-muted px-2.5 py-0.5 text-xs font-semibold">
                   {tag}
                 </div>
@@ -177,57 +105,20 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
             </div>
 
             <div className="mt-12">
-              <h2 className="text-2xl font-bold">Overview</h2>
-              <p className="mt-4 text-muted-foreground">{projectData.overview}</p>
+              <h2 className="text-2xl font-bold">Project Details</h2>
+              <p className="mt-4 text-muted-foreground whitespace-pre-line">{project.description}</p>
             </div>
 
-            <div className="mt-12">
-              <h2 className="text-2xl font-bold">Challenge</h2>
-              <p className="mt-4 text-muted-foreground">{projectData.challenge}</p>
-            </div>
-
-            <div className="mt-12">
-              <h2 className="text-2xl font-bold">Process</h2>
-              <div className="mt-6 grid gap-8">
-                {projectData.process.map((step, index) => (
-                  <div key={index} className="flex gap-4">
-                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground">
-                      {index + 1}
-                    </div>
-                    <div>
-                      <h3 className="font-bold">{step.title}</h3>
-                      <p className="mt-2 text-muted-foreground">{step.description}</p>
-                    </div>
-                  </div>
-                ))}
+            {project.link && (
+              <div className="mt-12 flex justify-center">
+                <Button asChild>
+                  <a href={project.link} target="_blank" rel="noopener noreferrer">
+                    <ExternalLink className="mr-2 h-4 w-4" />
+                    View Project
+                  </a>
+                </Button>
               </div>
-            </div>
-
-            <div className="mt-12 grid gap-6 md:grid-cols-2">
-              <div className="overflow-hidden rounded-lg">
-                <Image
-                  src="/placeholder.svg?height=600&width=800"
-                  alt="Project diagram"
-                  width={800}
-                  height={600}
-                  className="object-cover"
-                />
-              </div>
-              <div className="overflow-hidden rounded-lg">
-                <Image
-                  src="/placeholder.svg?height=600&width=800"
-                  alt="Project implementation"
-                  width={800}
-                  height={600}
-                  className="object-cover"
-                />
-              </div>
-            </div>
-
-            <div className="mt-12">
-              <h2 className="text-2xl font-bold">Outcome</h2>
-              <p className="mt-4 text-muted-foreground">{projectData.outcome}</p>
-            </div>
+            )}
 
             <div className="mt-12 flex justify-center">
               <Button asChild>
