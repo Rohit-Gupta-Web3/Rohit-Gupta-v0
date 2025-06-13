@@ -317,6 +317,14 @@ export default function Home() {
                   <li>Implemented support and feedback loops</li>
                 </ul>
               </div>
+              <div className="mt-12 text-center">
+                <Button asChild>
+                  <Link href="/timeline" className="flex items-center">
+                    View Interactive Career Timeline
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
+              </div>
             </div>
           </div>
         </section>
