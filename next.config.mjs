@@ -13,8 +13,8 @@ const nextConfig = {
     formats: ['image/avif', 'image/webp'],
     unoptimized: true,
   },
+  // Remove experimental features that are causing issues
   experimental: {
-    optimizeCss: true,
     optimizePackageImports: ['lucide-react'],
   },
 }

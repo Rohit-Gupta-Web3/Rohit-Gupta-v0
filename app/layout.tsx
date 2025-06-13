@@ -9,7 +9,7 @@ import { Toaster } from "@/components/ui/toaster"
 const inter = Inter({
   subsets: ["latin"],
   display: "swap",
-  preloa: true,
+  preload: true, // Changed from "preloa" to "preload"
   variable: "--font-inter",
 })
 
@@ -18,7 +18,6 @@ export const metadata: Metadata = {
   description: "Professional portfolio of Rohit Gupta, Technical Project Manager specializing in Blockchain & IoT",
   viewport: "width=device-width, initial-scale=1, maximum-scale=5",
   themeColor: "#0f172a",
-  metadataBase: new URL("https://rohit-gupta.vercel.app"),
   openGraph: {
     title: "Rohit Gupta | Technical Project Manager",
     description: "Professional portfolio of Rohit Gupta, Technical Project Manager specializing in Blockchain & IoT",

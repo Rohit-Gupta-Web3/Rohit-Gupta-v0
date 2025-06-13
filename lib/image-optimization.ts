@@ -21,6 +21,6 @@ export function getOptimizedImageUrl(src: string, width = 800, quality = 80): st
     return src
   }
 
-  // For local images, add width and quality parameters
-  return `${src}?w=${width}&q=${quality}`
+  // For local images in the public directory, just return the path
+  return src
 }
