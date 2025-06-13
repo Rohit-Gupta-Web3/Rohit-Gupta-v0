@@ -1,8 +1,6 @@
 import Link from "next/link"
-import Image from "next/image"
 import { Button } from "@/components/ui/button"
-import { ArrowLeft, ExternalLink } from "lucide-react"
-import { ResumeDownloadButton } from "@/components/resume-download-button"
+import { ArrowLeft } from "lucide-react"
 import { projects } from "@/data/projects"
 import { notFound } from "next/navigation"
 
@@ -14,6 +12,10 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
   if (!project) {
     notFound()
   }
+
+  // Get a consistent color for the project
+  const projectIndex = projects.findIndex((p) => p.title === project.title)
+  const projectColor = getColorByIndex(projectIndex)
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -36,7 +38,6 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
               Contact
             </Link>
           </nav>
-          <ResumeDownloadButton size="sm" className="hidden md:flex" />
           <Button variant="ghost" size="icon" className="md:hidden">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -66,66 +67,49 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
             </Link>
           </Button>
 
-          <div className="relative aspect-[21/9] w-full overflow-hidden rounded-lg">
-            <Image
-              src={project.image || "/placeholder.svg?height=900&width=1900"}
-              alt={project.title}
-              width={1900}
-              height={900}
-              className="object-cover"
-              priority
-            />
-          </div>
-
-          <div className="mx-auto max-w-3xl py-12">
-            <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">{project.title}</h1>
-            <p className="mt-4 text-xl text-muted-foreground">{project.description}</p>
-
-            <div className="mt-8 grid gap-4 sm:grid-cols-2 md:grid-cols-3">
-              <div>
-                <h3 className="font-medium">Client</h3>
-                <p className="text-muted-foreground">{project.client}</p>
+          <div className="mx-auto max-w-3xl">
+            <div className="flex items-center gap-4 mb-6">
+              <div
+                className={`w-16 h-16 rounded-full flex items-center justify-center text-white text-2xl font-bold ${projectColor}`}
+              >
+                {project.title.charAt(0)}
               </div>
-              <div>
-                <h3 className="font-medium">Role</h3>
-                <p className="text-muted-foreground">{project.role}</p>
-              </div>
-              <div>
-                <h3 className="font-medium">Environment</h3>
-                <p className="text-muted-foreground">{project.environment}</p>
-              </div>
+              <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl">{project.title}</h1>
             </div>
 
-            <div className="mt-4 flex flex-wrap gap-2">
-              {project.tags?.map((tag, index) => (
-                <div key={index} className="rounded-full bg-muted px-2.5 py-0.5 text-xs font-semibold">
-                  {tag}
+            <div className="gradient-border p-6 bg-card mb-8">
+              <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 mb-6">
+                <div>
+                  <h3 className="font-medium text-sm text-muted-foreground">Client</h3>
+                  <p>{project.client}</p>
                 </div>
-              ))}
-            </div>
-
-            <div className="mt-12">
-              <h2 className="text-2xl font-bold">Project Details</h2>
-              <p className="mt-4 text-muted-foreground whitespace-pre-line">{project.description}</p>
-            </div>
-
-            {project.link && (
-              <div className="mt-12 flex justify-center">
-                <Button asChild>
-                  <a href={project.link} target="_blank" rel="noopener noreferrer">
-                    <ExternalLink className="mr-2 h-4 w-4" />
-                    View Project
-                  </a>
-                </Button>
+                <div>
+                  <h3 className="font-medium text-sm text-muted-foreground">Role</h3>
+                  <p>{project.role}</p>
+                </div>
+                <div>
+                  <h3 className="font-medium text-sm text-muted-foreground">Environment</h3>
+                  <p>{project.environment || "Not specified"}</p>
+                </div>
               </div>
-            )}
+
+              <div className="flex flex-wrap gap-2 mb-6">
+                {project.tags?.map((tag, index) => (
+                  <div key={index} className="rounded-full bg-muted px-2.5 py-0.5 text-xs font-semibold">
+                    {tag}
+                  </div>
+                ))}
+              </div>
+
+              <div>
+                <h2 className="text-xl font-bold mb-4">Project Overview</h2>
+                <p className="text-muted-foreground whitespace-pre-line">{project.description}</p>
+              </div>
+            </div>
 
             <div className="mt-12 flex justify-center">
               <Button asChild>
-                <Link href="/#contact">
-                  <ExternalLink className="mr-2 h-4 w-4" />
-                  Contact Me for Similar Projects
-                </Link>
+                <Link href="/#contact">Contact Me for Similar Projects</Link>
               </Button>
             </div>
           </div>
@@ -148,4 +132,19 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
       </footer>
     </div>
   )
+}
+
+// Helper function to get a color based on index
+function getColorByIndex(index: number): string {
+  const colors = [
+    "bg-blue-600",
+    "bg-purple-600",
+    "bg-green-600",
+    "bg-amber-600",
+    "bg-rose-600",
+    "bg-cyan-600",
+    "bg-indigo-600",
+    "bg-emerald-600",
+  ]
+  return colors[index % colors.length]
 }

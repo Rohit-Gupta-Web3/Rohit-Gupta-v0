@@ -10,10 +10,7 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { useToast } from "@/hooks/use-toast"
 import { Send, Linkedin, Mail, Phone, MapPin, Menu, X, Github, FileText, ArrowRight } from "lucide-react"
-import { ResumeDownloadButton } from "@/components/resume-download-button"
-import { ResumePreview } from "@/components/resume-preview"
 import { ProgressBar } from "@/components/ui/progress-bar"
-import { ResumeGeneratorButton } from "@/components/resume-generator-button"
 import { projects } from "@/data/projects"
 
 export default function Home() {
@@ -133,7 +130,6 @@ export default function Home() {
             >
               Contact
             </button>
-            <ResumeDownloadButton size="sm" />
           </nav>
 
           {/* Mobile Menu Button */}
@@ -163,7 +159,6 @@ export default function Home() {
             <button onClick={() => scrollToSection("contact")} className="text-sm font-medium py-2 hover:text-primary">
               Contact
             </button>
-            <ResumeDownloadButton size="sm" className="w-full" />
           </div>
         )}
       </header>
@@ -253,12 +248,6 @@ export default function Home() {
                       <p className="text-sm">• Medhavi Chatravriti + Vigyan Pratibha Khoj</p>
                     </div>
                   </div>
-                </div>
-
-                <div className="flex flex-wrap justify-center gap-4 pt-6">
-                  <ResumeDownloadButton text="Download Resume" />
-                  <ResumePreview />
-                  <ResumeGeneratorButton text="Generate Custom Resume" />
                 </div>
               </div>
             </div>
@@ -401,36 +390,36 @@ export default function Home() {
           <div className="container mx-auto px-4">
             <h2 className="text-3xl font-bold mb-8 text-center">Featured Projects</h2>
 
-            <div className="max-w-6xl mx-auto">
-              <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            <div className="max-w-3xl mx-auto">
+              <div className="grid gap-6 md:grid-cols-2">
                 {featuredProjects.map((project, index) => (
-                  <div key={index} className="group relative overflow-hidden rounded-lg border">
-                    <Link
-                      href={`/projects/${project.title.toLowerCase().replace(/\s+/g, "-")}`}
-                      className="absolute inset-0 z-10"
-                    >
-                      <span className="sr-only">View Project</span>
-                    </Link>
-                    <div className="relative aspect-[16/10] overflow-hidden">
-                      <Image
-                        src={project.image || "/placeholder.svg?height=450&width=720"}
-                        alt={project.title}
-                        width={720}
-                        height={450}
-                        className="object-cover transition-transform duration-300 group-hover:scale-105"
-                      />
-                    </div>
-                    <div className="p-6">
-                      <h3 className="text-xl font-bold">{project.title}</h3>
-                      <p className="mt-2 text-muted-foreground line-clamp-3">{project.description}</p>
-                      <div className="mt-4 flex flex-wrap gap-2">
+                  <div key={index} className="gradient-border p-6 bg-card hover:bg-card/80 transition-colors">
+                    <Link href={`/projects/${project.title.toLowerCase().replace(/\s+/g, "-")}`} className="block">
+                      <div className="flex items-center gap-4 mb-4">
+                        <div
+                          className={`w-12 h-12 rounded-full flex items-center justify-center text-white font-bold ${getColorByIndex(index)}`}
+                        >
+                          {project.title.charAt(0)}
+                        </div>
+                        <h3 className="text-xl font-bold">{project.title}</h3>
+                      </div>
+                      <div className="mb-4">
+                        <div className="text-sm text-muted-foreground mb-1">
+                          <span className="font-medium text-foreground">Client:</span> {project.client}
+                        </div>
+                        <div className="text-sm text-muted-foreground">
+                          <span className="font-medium text-foreground">Role:</span> {project.role}
+                        </div>
+                      </div>
+                      <p className="text-muted-foreground line-clamp-3 mb-4">{project.description}</p>
+                      <div className="flex flex-wrap gap-2">
                         {project.tags?.slice(0, 3).map((tag, tagIndex) => (
                           <div key={tagIndex} className="rounded-full bg-muted px-2.5 py-0.5 text-xs font-semibold">
                             {tag}
                           </div>
                         ))}
                       </div>
-                    </div>
+                    </Link>
                   </div>
                 ))}
               </div>
@@ -632,4 +621,19 @@ export default function Home() {
       </footer>
     </div>
   )
+}
+
+// Helper function to get a color based on index
+function getColorByIndex(index: number): string {
+  const colors = [
+    "bg-blue-600",
+    "bg-purple-600",
+    "bg-green-600",
+    "bg-amber-600",
+    "bg-rose-600",
+    "bg-cyan-600",
+    "bg-indigo-600",
+    "bg-emerald-600",
+  ]
+  return colors[index % colors.length]
 }

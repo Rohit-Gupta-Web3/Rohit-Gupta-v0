@@ -1,8 +1,6 @@
 import Link from "next/link"
-import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { ArrowLeft } from "lucide-react"
-import { ResumeDownloadButton } from "@/components/resume-download-button"
 import { projects } from "@/data/projects"
 
 export default function ProjectsPage() {
@@ -27,7 +25,6 @@ export default function ProjectsPage() {
               Contact
             </Link>
           </nav>
-          <ResumeDownloadButton size="sm" className="hidden md:flex" />
           <Button variant="ghost" size="icon" className="md:hidden">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -62,35 +59,40 @@ export default function ProjectsPage() {
               A collection of my work in blockchain, IoT, and software development.
             </p>
           </div>
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 py-12">
+          <div className="grid gap-6 md:grid-cols-2 py-12">
             {projects.map((project, index) => (
-              <div key={index} className="group relative overflow-hidden rounded-lg border">
-                <Link
-                  href={`/projects/${project.title.toLowerCase().replace(/\s+/g, "-")}`}
-                  className="absolute inset-0 z-10"
-                >
-                  <span className="sr-only">View Project</span>
-                </Link>
-                <div className="relative aspect-[16/10] overflow-hidden">
-                  <Image
-                    src={project.image || "/placeholder.svg?height=450&width=720"}
-                    alt={project.title}
-                    width={720}
-                    height={450}
-                    className="object-cover transition-transform duration-300 group-hover:scale-105"
-                  />
-                </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-bold">{project.title}</h3>
-                  <p className="mt-2 text-muted-foreground line-clamp-3">{project.description}</p>
-                  <div className="mt-4 flex flex-wrap gap-2">
+              <div key={index} className="gradient-border p-6 bg-card hover:bg-card/80 transition-colors">
+                <Link href={`/projects/${project.title.toLowerCase().replace(/\s+/g, "-")}`} className="block">
+                  <div className="flex items-center gap-4 mb-4">
+                    <div
+                      className={`w-12 h-12 rounded-full flex items-center justify-center text-white font-bold ${getColorByIndex(index)}`}
+                    >
+                      {project.title.charAt(0)}
+                    </div>
+                    <h3 className="text-xl font-bold">{project.title}</h3>
+                  </div>
+                  <div className="mb-4">
+                    <div className="text-sm text-muted-foreground mb-1">
+                      <span className="font-medium text-foreground">Client:</span> {project.client}
+                    </div>
+                    <div className="text-sm text-muted-foreground">
+                      <span className="font-medium text-foreground">Role:</span> {project.role}
+                    </div>
+                  </div>
+                  <p className="text-muted-foreground line-clamp-3 mb-4">{project.description}</p>
+                  <div className="flex flex-wrap gap-2">
                     {project.tags?.slice(0, 3).map((tag, tagIndex) => (
                       <div key={tagIndex} className="rounded-full bg-muted px-2.5 py-0.5 text-xs font-semibold">
                         {tag}
                       </div>
                     ))}
+                    {project.tags && project.tags.length > 3 && (
+                      <div className="rounded-full bg-muted px-2.5 py-0.5 text-xs font-semibold">
+                        +{project.tags.length - 3} more
+                      </div>
+                    )}
                   </div>
-                </div>
+                </Link>
               </div>
             ))}
           </div>
@@ -113,4 +115,19 @@ export default function ProjectsPage() {
       </footer>
     </div>
   )
+}
+
+// Helper function to get a color based on index
+function getColorByIndex(index: number): string {
+  const colors = [
+    "bg-blue-600",
+    "bg-purple-600",
+    "bg-green-600",
+    "bg-amber-600",
+    "bg-rose-600",
+    "bg-cyan-600",
+    "bg-indigo-600",
+    "bg-emerald-600",
+  ]
+  return colors[index % colors.length]
 }

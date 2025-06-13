@@ -8,9 +8,7 @@ export const projects: Project[] = [
     environment: "Polygon, Alchemy, Polygonscan",
     description:
       "Sharp Token is the digital fuel for thriving, growth-focused, and purpose-driven communities. Created on a robust and scalable blockchain, powered by AI, our utility token revolutionizes the way communities grow, engage, and create value. Users can spend their Sharp Tokens on the Platform by investing in their personal and professional growth via exclusive content, videos, training, certifications, live events, webinars, job fairs, employment matching, and virtual conferences.",
-    image: "/placeholder.svg?height=450&width=720",
     tags: ["Blockchain", "Polygon", "Project Management"],
-    link: "SHARP Token",
   },
   {
     title: "Sharp Rewards App",
@@ -19,9 +17,7 @@ export const projects: Project[] = [
     environment: "Polygon Blockchain, Alchemy, JIRA, Azure boards, Microsoft Planner",
     description:
       "The Sharp Economy represents the first AI-driven growth economy tailored for purpose-oriented communities, brands, and educational institutions. Its primary objective is to foster member growth through innovative models such as Learn2Earn and Spend2Grow. Gamifying continuous learning and member growth is goal of the sharp economy.",
-    image: "/placeholder.svg?height=450&width=720",
     tags: ["Blockchain", "Polygon", "Product Management", "Agile"],
-    link: "Sharp Economy",
   },
   {
     title: "MAPay Credentialing Application",
@@ -30,9 +26,7 @@ export const projects: Project[] = [
     environment: ".Net 6, Radzen Blazor, PostgreSQL, Microsoft Azure, Algorand Blockchain",
     description:
       "The MAPay Credentialing app is a secure blockchain-based platform for healthcare providers seeking valid credentials from the Bermuda Health Council (BHC). It stores credentials on the Algorand blockchain using our proprietary algorithm for integrity and immutability. Verification is effortless via our mobile app, ensuring convenient and reliable authentication.",
-    image: "/placeholder.svg?height=450&width=720",
     tags: [".NET", "Blazor", "Algorand", "Healthcare"],
-    link: "MAPay Credentialing Application",
   },
   {
     title: "MPayz Wallet Application",
@@ -41,9 +35,7 @@ export const projects: Project[] = [
     environment: "Django, Python 3, PostgreSQL, Microsoft Azure, Algorand Blockchain",
     description:
       'MPayz Wallet is a customized wallet designed specifically for the Algorand standard asset called "MPayz Token." This user-friendly application allows you to effortlessly send, request, and view transaction history for both Algo coin and MPayz Token. Moreover, it offers an additional feature for securely storing healthcare data using Non-Fungible Tokens (NFTs).',
-    image: "/placeholder.svg?height=450&width=720",
     tags: ["Python", "Django", "Algorand", "Blockchain"],
-    link: "MPayz Wallet",
   },
   {
     title: "C# Corner MVP Program",
@@ -52,9 +44,7 @@ export const projects: Project[] = [
     environment: "",
     description:
       "C# Corner MVP program is designed to recognize and honor professionals and tech enthusiasts who actively contribute to the community through their valuable contributions, such as writing articles, blogs, answering forum questions, and speaking at conferences and chapter events. As a token of appreciation for their efforts in helping others, we present MVPs with exclusive benefits, including MVP kits and rewards.",
-    image: "/placeholder.svg?height=450&width=720",
     tags: ["Program Management", "Community Building", "Developer Relations"],
-    link: "",
   },
   {
     title: "Stratis Blockchain Student Hackathon",
@@ -63,9 +53,7 @@ export const projects: Project[] = [
     environment: "Stratis Blockchain, C#.Net",
     description:
       "Stratis Blockchain Student Hackathon was an exciting and immersive online event spanning over a week. Participants were challenged to develop innovative and functional solutions using Stratis Blockchain SDKs (Unity, Python, C# .Net, Unreal Engine), focusing on various industries including banking, trade, supply chain, energy, and more.",
-    image: "/placeholder.svg?height=450&width=720",
     tags: ["Blockchain", "Hackathon", "Event Management", "Stratis"],
-    link: "",
   },
   {
     title: "Blockchain IoT Integration",
@@ -74,9 +62,7 @@ export const projects: Project[] = [
     environment: "Blockchain, IoT, Solidity, Azure",
     description:
       "Led the development of an integrated blockchain and IoT solution that enables secure, tamper-proof data collection and processing from distributed IoT devices. The system uses smart contracts to automate actions based on sensor data and provides a transparent audit trail for all transactions.",
-    image: "/placeholder.svg?height=450&width=720",
     tags: ["Blockchain", "IoT", "Solidity"],
-    link: "",
   },
   {
     title: "ALPR System",
@@ -85,8 +71,6 @@ export const projects: Project[] = [
     environment: "Python, OCR, Computer Vision, Image Processing",
     description:
       "Created a robust Automatic License Plate Recognition (ALPR) system capable of detecting and reading license plates from images and video streams in various lighting and weather conditions. The system was designed for real-world applications with high accuracy requirements.",
-    image: "/placeholder.svg?height=450&width=720",
     tags: ["Python", "OCR", "Computer Vision"],
-    link: "",
   },
 ]
