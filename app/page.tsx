@@ -11,7 +11,6 @@ import { timelineData } from "@/data/timeline"
 
 // Lazy load heavy components
 const ProjectsSection = lazy(() => import("@/components/sections/projects-section"))
-const TestimonialsSection = lazy(() => import("@/components/sections/testimonials-section"))
 const ContactSection = lazy(() => import("@/components/sections/contact-section"))
 
 // Loading fallbacks
@@ -32,14 +31,13 @@ export default function Home() {
   const [visibleTimelineItems, setVisibleTimelineItems] = useState<string[]>([])
   const [isScrolling, setIsScrolling] = useState(false)
 
-  // Refs for sections
+  // Refs for sections (removed testimonials)
   const sectionRefs = {
     home: useRef<HTMLElement>(null),
     about: useRef<HTMLElement>(null),
     experience: useRef<HTMLElement>(null),
     skills: useRef<HTMLElement>(null),
     projects: useRef<HTMLElement>(null),
-    testimonials: useRef<HTMLElement>(null),
     contact: useRef<HTMLElement>(null),
   }
 
@@ -602,15 +600,8 @@ export default function Home() {
           </Suspense>
         </section>
 
-        {/* Testimonials Section - Lazy loaded for performance */}
-        <section ref={sectionRefs.testimonials} id="testimonials" className="py-20 md:py-32 relative">
-          <Suspense fallback={<SectionLoading />}>
-            <TestimonialsSection />
-          </Suspense>
-        </section>
-
         {/* Contact Section - Lazy loaded for performance */}
-        <section ref={sectionRefs.contact} id="contact" className="py-20 md:py-32 gradient-bg relative">
+        <section ref={sectionRefs.contact} id="contact" className="py-20 md:py-32 relative">
           <Suspense fallback={<SectionLoading />}>
             <ContactSection />
           </Suspense>
