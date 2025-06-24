@@ -9,6 +9,7 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { useToast } from "@/hooks/use-toast"
 import { Mail, Phone, MapPin, Github, Linkedin, FileText, Send } from "lucide-react"
+import { trackContactForm, trackSocialShare, trackDownload } from "@/lib/analytics"
 
 export default function ContactSection() {
   const { toast } = useToast()
@@ -17,25 +18,43 @@ export default function ContactSection() {
   const [message, setMessage] = useState("")
   const [isSubmitting, setIsSubmitting] = useState(false)
 
-  // Handle contact form submission with optimized performance
+  // Handle contact form submission with analytics
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
 
-    try {
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 1000))
+    // Track form submission start
+    trackContactForm("submit", { name, email, message })
 
-      toast({
-        title: "Message sent!",
-        description: "Thank you for reaching out. I'll get back to you soon.",
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ name, email, message }),
       })
 
-      // Reset form
-      setName("")
-      setEmail("")
-      setMessage("")
+      if (response.ok) {
+        // Track successful submission
+        trackContactForm("success", { name, email, message })
+
+        toast({
+          title: "Message sent!",
+          description: "Thank you for reaching out. I'll get back to you soon.",
+        })
+
+        // Reset form
+        setName("")
+        setEmail("")
+        setMessage("")
+      } else {
+        throw new Error("Failed to send message")
+      }
     } catch (error) {
+      // Track form error
+      trackContactForm("error", { error: error instanceof Error ? error.message : "Unknown error" })
+
       toast({
         title: "Something went wrong",
         description: "Your message couldn't be sent. Please try again.",
@@ -44,6 +63,17 @@ export default function ContactSection() {
     } finally {
       setIsSubmitting(false)
     }
+  }
+
+  // Handle social link clicks
+  const handleSocialClick = (platform: string, url: string) => {
+    trackSocialShare(platform, url)
+  }
+
+  // Handle resume download
+  const handleResumeDownload = () => {
+    trackDownload("rohit-gupta-resume.pdf", "pdf")
+    // Add actual download logic here
   }
 
   return (
@@ -78,6 +108,7 @@ export default function ContactSection() {
                   <a
                     href="mailto:gupta.rohitg.rohit900@gmail.com"
                     className="text-white/90 hover:text-primary transition-colors"
+                    onClick={() => handleSocialClick("email", "gupta.rohitg.rohit900@gmail.com")}
                   >
                     gupta.rohitg.rohit900@gmail.com
                   </a>
@@ -89,7 +120,11 @@ export default function ContactSection() {
                 </div>
                 <div>
                   <p className="text-sm text-white/60 mb-1">Phone</p>
-                  <a href="tel:+919910701948" className="text-white/90 hover:text-primary transition-colors">
+                  <a
+                    href="tel:+919910701948"
+                    className="text-white/90 hover:text-primary transition-colors"
+                    onClick={() => handleSocialClick("phone", "+919910701948")}
+                  >
                     +91 9910701948
                   </a>
                 </div>
@@ -107,41 +142,65 @@ export default function ContactSection() {
 
             <h3 className="text-xl font-bold mt-10 mb-6">Connect With Me</h3>
             <div className="flex space-x-4">
-              <a
+              <motion.a
                 href="https://www.linkedin.com/in/rohit-gupta-ai"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn Profile"
                 className="p-3 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                onClick={() => handleSocialClick("linkedin", "https://www.linkedin.com/in/rohit-gupta-ai")}
               >
                 <Linkedin className="h-5 w-5" />
-              </a>
-              <a
+              </motion.a>
+              <motion.a
                 href="http://hindikijiwani.blogspot.com/"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Blog"
                 className="p-3 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                onClick={() => handleSocialClick("blog", "http://hindikijiwani.blogspot.com/")}
               >
                 <FileText className="h-5 w-5" />
-              </a>
-              <a
+              </motion.a>
+              <motion.a
                 href="mailto:gupta.rohitg.rohit900@gmail.com"
                 aria-label="Email"
                 className="p-3 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                onClick={() => handleSocialClick("email", "gupta.rohitg.rohit900@gmail.com")}
               >
                 <Mail className="h-5 w-5" />
-              </a>
-              <a
+              </motion.a>
+              <motion.a
                 href="https://github.com/"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="GitHub Profile"
                 className="p-3 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                onClick={() => handleSocialClick("github", "https://github.com/")}
               >
                 <Github className="h-5 w-5" />
-              </a>
+              </motion.a>
             </div>
+
+            <motion.div className="mt-8">
+              <Button
+                onClick={handleResumeDownload}
+                className="w-full bg-gradient-to-r from-blue-500 to-violet-500 hover:from-blue-600 hover:to-violet-600"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <FileText className="mr-2 h-4 w-4" />
+                Download Resume
+              </Button>
+            </motion.div>
           </motion.div>
 
           <motion.div
@@ -164,6 +223,7 @@ export default function ContactSection() {
                   placeholder="Your name"
                   required
                   className="bg-white/5 border-white/10 focus:border-primary text-white/90 placeholder:text-white/40"
+                  onFocus={() => trackContactForm("start", { field: "name" })}
                 />
               </div>
               <div>
@@ -178,6 +238,7 @@ export default function ContactSection() {
                   placeholder="Your email"
                   required
                   className="bg-white/5 border-white/10 focus:border-primary text-white/90 placeholder:text-white/40"
+                  onFocus={() => trackContactForm("start", { field: "email" })}
                 />
               </div>
               <div>
@@ -192,44 +253,47 @@ export default function ContactSection() {
                   rows={4}
                   required
                   className="bg-white/5 border-white/10 focus:border-primary text-white/90 placeholder:text-white/40"
+                  onFocus={() => trackContactForm("start", { field: "message" })}
                 />
               </div>
-              <Button
-                type="submit"
-                className="w-full bg-gradient-to-r from-blue-500 to-violet-500 hover:from-blue-600 hover:to-violet-600"
-                disabled={isSubmitting}
-              >
-                {isSubmitting ? (
-                  <span className="flex items-center">
-                    <svg
-                      className="animate-spin -ml-1 mr-2 h-4 w-4 text-white"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                    >
-                      <circle
-                        className="opacity-25"
-                        cx="12"
-                        cy="12"
-                        r="10"
-                        stroke="currentColor"
-                        strokeWidth="4"
-                      ></circle>
-                      <path
-                        className="opacity-75"
-                        fill="currentColor"
-                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                      ></path>
-                    </svg>
-                    Sending...
-                  </span>
-                ) : (
-                  <span className="flex items-center">
-                    <Send className="mr-2 h-4 w-4" />
-                    Send Message
-                  </span>
-                )}
-              </Button>
+              <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                <Button
+                  type="submit"
+                  className="w-full bg-gradient-to-r from-blue-500 to-violet-500 hover:from-blue-600 hover:to-violet-600"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? (
+                    <span className="flex items-center">
+                      <svg
+                        className="animate-spin -ml-1 mr-2 h-4 w-4 text-white"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                      >
+                        <circle
+                          className="opacity-25"
+                          cx="12"
+                          cy="12"
+                          r="10"
+                          stroke="currentColor"
+                          strokeWidth="4"
+                        ></circle>
+                        <path
+                          className="opacity-75"
+                          fill="currentColor"
+                          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                        ></path>
+                      </svg>
+                      Sending...
+                    </span>
+                  ) : (
+                    <span className="flex items-center">
+                      <Send className="mr-2 h-4 w-4" />
+                      Send Message
+                    </span>
+                  )}
+                </Button>
+              </motion.div>
             </form>
           </motion.div>
         </div>

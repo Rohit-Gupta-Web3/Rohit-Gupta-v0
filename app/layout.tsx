@@ -1,15 +1,20 @@
 import type React from "react"
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
+import Script from "next/script"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Toaster } from "@/components/ui/toaster"
+import { AnalyticsProvider } from "@/components/analytics/analytics-provider"
+import { CookieConsent } from "@/components/analytics/cookie-consent"
+import { GA_TRACKING_ID } from "@/lib/analytics"
+import { Suspense } from "react"
 
 // Optimize font loading
 const inter = Inter({
   subsets: ["latin"],
   display: "swap",
-  preload: true, // Changed from "preloa" to "preload"
+  preload: true,
   variable: "--font-inter",
 })
 
@@ -49,11 +54,17 @@ export default function RootLayout({
         />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+
+        {/* Google Analytics */}
+        <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`} strategy="afterInteractive" />
       </head>
       <body className={inter.className}>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} disableTransitionOnChange>
-          {children}
-          <Toaster />
+          <AnalyticsProvider>
+            <Suspense>{children}</Suspense>
+            <CookieConsent />
+            <Toaster />
+          </AnalyticsProvider>
         </ThemeProvider>
       </body>
     </html>
