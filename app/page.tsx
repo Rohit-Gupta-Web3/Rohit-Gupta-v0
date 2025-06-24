@@ -14,8 +14,6 @@ import { ParallaxSection } from "@/components/animations/parallax-section"
 import { MorphingBlob } from "@/components/animations/morphing-blob"
 import { ScrollProgress } from "@/components/animations/scroll-progress"
 import { StaggeredGrid } from "@/components/animations/staggered-grid"
-import { useAnalytics } from "@/hooks/use-analytics"
-import { usePerformanceMonitoring } from "@/hooks/use-performance-monitoring"
 
 // Lazy load heavy components
 const ProjectsSection = lazy(() => import("@/components/sections/projects-section"))
@@ -39,12 +37,6 @@ export default function Home() {
   const [visibleTimelineItems, setVisibleTimelineItems] = useState<string[]>([])
   const [isScrolling, setIsScrolling] = useState(false)
 
-  // Analytics hooks
-  const { trackButtonClick, trackSectionView, trackProjectView, trackSkillInteraction, trackContactInteraction } =
-    useAnalytics()
-
-  const { trackCustomMetric } = usePerformanceMonitoring()
-
   // Scroll animations
   const { scrollY } = useScroll()
   const heroY = useTransform(scrollY, [0, 500], [0, 150])
@@ -60,30 +52,6 @@ export default function Home() {
     projects: useRef<HTMLElement>(null),
     contact: useRef<HTMLElement>(null),
   }
-
-  // Track section views
-  useEffect(() => {
-    const observers = Object.entries(sectionRefs).map(([sectionName, ref]) => {
-      const observer = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) {
-            trackSectionView(sectionName)
-          }
-        },
-        { threshold: 0.5 },
-      )
-
-      if (ref.current) {
-        observer.observe(ref.current)
-      }
-
-      return observer
-    })
-
-    return () => {
-      observers.forEach((observer) => observer.disconnect())
-    }
-  }, [trackSectionView])
 
   // Throttle scroll events
   useEffect(() => {
@@ -116,20 +84,14 @@ export default function Home() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [isScrolling])
 
-  // Scroll to section with analytics tracking
+  // Scroll to section with optimized animation
   const scrollToSection = (sectionId: string) => {
-    const startTime = performance.now()
-
     const section = sectionRefs[sectionId as keyof typeof sectionRefs]
     if (section.current) {
       section.current.scrollIntoView({
         behavior: "smooth",
         block: "start",
       })
-
-      // Track navigation
-      trackButtonClick(`navigate-${sectionId}`, "navigation")
-      trackCustomMetric("scroll_to_section", startTime)
     }
     setMobileMenuOpen(false)
   }
@@ -215,20 +177,14 @@ export default function Home() {
   useEffect(() => {
     if (isSkillsInView) {
       setSkillsVisible(true)
-      trackSectionView("skills-visible")
     }
-  }, [isSkillsInView, trackSectionView])
+  }, [isSkillsInView])
 
   // Timeline item visibility
   const handleTimelineItemVisible = (id: string, isVisible: boolean) => {
     if (isVisible && !visibleTimelineItems.includes(id)) {
       setVisibleTimelineItems((prev) => [...prev, id])
     }
-  }
-
-  // Handle skill interactions
-  const handleSkillHover = (skillName: string) => {
-    trackSkillInteraction(skillName, "hover")
   }
 
   return (
@@ -312,10 +268,7 @@ export default function Home() {
               variant="ghost"
               size="icon"
               className="md:hidden"
-              onClick={() => {
-                setMobileMenuOpen(!mobileMenuOpen)
-                trackButtonClick("mobile-menu-toggle", "navigation")
-              }}
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
             >
               <motion.div animate={{ rotate: mobileMenuOpen ? 180 : 0 }} transition={{ duration: 0.3 }}>
@@ -403,10 +356,7 @@ export default function Home() {
                     <Button
                       size="lg"
                       className="bg-gradient-to-r from-blue-500 to-violet-500 hover:from-blue-600 hover:to-violet-600"
-                      onClick={() => {
-                        scrollToSection("about")
-                        trackButtonClick("learn-more-cta", "hero")
-                      }}
+                      onClick={() => scrollToSection("about")}
                     >
                       Learn More About Me
                     </Button>
@@ -416,10 +366,7 @@ export default function Home() {
                       variant="outline"
                       size="lg"
                       className="border-white/20 hover:bg-white/10"
-                      onClick={() => {
-                        scrollToSection("contact")
-                        trackButtonClick("contact-cta", "hero")
-                      }}
+                      onClick={() => scrollToSection("contact")}
                     >
                       Get In Touch
                     </Button>
@@ -733,7 +680,7 @@ export default function Home() {
                       <h3 className="text-xl font-bold mb-6 gradient-text">{category.name}</h3>
                       <div className="space-y-6">
                         {category.skills.map((skill, skillIndex) => (
-                          <div key={skill.name} className="space-y-2" onMouseEnter={() => handleSkillHover(skill.name)}>
+                          <div key={skill.name} className="space-y-2">
                             <div className="flex justify-between items-center">
                               <span className="text-white/90">{skill.name}</span>
                               <motion.span

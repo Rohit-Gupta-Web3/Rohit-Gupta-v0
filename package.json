@@ -13,6 +13,9 @@
     "@radix-ui/react-dialog": "latest",
     "@radix-ui/react-slot": "^1.0.2",
     "@radix-ui/react-toast": "latest",
+    "@remix-run/react": "latest",
+    "@sveltejs/kit": "latest",
+    "@vercel/analytics": "latest",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "framer-motion": "latest",
@@ -21,8 +24,11 @@
     "next-themes": "^0.2.1",
     "react": "^18",
     "react-dom": "^18",
+    "svelte": "latest",
     "tailwind-merge": "^2.5.5",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "vue": "latest",
+    "vue-router": "latest"
   },
   "devDependencies": {
     "@types/node": "^22",

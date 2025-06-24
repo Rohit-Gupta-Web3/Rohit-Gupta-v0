@@ -9,7 +9,6 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { useToast } from "@/hooks/use-toast"
 import { Mail, Phone, MapPin, Github, Linkedin, FileText, Send } from "lucide-react"
-import { trackContactForm, trackSocialShare, trackDownload } from "@/lib/analytics"
 
 export default function ContactSection() {
   const { toast } = useToast()
@@ -18,13 +17,10 @@ export default function ContactSection() {
   const [message, setMessage] = useState("")
   const [isSubmitting, setIsSubmitting] = useState(false)
 
-  // Handle contact form submission with analytics
+  // Handle contact form submission
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
-
-    // Track form submission start
-    trackContactForm("submit", { name, email, message })
 
     try {
       const response = await fetch("/api/contact", {
@@ -36,9 +32,6 @@ export default function ContactSection() {
       })
 
       if (response.ok) {
-        // Track successful submission
-        trackContactForm("success", { name, email, message })
-
         toast({
           title: "Message sent!",
           description: "Thank you for reaching out. I'll get back to you soon.",
@@ -52,9 +45,6 @@ export default function ContactSection() {
         throw new Error("Failed to send message")
       }
     } catch (error) {
-      // Track form error
-      trackContactForm("error", { error: error instanceof Error ? error.message : "Unknown error" })
-
       toast({
         title: "Something went wrong",
         description: "Your message couldn't be sent. Please try again.",
@@ -63,17 +53,6 @@ export default function ContactSection() {
     } finally {
       setIsSubmitting(false)
     }
-  }
-
-  // Handle social link clicks
-  const handleSocialClick = (platform: string, url: string) => {
-    trackSocialShare(platform, url)
-  }
-
-  // Handle resume download
-  const handleResumeDownload = () => {
-    trackDownload("rohit-gupta-resume.pdf", "pdf")
-    // Add actual download logic here
   }
 
   return (
@@ -108,7 +87,6 @@ export default function ContactSection() {
                   <a
                     href="mailto:gupta.rohitg.rohit900@gmail.com"
                     className="text-white/90 hover:text-primary transition-colors"
-                    onClick={() => handleSocialClick("email", "gupta.rohitg.rohit900@gmail.com")}
                   >
                     gupta.rohitg.rohit900@gmail.com
                   </a>
@@ -120,11 +98,7 @@ export default function ContactSection() {
                 </div>
                 <div>
                   <p className="text-sm text-white/60 mb-1">Phone</p>
-                  <a
-                    href="tel:+919910701948"
-                    className="text-white/90 hover:text-primary transition-colors"
-                    onClick={() => handleSocialClick("phone", "+919910701948")}
-                  >
+                  <a href="tel:+919910701948" className="text-white/90 hover:text-primary transition-colors">
                     +91 9910701948
                   </a>
                 </div>
@@ -150,7 +124,6 @@ export default function ContactSection() {
                 className="p-3 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
-                onClick={() => handleSocialClick("linkedin", "https://www.linkedin.com/in/rohit-gupta-ai")}
               >
                 <Linkedin className="h-5 w-5" />
               </motion.a>
@@ -162,7 +135,6 @@ export default function ContactSection() {
                 className="p-3 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
-                onClick={() => handleSocialClick("blog", "http://hindikijiwani.blogspot.com/")}
               >
                 <FileText className="h-5 w-5" />
               </motion.a>
@@ -172,7 +144,6 @@ export default function ContactSection() {
                 className="p-3 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
-                onClick={() => handleSocialClick("email", "gupta.rohitg.rohit900@gmail.com")}
               >
                 <Mail className="h-5 w-5" />
               </motion.a>
@@ -184,23 +155,10 @@ export default function ContactSection() {
                 className="p-3 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
-                onClick={() => handleSocialClick("github", "https://github.com/")}
               >
                 <Github className="h-5 w-5" />
               </motion.a>
             </div>
-
-            <motion.div className="mt-8">
-              <Button
-                onClick={handleResumeDownload}
-                className="w-full bg-gradient-to-r from-blue-500 to-violet-500 hover:from-blue-600 hover:to-violet-600"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <FileText className="mr-2 h-4 w-4" />
-                Download Resume
-              </Button>
-            </motion.div>
           </motion.div>
 
           <motion.div
@@ -223,7 +181,6 @@ export default function ContactSection() {
                   placeholder="Your name"
                   required
                   className="bg-white/5 border-white/10 focus:border-primary text-white/90 placeholder:text-white/40"
-                  onFocus={() => trackContactForm("start", { field: "name" })}
                 />
               </div>
               <div>
@@ -238,7 +195,6 @@ export default function ContactSection() {
                   placeholder="Your email"
                   required
                   className="bg-white/5 border-white/10 focus:border-primary text-white/90 placeholder:text-white/40"
-                  onFocus={() => trackContactForm("start", { field: "email" })}
                 />
               </div>
               <div>
@@ -253,7 +209,6 @@ export default function ContactSection() {
                   rows={4}
                   required
                   className="bg-white/5 border-white/10 focus:border-primary text-white/90 placeholder:text-white/40"
-                  onFocus={() => trackContactForm("start", { field: "message" })}
                 />
               </div>
               <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
