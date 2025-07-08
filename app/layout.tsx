@@ -16,21 +16,21 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: "Rohit Gupta | Technical Project Manager",
-  description: "Professional portfolio of Rohit Gupta, Technical Project Manager specializing in Blockchain & IoT",
+  title: "Rohit Gupta | Technical Project Manager & AI Expert",
+  description: "Professional portfolio of Rohit Gupta, Technical Project Manager and AI Expert specializing in Blockchain & IoT",
   viewport: "width=device-width, initial-scale=1, maximum-scale=5",
   themeColor: "#0f172a",
   openGraph: {
-    title: "Rohit Gupta | Technical Project Manager",
-    description: "Professional portfolio of Rohit Gupta, Technical Project Manager specializing in Blockchain & IoT",
+    title: "Rohit Gupta | Technical Project Manager & AI Expert",
+    description: "Professional portfolio of Rohit Gupta, Technical Project Manager and AI Expert specializing in Blockchain & IoT",
     type: "website",
     locale: "en_US",
     url: "https://rohit-gupta.vercel.app",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Rohit Gupta | Technical Project Manager",
-    description: "Professional portfolio of Rohit Gupta, Technical Project Manager specializing in Blockchain & IoT",
+    title: "Rohit Gupta | Technical Project Manager & AI Expert",
+    description: "Professional portfolio of Rohit Gupta, Technical Project Manager and AI Expert specializing in Blockchain & IoT",
   },
     generator: 'v0.dev'
 }
