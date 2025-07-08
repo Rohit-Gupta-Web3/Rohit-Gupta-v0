@@ -338,11 +338,11 @@ export default function Home() {
                 </motion.h1>
 
                 <TextReveal className="text-2xl md:text-3xl font-medium text-white/80" delay={0.5}>
-                  Technical Project Manager
+                  Technical Project Manager & AI Expert
                 </TextReveal>
 
                 <TextReveal className="text-lg text-white/70 max-w-xl" delay={0.8}>
-                  Blockchain & IoT Expert | Agile Leader | Azure | Python | EVM & Solidity | Driving Innovation Through
+                  AI, Blockchain & IoT Specialist | Agile Leader | Azure | Python | EVM & Solidity | Driving Innovation Through
                   Emerging Tech & Scalable Architecture
                 </TextReveal>
 
@@ -447,7 +447,7 @@ export default function Home() {
 
                 <motion.div className="space-y-8" variants={animations.fadeInUp}>
                   <TextReveal className="text-lg text-white/80 leading-relaxed">
-                    As a Technical Lead specializing in Blockchain and IoT solutions, I thrive at the intersection of
+                    As a Technical Lead specializing in Blockchain, IoT, and AI solutions, I thrive at the intersection of
                     cutting-edge technology and practical business impact. With hands-on experience designing,
                     developing, and deploying decentralized and connected systems, I lead high-performing engineering
                     teams to deliver secure, scalable, and innovative solutions across industries.
@@ -455,7 +455,7 @@ export default function Home() {
 
                   <TextReveal className="text-lg text-white/80 leading-relaxed" delay={0.3}>
                     Currently at MCN Solutions, I architect technical frameworks, define coding standards, and ensure
-                    rigorous testing and deployment protocols for next-gen blockchain and IoT projects. Beyond delivery,
+                    rigorous testing and deployment protocols for next-gen blockchain, IoT, and AI projects. Beyond delivery,
                     I take pride in mentoring junior engineers, fostering a growth-driven team culture, and embedding
                     Agile best practices using tools like Jira, ClickUp, and Azure Boards.
                   </TextReveal>
@@ -825,7 +825,7 @@ export default function Home() {
               transition={{ delay: 0.2 }}
             >
               <div className="text-xl font-bold gradient-text mb-2">Rohit Gupta</div>
-              <p className="text-sm text-white/60">Technical Project Manager & Blockchain Expert</p>
+              <p className="text-sm text-white/60">Technical Project Manager & AI Expert</p>
             </motion.div>
             <motion.div
               className="text-sm text-white/60"
