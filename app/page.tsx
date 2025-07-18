@@ -13,6 +13,7 @@ export default function Home() {
     <main className="min-h-screen text-foreground bg-background">
       {/* Hero Section */}
       <section className="min-h-screen flex flex-col items-center justify-center text-center px-4">
+        <Image src="/rohit.png" alt="Rohit Gupta" width={160} height={160} className="rounded-full mb-6" />
         <h1 className="text-5xl font-bold mb-4">Rohit Gupta</h1>
         <p className="text-xl mb-6">Technical PM | AI &amp; Blockchain Expert | Public Speaker</p>
         <div className="flex gap-4 flex-wrap justify-center">
