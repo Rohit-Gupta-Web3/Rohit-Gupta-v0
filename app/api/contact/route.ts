@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server"
+import nodemailer from "nodemailer"
 
 export async function POST(request: Request) {
   try {
@@ -10,26 +11,22 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Missing required fields" }, { status: 400 })
     }
 
-    // In a real implementation, you would send an email here
-    // For example, using a service like SendGrid, Mailgun, or AWS SES
+    const transporter = nodemailer.createTransport({
+      host: process.env.EMAIL_HOST,
+      port: Number(process.env.EMAIL_PORT) || 587,
+      secure: false,
+      auth: {
+        user: process.env.EMAIL_USERNAME,
+        pass: process.env.EMAIL_PASSWORD,
+      },
+    })
 
-    // Example code for sending email (commented out)
-    /*
-    const emailData = {
-      to: "shuaibkarim302@gmail.com",
-      from: "your-verified-sender@example.com",
+    await transporter.sendMail({
+      to: "gupta.rohitg.rohit900@gmail.com",
+      from: process.env.EMAIL_FROM || "noreply@rohitg.site",
       subject: `New message from ${name}`,
-      text: `
-        Name: ${name}
-        Email: ${email}
-        
-        Message:
-        ${message}
-      `,
-    }
-    
-    await sendEmail(emailData)
-    */
+      text: `Name: ${name}\nEmail: ${email}\n\n${message}`,
+    })
 
     // For now, we'll just return a success response
     return NextResponse.json({ success: true })
