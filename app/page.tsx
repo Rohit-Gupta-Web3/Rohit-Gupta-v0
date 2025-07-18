@@ -20,7 +20,7 @@ export default function Home() {
             <Link href="mailto:gupta.rohitg.rohit900@gmail.com">Hire Me</Link>
           </Button>
           <Button variant="outline" asChild>
-            <Link href="/resume.pdf" target="_blank">Download Resume</Link>
+            <Link href="/Rohit-Gupta-Resume%202025.pdf" target="_blank">Download Resume</Link>
           </Button>
           <Button variant="secondary" asChild>
             <Link href="https://calendly.com/rohit-gupta" target="_blank">Book Talk</Link>
