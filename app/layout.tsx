@@ -16,23 +16,41 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: "Rohit Gupta | Technical Project Manager & AI Expert",
-  description: "Professional portfolio of Rohit Gupta, Technical Project Manager and AI Expert specializing in Blockchain & IoT",
+  title: "Rohit Gupta | Technical PM, AI & Blockchain Specialist, Speaker",
+  description:
+    "Portfolio of Rohit Gupta – Technical Project Manager, AI and Blockchain specialist, and public speaker.",
+  keywords: [
+    "AI",
+    "blockchain",
+    "project management",
+    "public speaker",
+    "Rohit Gupta",
+  ],
   viewport: "width=device-width, initial-scale=1, maximum-scale=5",
   themeColor: "#0f172a",
   openGraph: {
-    title: "Rohit Gupta | Technical Project Manager & AI Expert",
-    description: "Professional portfolio of Rohit Gupta, Technical Project Manager and AI Expert specializing in Blockchain & IoT",
+    title: "Rohit Gupta | Technical PM, AI & Blockchain Specialist, Speaker",
+    description:
+      "Portfolio of Rohit Gupta – Technical Project Manager, AI and Blockchain specialist, and public speaker.",
     type: "website",
     locale: "en_US",
-    url: "https://rohit-gupta.vercel.app",
+    url: "https://rohitg.site",
+    images: [
+      {
+        url: "/rohit.png",
+        width: 1200,
+        height: 630,
+        alt: "Rohit Gupta",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Rohit Gupta | Technical Project Manager & AI Expert",
-    description: "Professional portfolio of Rohit Gupta, Technical Project Manager and AI Expert specializing in Blockchain & IoT",
+    title: "Rohit Gupta | Technical PM, AI & Blockchain Specialist, Speaker",
+    description:
+      "Portfolio of Rohit Gupta – Technical Project Manager, AI and Blockchain specialist, and public speaker.",
   },
-    generator: 'v0.dev'
+  generator: 'v0.dev'
 }
 
 export default function RootLayout({
@@ -52,7 +70,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
-      <body className={inter.className}>
+      <body className={`${inter.className} scroll-smooth`}>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} disableTransitionOnChange>
           <Suspense>{children}</Suspense>
           <Toaster />
