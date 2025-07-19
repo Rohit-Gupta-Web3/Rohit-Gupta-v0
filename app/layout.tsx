@@ -16,6 +16,18 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://rohit-gupta.vercel.app'),
+  alternates: {
+    canonical: '/',
+  },
+  keywords: [
+    'Rohit Gupta',
+    'Technical Project Manager',
+    'AI Expert',
+    'Blockchain',
+    'IoT',
+    'Portfolio',
+  ],
   title: "Rohit Gupta | Technical Project Manager & AI Expert",
   description: "Professional portfolio of Rohit Gupta, Technical Project Manager and AI Expert specializing in Blockchain & IoT",
   viewport: "width=device-width, initial-scale=1, maximum-scale=5",
@@ -51,6 +63,18 @@ export default function RootLayout({
         />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'Person',
+              name: 'Rohit Gupta',
+              url: 'https://rohit-gupta.vercel.app',
+              jobTitle: 'Technical Project Manager',
+            }),
+          }}
+        />
       </head>
       <body className={inter.className}>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} disableTransitionOnChange>
