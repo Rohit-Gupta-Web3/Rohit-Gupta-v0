@@ -6,11 +6,24 @@ import { vi } from "vitest"
 import TodoPage from "@/components/todo/todo-page"
 
 describe("TodoPage", () => {
-  it("renders the empty state", () => {
+  beforeEach(() => {
+    localStorage.clear()
+  })
+
+  it("renders the seeded tasks on first load", () => {
     render(<TodoPage />)
 
     expect(
-      screen.getByText("No tasks yet. Add one to start building your roadmap.")
+      screen.getByRole("heading", { name: "AI Agents Conf 2026 — Needs decision" })
+    ).toBeInTheDocument()
+  })
+
+  it("renders the empty state when stored tasks are empty", async () => {
+    localStorage.setItem("todo-ux-v1", "[]")
+    render(<TodoPage />)
+
+    expect(
+      await screen.findByText("No tasks yet. Add one to start building your roadmap.")
     ).toBeInTheDocument()
   })
 
