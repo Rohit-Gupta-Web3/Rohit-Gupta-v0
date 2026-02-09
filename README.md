@@ -11,6 +11,7 @@ This project powers Rohit Gupta's portfolio site, built with Next.js and Tailwin
   - Add a top-level task.
   - Assign priority to each task and update it from the task tile.
   - Mark tasks (and subtasks) as completed to track progress.
+  - Automatically restore the seeded task list if local storage is empty.
   - Expand a task tile to add subtasks.
   - Add a description to each subtask for clarity and context.
   - Toggle subtask completion and track task progress visually.

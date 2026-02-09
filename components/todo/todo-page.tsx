@@ -412,9 +412,19 @@ export default function TodoPage() {
       if (stored) {
         const parsed = JSON.parse(stored) as Task[]
         if (Array.isArray(parsed)) {
-          const normalized = normalizeStoredTasks(parsed)
-          setTasks(normalized)
-          setSelectedTaskId(normalized[0]?.id ?? null)
+          if (parsed.length === 0) {
+            const seeded = buildSeedTasks()
+            setTasks(seeded)
+            setSelectedTaskId(seeded[0]?.id ?? null)
+            toast({
+              title: "Seeded tasks restored",
+              description: "We repopulated the default task list since your saved tasks were empty.",
+            })
+          } else {
+            const normalized = normalizeStoredTasks(parsed)
+            setTasks(normalized)
+            setSelectedTaskId(normalized[0]?.id ?? null)
+          }
         }
       }
     } catch (error) {

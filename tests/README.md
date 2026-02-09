@@ -11,5 +11,5 @@ This directory contains unit tests that validate the behavior of the `/todo` exp
 - **Positive flows:** Adding tasks and subtasks with descriptions.
 - **Negative flows:** Missing task titles and missing subtask titles.
 - **Failure simulations:** Storage save failures surface user-visible warnings.
-- **UX safeguards:** Ensures seeded tasks render on first load and empty-state messaging appears when stored tasks are cleared.
+- **UX safeguards:** Ensures seeded tasks render on first load and restore when stored tasks are empty.
 - **Task management controls:** Validates priority updates and task completion state changes.
