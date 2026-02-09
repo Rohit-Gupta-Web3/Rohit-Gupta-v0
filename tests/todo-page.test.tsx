@@ -18,12 +18,12 @@ describe("TodoPage", () => {
     ).toBeInTheDocument()
   })
 
-  it("renders the empty state when stored tasks are empty", async () => {
+  it("restores seeded tasks when stored tasks are empty", async () => {
     localStorage.setItem("todo-ux-v1", "[]")
     render(<TodoPage />)
 
     expect(
-      await screen.findByText("No tasks yet. Add one to start building your roadmap.")
+      await screen.findByRole("heading", { name: "AI Agents Conf 2026 — Needs decision" })
     ).toBeInTheDocument()
   })
 
