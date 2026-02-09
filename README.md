@@ -6,6 +6,7 @@ This project powers Rohit Gupta's portfolio site, built with Next.js and Tailwin
 ## Implemented Use Cases
 - **Awesome Todo page (`/todo`):**
   - View a dashboard of all tasks, subtask counts, and completion progress.
+  - Start with a curated set of seeded task sections (conference, rewards, ops, etc.) that map to subtasks on first load.
   - Add a top-level task.
   - Select a task to add subtasks.
   - Add a description to each subtask for clarity and context.

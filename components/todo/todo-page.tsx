@@ -19,6 +19,261 @@ const SUBTASK_TITLE_MAX = 100
 const SUBTASK_DESC_MAX = 240
 const STORAGE_KEY = "todo-ux-v1"
 
+type SeedItem = {
+  id: string
+  title: string
+  desc?: string
+  link?: string
+  tags?: string[]
+}
+
+type SeedSection = {
+  id: string
+  name: string
+  chip: { text: string; cls: string }
+  items: SeedItem[]
+  money?: { who: string; amt: string }[]
+}
+
+const SEED_SECTIONS: SeedSection[] = [
+  {
+    id: "conf",
+    name: "AI Agents Conf 2026",
+    chip: { text: "Needs decision", cls: "pri" },
+    items: [
+      {
+        id: "conf-topic",
+        title: "Provide topic for AI Agents conference 2026",
+        desc: "Deliverable: title + 3-bullet outline + target audience.",
+        tags: ["High leverage"],
+      },
+    ],
+  },
+  {
+    id: "money",
+    name: "Money",
+    chip: { text: "Amounts", cls: "ok" },
+    money: [
+      { who: "Barkha", amt: "₹25,000" },
+      { who: "Mummy", amt: "₹17,000" },
+    ],
+    items: [],
+  },
+  {
+    id: "openclaw",
+    name: "OpenClaw",
+    chip: { text: "Partnership", cls: "info" },
+    items: [
+      {
+        id: "oc-explore",
+        title: "Explore OpenClaw for HackIndia / Sharp Rewards",
+        desc: "openclaw.com",
+        link: "https://openclaw.com/",
+        tags: ["Partnership"],
+      },
+      {
+        id: "oc-training",
+        title: "Launch paid OpenClaw training (devs / companies / colleges)",
+        desc: "Define curriculum, pricing, and delivery model.",
+        tags: ["Revenue"],
+      },
+      {
+        id: "oc-hackathon",
+        title: "Run an OpenClaw virtual hackathon",
+        desc: "For developers + students; align prizes with Sharp Rewards.",
+        tags: ["Community"],
+      },
+    ],
+  },
+  {
+    id: "token-utility",
+    name: "Token Utility & Demand",
+    chip: { text: "Core", cls: "info" },
+    items: [
+      { id: "tu-cscorner", title: "C# Corner: paid content + MVP sessions (token demand)", tags: ["Utility"] },
+      { id: "tu-career", title: "Career services: hire devs, mentorship, paid live shows", tags: ["Utility"] },
+      { id: "tu-learnai", title: "LearnAI: training + bootcamps", tags: ["Utility"] },
+      { id: "tu-vibe", title: "Vibe Code Fixer: paid fixes", tags: ["Utility"] },
+      { id: "tu-ebooks", title: "E-books & guides (GenAI / LLM / Prompt Engineering)", tags: ["Utility"] },
+      { id: "tu-events", title: "Paid events / memberships / token-gated experiences", tags: ["Utility"] },
+    ],
+  },
+  {
+    id: "sharp-economy",
+    name: "Sharp Economy",
+    chip: { text: "Very high priority", cls: "hot" },
+    items: [
+      {
+        id: "se-polygon",
+        title: "Define token utility + Polygon integration (certificates on Polygon)",
+        tags: ["Polygon"],
+      },
+      { id: "se-onramp", title: "Fiat on-ramp (US): evaluate 0x + alternatives", tags: ["Decision"] },
+      { id: "se-colleges", title: "College partnerships & sponsorships (token lockup offers)", tags: ["Outreach"] },
+      { id: "se-hods", title: "Engage Tier-2/3 HoDs to promote adoption", tags: ["Outreach"] },
+      { id: "se-seo", title: "SEO: own “learn-to-earn / utility token” → Sharp Economy", tags: ["Growth"] },
+      {
+        id: "se-burn",
+        title: "Monthly token burn event (start next month)",
+        desc: "Publish cadence + proof (tx link page).",
+        tags: ["Must ship"],
+      },
+      { id: "se-powered", title: "Add “Powered by Polygon” section + rationale on token page", tags: ["Brand"] },
+    ],
+  },
+  {
+    id: "sharp-rewards",
+    name: "Sharp Rewards",
+    chip: { text: "Top 3 this week", cls: "pri" },
+    items: [
+      { id: "sr-jwt", title: "JWT (highest priority)", tags: ["Top"] },
+      {
+        id: "sr-notif",
+        title: "Notifications (in-app + email)",
+        desc: "Quiz/streak/new quizzes/features/announcements/claim reminders.",
+        tags: ["Retention"],
+      },
+      { id: "sr-streak", title: "Streak restore", tags: ["Retention"] },
+      { id: "sr-referral", title: "Remove referral condition for US residents", tags: ["Policy"] },
+      { id: "sr-shoplimit", title: "100 order limit in shop", tags: ["Guardrail"] },
+      {
+        id: "sr-quiz",
+        title: "Quiz expansion (new questions + AI current affairs + trivia quiz type)",
+        desc: "Geo rules + admin-toggle trivia topic card.",
+        tags: ["Engagement"],
+      },
+      { id: "sr-lockup", title: "Token lockup", tags: ["Tokenomics"] },
+      { id: "sr-stake", title: "DEX-level staking using 0x", tags: ["DeFi"] },
+      { id: "sr-premium", title: "Premium membership (USA only)", tags: ["Monetize"] },
+      { id: "sr-levels", title: "Member levels", tags: ["Progression"] },
+      { id: "sr-offline", title: "Offline signing", tags: ["Security"] },
+      { id: "sr-oss", title: "Open source Sharp Rewards app API", tags: ["Trust"] },
+      { id: "sr-feed", title: "Feed", tags: ["Engagement"] },
+      { id: "sr-gpt", title: "Add Sharp GPT in Sharp Rewards", tags: ["AI"] },
+      { id: "sr-streakui", title: "Change streak UI", tags: ["UX"] },
+      { id: "sr-pred", title: "Prediction market concept (US only)", tags: ["Compliance"] },
+      {
+        id: "sr-quest",
+        title: "Quest system (daily topics; leadership/philosophy/spirituality; optimistic POV)",
+        desc: "Approved flow; create curiosity + FOMO.",
+        tags: ["Habit"],
+      },
+    ],
+  },
+  {
+    id: "llmco",
+    name: "LLMCostOptimizer",
+    chip: { text: "Content + automation", cls: "info" },
+    items: [
+      { id: "lc-promote", title: "Publish + promote existing content (social/IG/FB)" },
+      { id: "lc-n8n", title: "Host agent on n8n cloud + posting workflow" },
+      { id: "lc-ebook", title: "Create eBook + SEO articles (LLM cost optimization)" },
+    ],
+  },
+  {
+    id: "website",
+    name: "Platform Website",
+    chip: { text: "UI + SEO", cls: "info" },
+    items: [
+      { id: "ws-header", title: "Make header/footer reusable components" },
+      { id: "ws-fonts", title: "Standardize fonts + update images" },
+      { id: "ws-eco", title: "Fix ecosystem section on homepage" },
+      { id: "ws-copy", title: "Revise tagline + copy (decentralization + token utility)" },
+      { id: "ws-calendar", title: "Add partner events + 2026 crypto calendar (include HackIndia)" },
+      {
+        id: "ws-lovable",
+        title: "Source content from Lovable project",
+        desc: "lovable.dev project page",
+        link: "https://lovable.dev/projects/97ba8e33-a4eb-4431-92a4-6d19d04d6ae2",
+      },
+      { id: "ws-foundationimg", title: "Design Sharp Innovation Foundation image (Gemini 3)" },
+      { id: "ws-backlinks", title: "Publish updates + backlink strategy (Medium / SE / etc.)" },
+    ],
+  },
+  {
+    id: "intern",
+    name: "Intern Program",
+    chip: { text: "Design", cls: "info" },
+    items: [{ id: "ip-design", title: "Design reward mechanics + eligibility + token compensation flow" }],
+  },
+  {
+    id: "content",
+    name: "Content & Marketing",
+    chip: { text: "Pipeline", cls: "info" },
+    items: [
+      { id: "cm-cscorner", title: "Write: questions asked about business on C# Corner" },
+      { id: "cm-rank", title: "Publish rankable LLMCostOptimizer content" },
+      { id: "cm-repurpose", title: "Repurpose folder content → social channels" },
+    ],
+  },
+  {
+    id: "ops",
+    name: "Ops / Security",
+    chip: { text: "Risk + cadence", cls: "hot" },
+    items: [
+      { id: "os-funds", title: "Research storing funds + theft recovery best practices" },
+      { id: "os-agents", title: "AI Agents discovery: lead gen + hiring platform direction" },
+      { id: "os-checklist", title: "Create monthly ops checklist (burn/outreach/releases)" },
+    ],
+  },
+  {
+    id: "week",
+    name: "Next Actions (This week)",
+    chip: { text: "Do now", cls: "pri" },
+    items: [
+      {
+        id: "na-top3",
+        title: "Finalize top 3 Sharp Rewards deliverables (JWT/notifications/streak restore)",
+      },
+      { id: "na-polygon", title: "Confirm Polygon integration approach + fiat on-ramp options" },
+      { id: "na-outreach", title: "Draft partnership outreach template for colleges + HoDs" },
+    ],
+  },
+  {
+    id: "silver",
+    name: "Precious Metal",
+    chip: { text: "Personal", cls: "info" },
+    items: [
+      { id: "pm-buy", title: "Buy 2 × 20g silver coins / month (6 months)" },
+      { id: "pm-track", title: "Track total: 12 coins (240g .999)" },
+      { id: "pm-objective", title: "Keep objective: low-stress, high-liquidity India-safe hedge" },
+    ],
+  },
+  {
+    id: "show",
+    name: "AI Edge Show",
+    chip: { text: "Media", cls: "info" },
+    items: [
+      { id: "as-format", title: "Lock show format (news → topic → guest)" },
+      { id: "as-ben", title: "Guest outreach: Ben as first guest" },
+      { id: "as-plan", title: "Schedule + episode plan + promotion plan" },
+    ],
+  },
+  {
+    id: "discovery",
+    name: "Agents Discovery Platform",
+    chip: { text: "Build", cls: "info" },
+    items: [
+      { id: "ad-req", title: "Define requirements for lead-gen + hiring marketplace" },
+      { id: "ad-features", title: "Design marketplace + discovery features" },
+      { id: "ad-infra", title: "Plan integration with existing C# Corner infra" },
+    ],
+  },
+  {
+    id: "secrets",
+    name: "Notes & Secrets",
+    chip: { text: "Sensitive", cls: "hot" },
+    items: [
+      {
+        id: "ns-vault",
+        title: "Move secrets to a password manager/vault (do not keep in docs)",
+        desc: "Store only references like “Vault: Foundation / Key: prod_admin”.",
+        tags: ["Security"],
+      },
+    ],
+  },
+]
+
 interface Subtask {
   id: string
   title: string
@@ -48,11 +303,47 @@ const getProgress = (subtasks: Subtask[]) => {
 }
 
 const sanitizeText = (value: string) => value.replace(/\s+/g, " ").trim()
+const formatSeedDescription = (parts: string[]) => parts.filter(Boolean).join(" • ")
+const formatSeedTags = (tags?: string[]) => (tags && tags.length > 0 ? `Tags: ${tags.join(", ")}` : "")
+const formatSeedLink = (link?: string) => (link ? `Link: ${link}` : "")
+
+const buildSeedTasks = (): Task[] =>
+  SEED_SECTIONS.map((section) => {
+    const itemSubtasks = section.items.map((item) => {
+      const description = formatSeedDescription([
+        item.desc ?? "",
+        formatSeedLink(item.link),
+        formatSeedTags(item.tags),
+      ])
+      return {
+        id: createId(),
+        title: item.title,
+        description,
+        completed: false,
+      }
+    })
+
+    const moneySubtasks =
+      section.money?.map((entry) => ({
+        id: createId(),
+        title: `Pay ${entry.who}`,
+        description: formatSeedDescription([`Amount: ${entry.amt}`]),
+        completed: false,
+      })) ?? []
+
+    return {
+      id: createId(),
+      title: `${section.name} — ${section.chip.text}`,
+      createdAt: new Date().toISOString(),
+      subtasks: [...moneySubtasks, ...itemSubtasks],
+    }
+  })
 
 export default function TodoPage() {
   const { toast } = useToast()
-  const [tasks, setTasks] = React.useState<Task[]>([])
-  const [selectedTaskId, setSelectedTaskId] = React.useState<string | null>(null)
+  const initialSeed = React.useMemo(() => buildSeedTasks(), [])
+  const [tasks, setTasks] = React.useState<Task[]>(initialSeed)
+  const [selectedTaskId, setSelectedTaskId] = React.useState<string | null>(initialSeed[0]?.id ?? null)
   const [taskTitle, setTaskTitle] = React.useState("")
   const [subtaskTitle, setSubtaskTitle] = React.useState("")
   const [subtaskDescription, setSubtaskDescription] = React.useState("")
@@ -71,9 +362,7 @@ export default function TodoPage() {
         const parsed = JSON.parse(stored) as Task[]
         if (Array.isArray(parsed)) {
           setTasks(parsed)
-          if (parsed.length > 0) {
-            setSelectedTaskId(parsed[0]?.id ?? null)
-          }
+          setSelectedTaskId(parsed[0]?.id ?? null)
         }
       }
     } catch (error) {
