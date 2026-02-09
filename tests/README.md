@@ -5,10 +5,11 @@ This directory contains unit tests that validate the behavior of the `/todo` exp
 
 ## Structure
 - `setup.ts` configures the testing environment (JSDOM + custom globals).
-- `todo-page.test.tsx` covers rendering, task creation, subtask creation, and validation errors.
+- `todo-page.test.tsx` covers rendering, task creation, subtask creation, priority updates, completion toggles, and validation errors.
 
 ## Coverage Focus
 - **Positive flows:** Adding tasks and subtasks with descriptions.
 - **Negative flows:** Missing task titles and missing subtask titles.
 - **Failure simulations:** Storage save failures surface user-visible warnings.
-- **UX safeguards:** Ensures empty-state messaging is displayed when there are no tasks.
+- **UX safeguards:** Ensures seeded tasks render on first load and empty-state messaging appears when stored tasks are cleared.
+- **Task management controls:** Validates priority updates and task completion state changes.
