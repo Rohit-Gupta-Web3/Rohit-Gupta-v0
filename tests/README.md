@@ -6,7 +6,7 @@ This directory contains unit tests that validate the behavior of the `/todo` exp
 ## Structure
 - `setup.ts` configures the testing environment (JSDOM + custom globals).
 - `todo-page.test.tsx` covers rendering, task creation, subtask creation, priority updates, completion toggles, and validation errors.
-- `projects-section.test.tsx` validates that newly added project cards expose the correct external links.
+- `projects-section.test.tsx` validates newly added project links and verifies AI filter behavior for tagged entries.
 
 ## Coverage Focus
 - **Positive flows:** Adding tasks and subtasks with descriptions.
