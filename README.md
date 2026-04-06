@@ -29,6 +29,8 @@ The `/todo` page is more than a checklist: it’s a **lightweight command center
 - Prioritize outcomes using explicit urgency levels.
 - Track progress at a glance while preserving focus.
 - Maintain a consistent default experience without losing personal state.
+- Experience an immersive 3D particle background rendered with Three.js across the portfolio.
+- Explore newly added live project links for Code Quest, Claw, LLM Cost Optimizer, and New Sharp Economy.
 
 ---
 
