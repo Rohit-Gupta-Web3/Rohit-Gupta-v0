@@ -189,7 +189,7 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen bg-background dark relative overflow-x-hidden">
+    <div className="min-h-screen bg-background dark relative overflow-x-hidden gamified-3d-world">
       <ThreeBackground />
 
       {/* Scroll Progress */}

@@ -1,5 +1,6 @@
 import React from "react"
 import { render, screen } from "@testing-library/react"
+import userEvent from "@testing-library/user-event"
 
 import ProjectsSection from "@/components/sections/projects-section"
 
@@ -26,5 +27,15 @@ describe("ProjectsSection", () => {
       "href",
       "https://new.sharpeconomy.org/",
     )
+  })
+
+  it("filters projects by AI tag", async () => {
+    const user = userEvent.setup()
+    render(<ProjectsSection />)
+
+    await user.click(screen.getByRole("button", { name: "AI" }))
+
+    expect(screen.getByText("Code Quest")).toBeInTheDocument()
+    expect(screen.queryByText("ALPR System")).not.toBeInTheDocument()
   })
 })
