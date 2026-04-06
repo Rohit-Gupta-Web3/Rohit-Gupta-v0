@@ -14,6 +14,7 @@ import { ParallaxSection } from "@/components/animations/parallax-section"
 import { MorphingBlob } from "@/components/animations/morphing-blob"
 import { ScrollProgress } from "@/components/animations/scroll-progress"
 import { StaggeredGrid } from "@/components/animations/staggered-grid"
+import { ThreeBackground } from "@/components/animations/three-background"
 
 // Lazy load heavy components
 const ProjectsSection = lazy(() => import("@/components/sections/projects-section"))
@@ -188,7 +189,9 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen bg-background dark relative overflow-x-hidden">
+    <div className="min-h-screen bg-background dark relative overflow-x-hidden gamified-3d-world">
+      <ThreeBackground />
+
       {/* Scroll Progress */}
       <ScrollProgress />
 

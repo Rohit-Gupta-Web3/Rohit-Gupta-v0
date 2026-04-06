@@ -340,3 +340,41 @@
   font-display: swap;
   src: url("/fonts/inter.woff2") format("woff2");
 }
+
+/* Gamified 3D interaction layer */
+.gamified-3d-world {
+  perspective: 1400px;
+  transform-style: preserve-3d;
+}
+
+.gamified-3d-world :where(section, .glass-card, .hover-lift, button, a, img, .nav-indicator li, .timeline-dot) {
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .gamified-3d-world :where(section, .glass-card, .hover-lift) {
+    transition: transform 250ms ease, box-shadow 250ms ease;
+  }
+
+  .gamified-3d-world :where(section, .glass-card, .hover-lift):hover {
+    transform: translateZ(10px) rotateX(1.5deg) rotateY(-1.5deg);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+  }
+
+  .gamified-3d-world :where(button, a, .nav-indicator li):hover {
+    transform: translateZ(12px) scale(1.03);
+  }
+
+  .gamified-3d-world img:hover {
+    transform: translateZ(20px) scale(1.02);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gamified-3d-world :where(section, .glass-card, .hover-lift, button, a, img, .nav-indicator li) {
+    transition: none !important;
+    transform: none !important;
+    animation: none !important;
+  }
+}

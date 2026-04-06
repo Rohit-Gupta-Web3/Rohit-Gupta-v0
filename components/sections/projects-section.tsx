@@ -59,7 +59,7 @@ export default function ProjectsSection() {
         viewport={{ once: true }}
         transition={{ duration: 0.6, delay: 0.4 }}
       >
-        {["all", "Blockchain", "IoT", "Python"].map((filter, index) => (
+        {["all", "AI", "Blockchain", "IoT", "Python"].map((filter, index) => (
           <motion.div
             key={filter}
             initial={{ opacity: 0, scale: 0.8 }}
@@ -164,6 +164,21 @@ export default function ProjectsSection() {
                     </motion.div>
                   )}
                 </motion.div>
+
+                {project.link && (
+                  <motion.div
+                    className="mt-6"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.6 }}
+                  >
+                    <Button asChild className="w-full" variant="secondary">
+                      <a href={project.link} target="_blank" rel="noopener noreferrer" aria-label={`Open ${project.title} project link`}>
+                        Visit Project
+                      </a>
+                    </Button>
+                  </motion.div>
+                )}
               </div>
             </motion.div>
           ))}
