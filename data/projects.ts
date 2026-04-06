@@ -2,6 +2,46 @@ import type { Project } from "@/types/project"
 
 export const projects: Project[] = [
   {
+    title: "Code Quest",
+    client: "Build with AI",
+    role: "Creator",
+    environment: "Next.js, AI Workflows, Developer Tooling",
+    description:
+      "Code Quest is a practical AI-enabled coding experience focused on guided learning, rapid prototyping, and developer upskilling through interactive challenges.",
+    link: "https://code-quest.buildwithai.ai/",
+    tags: ["AI", "Developer Experience", "Education"],
+  },
+  {
+    title: "Claw",
+    client: "Build with AI",
+    role: "Creator",
+    environment: "Web Platform, Automation, AI Integrations",
+    description:
+      "Claw is an AI-powered web product designed to simplify complex workflows with automation-first interactions and streamlined execution paths.",
+    link: "https://claw.buildwithai.ai/",
+    tags: ["AI", "Automation", "Product"],
+  },
+  {
+    title: "LLM Cost Optimizer",
+    client: "Independent",
+    role: "Creator",
+    environment: "LLM APIs, Observability, Cost Analytics",
+    description:
+      "LLM Cost Optimizer helps teams monitor and reduce large language model spending with usage insights, optimization recommendations, and model-routing guidance.",
+    link: "https://llmcostoptimizer.com/",
+    tags: ["AI", "FinOps", "Analytics"],
+  },
+  {
+    title: "New Sharp Economy",
+    client: "Sharp Innovation Foundation",
+    role: "Contributor",
+    environment: "Web Platform, Community Growth, AI",
+    description:
+      "The New Sharp Economy platform expands community-led growth with AI-supported experiences, learning paths, and value-driven engagement loops.",
+    link: "https://new.sharpeconomy.org/",
+    tags: ["AI", "Community", "Blockchain"],
+  },
+  {
     title: "Sharp Token",
     client: "Sharp Innovation Foundation",
     role: "Project Manager",
