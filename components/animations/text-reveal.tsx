@@ -1,20 +1,24 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import { useInView } from "framer-motion"
-import { useRef } from "react"
+import { motion } from "framer-motion";
+import { useInView } from "framer-motion";
+import { useRef } from "react";
 
 interface TextRevealProps {
-  children: string
-  className?: string
-  delay?: number
+  children: string;
+  className?: string;
+  delay?: number;
 }
 
-export function TextReveal({ children, className = "", delay = 0 }: TextRevealProps) {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-100px" })
+export function TextReveal({
+  children,
+  className = "",
+  delay = 0,
+}: TextRevealProps) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
 
-  const words = children.split(" ")
+  const words = children.split(" ");
 
   const container = {
     hidden: { opacity: 0 },
@@ -22,7 +26,7 @@ export function TextReveal({ children, className = "", delay = 0 }: TextRevealPr
       opacity: 1,
       transition: { staggerChildren: 0.12, delayChildren: delay * i },
     }),
-  }
+  };
 
   const child = {
     visible: {
@@ -43,7 +47,7 @@ export function TextReveal({ children, className = "", delay = 0 }: TextRevealPr
         stiffness: 100,
       },
     },
-  }
+  };
 
   return (
     <motion.div
@@ -59,5 +63,5 @@ export function TextReveal({ children, className = "", delay = 0 }: TextRevealPr
         </motion.span>
       ))}
     </motion.div>
-  )
+  );
 }

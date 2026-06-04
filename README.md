@@ -1,57 +1,23 @@
 # Rohit Gupta Portfolio
 
-> **A refined digital home for ideas, product thinking, and execution.**  
-> Crafted with **Next.js** + **Tailwind CSS**, anchored by a premium `/todo` experience that turns intention into action.
+Next.js portfolio for Rohit Gupta.
 
----
+## Local Development
 
-## ✨ The Experience
-This portfolio blends craftsmanship with clarity—every detail is designed to feel intentional.  
-The `/todo` page is more than a checklist: it’s a **lightweight command center** for high‑impact work.
-
----
-
-## 🧭 What You’ll Find Inside
-
-### **Awesome Todo (`/todo`)**
-- A **dashboard** that surfaces progress, momentum, and completion health.
-- **Seeded, curated task sections** that load instantly (and restore if storage is empty).
-- **Tile + accordion layout** for fast scanning and deep dives.
-- **Priority signals** (Low → Critical) with distinct visual hierarchy.
-- **Task and subtask completion toggles** with progress clarity.
-- **Rich subtask descriptions** for context and ownership.
-- **Immediate feedback** on updates and removals.
-
----
-
-## 🎯 Use Cases Delivered
-- Organize complex work into structured, digestible subtasks.
-- Prioritize outcomes using explicit urgency levels.
-- Track progress at a glance while preserving focus.
-- Maintain a consistent default experience without losing personal state.
-- Experience an immersive 3D particle background rendered with Three.js across the portfolio and a gamified 3D interaction layer on cards, sections, CTAs, nav indicators, and imagery.
-- Explore newly added live project links for Code Quest, Claw, LLM Cost Optimizer, and New Sharp Economy.
-
----
-
-## 🧱 Tech Stack
-- **Framework:** Next.js  
-- **Styling:** Tailwind CSS  
-- **UI:** Radix UI primitives + custom components  
-- **Testing:** Vitest + Testing Library  
-
----
-
-## ⚙️ Local Development
 ```bash
 pnpm install
 pnpm dev
 ```
 
-## ✅ Testing
-```bash
-pnpm test
+## One-shot PowerShell Flow
+
+```powershell
+.\run-project.ps1
 ```
 
-## 🧪 Test Suite Documentation
-See `tests/README.md` for details on structure, coverage, and validation focus.
+That script runs `pnpm install`, `pnpm run lint`, a Prettier format pass, `pnpm run build`, and then `pnpm run start`.
+
+## Content Sources
+
+- Public profile copy and current social links are grounded in the live C# Corner profile and X profile.
+- The portfolio keeps the same visual structure as the reference ZIP, but the data now reflects the current public profile.

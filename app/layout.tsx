@@ -1,88 +1,83 @@
-import type React from "react"
-import type { Metadata } from "next"
-import { Inter } from "next/font/google"
-import { Analytics } from "@vercel/analytics/react"
-import "./globals.css"
-import { ThemeProvider } from "@/components/theme-provider"
-import { Toaster } from "@/components/ui/toaster"
-import { Suspense } from "react"
+import type React from "react";
+import type { Metadata, Viewport } from "next";
+import { Geist, Geist_Mono } from "next/font/google";
+import "./globals.css";
+import { getSiteUrl } from "@/lib/site";
 
-// Optimize font loading
-const inter = Inter({
+const geistSans = Geist({
   subsets: ["latin"],
   display: "swap",
-  preload: true,
-  variable: "--font-inter",
-})
+  variable: "--font-geist-sans",
+});
+
+const geistMono = Geist_Mono({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-geist-mono",
+});
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://rohit-gupta.vercel.app'),
-  alternates: {
-    canonical: '/',
-  },
+  metadataBase: new URL(getSiteUrl()),
+  title: "Rohit Gupta - Technical PM - AI-Native - Blockchain",
+  description:
+    "Rohit Gupta - Technical Project Manager, AI-Native builder, and Blockchain expert. Architecting and shipping AI, blockchain, and IoT products end to end.",
   keywords: [
-    'Rohit Gupta',
-    'Technical Project Manager',
-    'AI Expert',
-    'Blockchain',
-    'IoT',
-    'Portfolio',
+    "Rohit Gupta",
+    "Technical Project Manager",
+    "AI-Native",
+    "Blockchain",
+    "IoT",
+    "Portfolio",
   ],
-  title: "Rohit Gupta | Technical Project Manager & AI Expert",
-  description: "Professional portfolio of Rohit Gupta, Technical Project Manager and AI Expert specializing in Blockchain & IoT",
-  viewport: "width=device-width, initial-scale=1, maximum-scale=5",
-  themeColor: "#0f172a",
   openGraph: {
-    title: "Rohit Gupta | Technical Project Manager & AI Expert",
-    description: "Professional portfolio of Rohit Gupta, Technical Project Manager and AI Expert specializing in Blockchain & IoT",
+    title: "Rohit Gupta - Technical PM - AI-Native - Blockchain",
+    description:
+      "Rohit Gupta - Technical Project Manager, AI-Native builder, and Blockchain expert. Architecting and shipping AI, blockchain, and IoT products end to end.",
     type: "website",
     locale: "en_US",
-    url: "https://rohit-gupta.vercel.app",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Rohit Gupta | Technical Project Manager & AI Expert",
-    description: "Professional portfolio of Rohit Gupta, Technical Project Manager and AI Expert specializing in Blockchain & IoT",
+    title: "Rohit Gupta - Technical PM - AI-Native - Blockchain",
+    description:
+      "Rohit Gupta - Technical Project Manager, AI-Native builder, and Blockchain expert. Architecting and shipping AI, blockchain, and IoT products end to end.",
   },
-    generator: 'v0.dev'
-}
+  generator: "v0.dev",
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+  themeColor: "#05060c",
+};
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode
+  children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning className={inter.variable}>
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={`${geistSans.variable} ${geistMono.variable}`}
+    >
       <head>
-        {/* Preload critical assets */}
-        <link
-          rel="preload"
-          href="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Rohit.jpg-v0vd0xDZFnAZoKjZtI4MfOVaxX0iUj.jpeg"
-          as="image"
-        />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <meta name="color-scheme" content="dark light" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
-              '@context': 'https://schema.org',
-              '@type': 'Person',
-              name: 'Rohit Gupta',
-              url: 'https://rohit-gupta.vercel.app',
-              jobTitle: 'Technical Project Manager',
+              "@context": "https://schema.org",
+              "@type": "Person",
+              name: "Rohit Gupta",
+              jobTitle: "Technical Project Manager",
             }),
           }}
         />
       </head>
-      <body className={inter.className}>
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} disableTransitionOnChange>
-          <Suspense>{children}</Suspense>
-          <Toaster />
-          <Analytics />
-        </ThemeProvider>
-      </body>
+      <body>{children}</body>
     </html>
-  )
+  );
 }

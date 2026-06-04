@@ -1,15 +1,19 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import type { ReactNode } from "react"
+import { motion } from "framer-motion";
+import type { ReactNode } from "react";
 
 interface StaggeredGridProps {
-  children: ReactNode[]
-  className?: string
-  staggerDelay?: number
+  children: ReactNode[];
+  className?: string;
+  staggerDelay?: number;
 }
 
-export function StaggeredGrid({ children, className = "", staggerDelay = 0.1 }: StaggeredGridProps) {
+export function StaggeredGrid({
+  children,
+  className = "",
+  staggerDelay = 0.1,
+}: StaggeredGridProps) {
   const container = {
     hidden: { opacity: 0 },
     visible: {
@@ -19,7 +23,7 @@ export function StaggeredGrid({ children, className = "", staggerDelay = 0.1 }: 
         delayChildren: 0.2,
       },
     },
-  }
+  };
 
   const item = {
     hidden: {
@@ -37,7 +41,7 @@ export function StaggeredGrid({ children, className = "", staggerDelay = 0.1 }: 
         damping: 12,
       },
     },
-  }
+  };
 
   return (
     <motion.div
@@ -53,5 +57,5 @@ export function StaggeredGrid({ children, className = "", staggerDelay = 0.1 }: 
         </motion.div>
       ))}
     </motion.div>
-  )
+  );
 }

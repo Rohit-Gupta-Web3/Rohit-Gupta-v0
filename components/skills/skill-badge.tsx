@@ -1,8 +1,8 @@
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils";
 
 interface SkillBadgeProps {
-  name: string
-  className?: string
+  name: string;
+  className?: string;
 }
 
 export function SkillBadge({ name, className }: SkillBadgeProps) {
@@ -15,5 +15,5 @@ export function SkillBadge({ name, className }: SkillBadgeProps) {
     >
       {name}
     </div>
-  )
+  );
 }

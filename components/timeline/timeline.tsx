@@ -1,17 +1,20 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { TimelineItem } from "@/components/timeline/timeline-item"
-import { Button } from "@/components/ui/button"
-import { timelineData } from "@/data/timeline"
-import { Briefcase, GraduationCap, Award } from "lucide-react"
+import { useState } from "react";
+import { TimelineItem } from "@/components/timeline/timeline-item";
+import { Button } from "@/components/ui/button";
+import { timelineData } from "@/data/timeline";
+import { Briefcase, GraduationCap, Award } from "lucide-react";
 
-type FilterCategory = "all" | "work" | "education" | "achievement"
+type FilterCategory = "all" | "work" | "education" | "achievement";
 
 export function Timeline() {
-  const [filter, setFilter] = useState<FilterCategory>("all")
+  const [filter, setFilter] = useState<FilterCategory>("all");
 
-  const filteredData = filter === "all" ? timelineData : timelineData.filter((item) => item.category === filter)
+  const filteredData =
+    filter === "all"
+      ? timelineData
+      : timelineData.filter((item) => item.category === filter);
 
   return (
     <div className="space-y-8">
@@ -60,5 +63,5 @@ export function Timeline() {
         </div>
       </div>
     </div>
-  )
+  );
 }

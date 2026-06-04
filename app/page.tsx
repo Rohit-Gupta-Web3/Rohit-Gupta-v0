@@ -1,846 +1,1471 @@
-"use client"
-import { useState, useEffect, useRef, useMemo, Suspense, lazy } from "react"
-import Image from "next/image"
-import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion"
-import { useInView } from "framer-motion"
-import { Menu, X, Code, Briefcase, GraduationCap, Award, FileText, Users } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { useToast } from "@/hooks/use-toast"
-import { getOptimizedImageUrl } from "@/lib/image-optimization"
-import { timelineData } from "@/data/timeline"
-import { FloatingElements } from "@/components/animations/floating-elements"
-import { TextReveal } from "@/components/animations/text-reveal"
-import { ParallaxSection } from "@/components/animations/parallax-section"
-import { MorphingBlob } from "@/components/animations/morphing-blob"
-import { ScrollProgress } from "@/components/animations/scroll-progress"
-import { StaggeredGrid } from "@/components/animations/staggered-grid"
-import { ThreeBackground } from "@/components/animations/three-background"
+"use client";
 
-// Lazy load heavy components
-const ProjectsSection = lazy(() => import("@/components/sections/projects-section"))
-const ContactSection = lazy(() => import("@/components/sections/contact-section"))
+import type { AnchorHTMLAttributes, HTMLAttributes, ReactNode } from "react";
+import Image from "next/image";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { withBasePath } from "@/lib/site";
 
-// Loading fallbacks
-const SectionLoading = () => (
-  <div className="w-full h-[50vh] flex items-center justify-center">
-    <div className="animate-pulse flex flex-col items-center gap-4">
-      <div className="h-8 w-48 bg-white/10 rounded-md"></div>
-      <div className="h-4 w-64 bg-white/10 rounded-md"></div>
-    </div>
-  </div>
-)
+type Theme = "dark" | "light";
 
-export default function Home() {
-  const { toast } = useToast()
-  const [activeSection, setActiveSection] = useState("home")
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const [skillsVisible, setSkillsVisible] = useState(false)
-  const [visibleTimelineItems, setVisibleTimelineItems] = useState<string[]>([])
-  const [isScrolling, setIsScrolling] = useState(false)
+const profile = {
+  name: "Rohit Gupta",
+  initials: "RG",
+  roleLine: ["Technical Lead", "Web3 Lead", "Intel AI Edge Scholar"],
+  tagline: "Intel AI Edge Scholar, Web3 Enthusiast, and 2x C# Corner MVP.",
+  location: "Ghaziabad, India",
+  email: "gupta.rohitg.rohit900@gmail.com",
+  bookingUrl: "https://outlook.office.com/book/RohitGupta@csharp.com/",
+  x: "https://x.com/RohitGuptaWeb3",
+  linkedin: "https://www.linkedin.com/in/rohit-gupta-ai/",
+  github: "https://github.com/Rohit-Gupta-Web3",
+  available: "Available for select consulting engagements",
+};
 
-  // Scroll animations
-  const { scrollY } = useScroll()
-  const heroY = useTransform(scrollY, [0, 500], [0, 150])
-  const heroOpacity = useTransform(scrollY, [0, 300], [1, 0])
-  const heroScale = useTransform(scrollY, [0, 300], [1, 0.8])
+const stats = [
+  { value: "2x", label: "C# Corner MVP", sub: "member since 2019" },
+  { value: "215", label: "articles published", sub: "C# Corner" },
+  { value: "6", label: "eBooks published", sub: "C# Corner" },
+  { value: "2019", label: "member since", sub: "Ghaziabad, India" },
+];
 
-  // Refs for sections
-  const sectionRefs = {
-    home: useRef<HTMLElement>(null),
-    about: useRef<HTMLElement>(null),
-    experience: useRef<HTMLElement>(null),
-    skills: useRef<HTMLElement>(null),
-    projects: useRef<HTMLElement>(null),
-    contact: useRef<HTMLElement>(null),
-  }
+const pillars = [
+  {
+    code: "01",
+    title: "AI-Native Delivery",
+    body: "From LLM cost optimization to AI-enabled developer tooling — I build products where intelligence is the core, not a bolt-on.",
+    tags: ["LLM Ops", "Python", "OpenVINO", "Edge AI"],
+  },
+  {
+    code: "02",
+    title: "Blockchain Engineering",
+    body: "Smart-contract systems on EVM, Polygon, and Algorand — secure, auditable, and built for real-world compliance.",
+    tags: ["Solidity", "EVM", "Algorand", "Polygon"],
+  },
+  {
+    code: "03",
+    title: "Technical Leadership",
+    body: "I set architecture, enforce coding standards, run Agile delivery, and mentor engineers into high-performing teams.",
+    tags: [".NET 6", "Django", "Azure", "Agile"],
+  },
+];
 
-  // Throttle scroll events
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!isScrolling) {
-        setIsScrolling(true)
-
-        window.requestAnimationFrame(() => {
-          const scrollPosition = window.scrollY + 100
-
-          for (const section in sectionRefs) {
-            const sectionRef = sectionRefs[section as keyof typeof sectionRefs]
-            if (sectionRef.current) {
-              const sectionTop = sectionRef.current.offsetTop
-              const sectionBottom = sectionTop + sectionRef.current.offsetHeight
-
-              if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
-                setActiveSection(section)
-                break
-              }
-            }
-          }
-
-          setIsScrolling(false)
-        })
-      }
-    }
-
-    window.addEventListener("scroll", handleScroll, { passive: true })
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [isScrolling])
-
-  // Scroll to section with optimized animation
-  const scrollToSection = (sectionId: string) => {
-    const section = sectionRefs[sectionId as keyof typeof sectionRefs]
-    if (section.current) {
-      section.current.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      })
-    }
-    setMobileMenuOpen(false)
-  }
-
-  // Memoize skill categories
-  const skillCategories = useMemo(
-    () => [
-      {
-        name: "Programming",
-        skills: [
-          { name: "Python", level: 95 },
-          { name: "C#/.NET", level: 90 },
-          { name: "Solidity", level: 85 },
-          { name: "JavaScript", level: 80 },
-        ],
-      },
-      {
-        name: "Technologies",
-        skills: [
-          { name: "Blockchain", level: 90 },
-          { name: "IoT", level: 85 },
-          { name: "AI/ML", level: 80 },
-          { name: "Azure", level: 90 },
-        ],
-      },
-      {
-        name: "Soft Skills",
-        skills: [
-          { name: "Leadership", level: 95 },
-          { name: "Communication", level: 90 },
-          { name: "Problem Solving", level: 95 },
-          { name: "Project Management", level: 85 },
-        ],
-      },
+const featured = [
+  {
+    id: "code-quest",
+    name: "Code Quest",
+    client: "Build with AI",
+    role: "Creator",
+    year: "2025",
+    detail:
+      "Designed the product end-to-end: an AI tutor that scaffolds challenges, reviews submissions, and adapts difficulty in real time to upskill developers.",
+    outcomes: [
+      { k: "Focus", v: "AI tutoring" },
+      { k: "Surface", v: "Web app" },
+      { k: "Stage", v: "Live" },
     ],
-    [],
-  )
+    tags: ["AI", "Developer Experience", "Education"],
+    link: "https://code-quest.buildwithai.ai/",
+  },
+  {
+    id: "claw",
+    name: "Claw",
+    client: "Build with AI",
+    role: "Creator",
+    year: "2025",
+    detail:
+      "Built an automation-first product that turns multi-step operational workflows into one streamlined, AI-driven execution path.",
+    outcomes: [
+      { k: "Focus", v: "Automation" },
+      { k: "Pattern", v: "Agentic" },
+      { k: "Stage", v: "Live" },
+    ],
+    tags: ["AI", "Automation", "Product"],
+    link: "https://claw.buildwithai.ai/",
+  },
+  {
+    id: "llm-cost",
+    name: "LLM Cost Optimizer",
+    client: "Independent",
+    role: "Creator",
+    year: "2025",
+    detail:
+      "A team-facing analytics product that surfaces token spend, flags waste, and recommends model routing to reduce LLM bills without hurting quality.",
+    outcomes: [
+      { k: "Domain", v: "AI FinOps" },
+      { k: "Output", v: "Routing" },
+      { k: "Stage", v: "Live" },
+    ],
+    tags: ["AI", "FinOps", "Analytics"],
+    link: "https://llmcostoptimizer.com/",
+  },
+  {
+    id: "mapay",
+    name: "MAPay Credentialing",
+    client: "MPayz LLC",
+    role: "Technical Lead · DBA",
+    year: "2023",
+    detail:
+      "Led a secure platform that issues and verifies provider credentials for the Bermuda Health Council — credentials stored on Algorand with a proprietary integrity algorithm, verified via mobile.",
+    outcomes: [
+      { k: "Chain", v: "Algorand" },
+      { k: "Sector", v: "Healthcare" },
+      { k: "Role", v: "Tech Lead" },
+    ],
+    tags: ["Blockchain", "Healthcare", "Algorand"],
+    link: null,
+  },
+];
 
-  // Animation variants
-  const animations = useMemo(
-    () => ({
-      fadeInUp: {
-        hidden: { opacity: 0, y: 60 },
-        visible: {
-          opacity: 1,
-          y: 0,
-          transition: {
-            duration: 0.8,
-            ease: [0.25, 0.46, 0.45, 0.94],
-          },
-        },
-      },
-      staggerContainer: {
-        hidden: { opacity: 0 },
-        visible: {
-          opacity: 1,
-          transition: {
-            staggerChildren: 0.2,
-            delayChildren: 0.1,
-          },
-        },
-      },
-      scaleIn: {
-        hidden: { opacity: 0, scale: 0.8 },
-        visible: {
-          opacity: 1,
-          scale: 1,
-          transition: {
-            type: "spring",
-            stiffness: 100,
-            damping: 15,
-          },
-        },
-      },
-    }),
-    [],
-  )
+const projects = [
+  {
+    name: "Sharp Token",
+    client: "Sharp Innovation Foundation",
+    role: "Project Manager",
+    tags: ["Blockchain", "Polygon"],
+    glyph: "ST",
+    link: null,
+  },
+  {
+    name: "Sharp Rewards App",
+    client: "Sharp Innovation Foundation",
+    role: "Product Owner",
+    tags: ["Blockchain", "Polygon"],
+    glyph: "SR",
+    link: null,
+  },
+  {
+    name: "New Sharp Economy",
+    client: "Sharp Innovation Foundation",
+    role: "Contributor",
+    tags: ["AI", "Community"],
+    glyph: "NS",
+    link: "https://new.sharpeconomy.org/",
+  },
+  {
+    name: "MPayz Wallet",
+    client: "MPayz LLC",
+    role: "Technical Lead",
+    tags: ["Python", "Algorand"],
+    glyph: "MP",
+    link: null,
+  },
+  {
+    name: "Blockchain + IoT Integration",
+    client: "MCN Solutions",
+    role: "Technical Lead",
+    tags: ["IoT", "Solidity"],
+    glyph: "BI",
+    link: null,
+  },
+  {
+    name: "ALPR System",
+    client: "Aarohi Impex",
+    role: "Software Engineer",
+    tags: ["Python", "Computer Vision"],
+    glyph: "AL",
+    link: null,
+  },
+  {
+    name: "Stratis Student Hackathon",
+    client: "Stratis Blockchain",
+    role: "Organizer · Judge",
+    tags: ["Blockchain", "Event"],
+    glyph: "SH",
+    link: null,
+  },
+  {
+    name: "C# Corner MVP Program",
+    client: "C# Corner",
+    role: "Program Director",
+    tags: ["Community", "DevRel"],
+    glyph: "MV",
+    link: null,
+  },
+];
 
-  // Skill section ref for intersection observer
-  const skillsSectionRef = useRef(null)
-  const isSkillsInView = useInView(skillsSectionRef, { once: true, amount: 0.2 })
+const experience = [
+  {
+    role: "Technical Lead",
+    org: "MCN Solutions",
+    period: "Apr 2022 — Present",
+    current: true,
+    points: [
+      "Architected and led blockchain + IoT product development",
+      "Managed cross-functional teams across Django, .NET 6, Blazor",
+      "Enforced coding & testing standards; shipped Agile-driven releases",
+      "Mentored engineers and ran R&D initiatives",
+    ],
+  },
+  {
+    role: "Technical Trainer",
+    org: "MCN Solutions",
+    period: "Jul 2019 — Mar 2022",
+    points: [
+      "Delivered training in JS, Python, C++, SQL, Django",
+      "Built hands-on modules and interactive sessions",
+      "Trained teams on full-stack & Web3 tools (Polygon, Base)",
+    ],
+  },
+  {
+    role: "Technical Writer",
+    org: "C# Corner",
+    period: "Jul 2019 — Jun 2025",
+    points: [
+      "Authored 215 articles and 6 eBooks on AI, Python, Web3",
+      "Covered ML, OpenVINO, IoT, and Windows 11",
+      "Reached thousands of developers worldwide",
+    ],
+  },
+  {
+    role: "Program Director",
+    org: "C# Corner",
+    period: "Dec 2020 — Jun 2022",
+    points: [
+      "Managed the C# Corner MVP program",
+      "Enhanced member engagement and program benefits",
+      "Built support and feedback loops",
+    ],
+  },
+];
+
+const skills = [
+  {
+    group: "Programming",
+    items: [
+      ["Python", 95],
+      ["C# / .NET", 90],
+      ["Solidity", 85],
+      ["JavaScript", 80],
+    ],
+  },
+  {
+    group: "Technologies",
+    items: [
+      ["Azure", 90],
+      ["Blockchain", 90],
+      ["IoT", 85],
+      ["AI / ML", 80],
+    ],
+  },
+  {
+    group: "Leadership",
+    items: [
+      ["Problem Solving", 95],
+      ["Leadership", 95],
+      ["Communication", 90],
+      ["Project Mgmt", 85],
+    ],
+  },
+];
+
+const writing = {
+  blurb:
+    "I publish what I build — 215 technical articles, 6 eBooks, and years of AI/Web3 writing on C# Corner.",
+  topics: [
+    "AI & Machine Learning",
+    "OpenVINO & Edge AI",
+    "Python",
+    "Web3 & Smart Contracts",
+    "IoT",
+    "Windows 11",
+  ],
+  highlights: [
+    {
+      title: "Authored 215 articles & 6 eBooks",
+      meta: "C# Corner · 2019–2025",
+      kind: "Writing",
+    },
+    { title: "C# Corner MVP", meta: "2x recognition", kind: "Recognition" },
+    {
+      title: "Intel Edge AI for IoT Nanodegree",
+      meta: "Udacity · 2020",
+      kind: "Credential",
+    },
+    {
+      title: "Web3 Lead at Sharp Economy",
+      meta: "Community + product leadership",
+      kind: "Role",
+    },
+  ],
+};
+
+const education = [
+  {
+    degree: "M.Sc. Informatics",
+    school: "Institute of Informatics & Communication, DU",
+    period: "2016–2019",
+  },
+  {
+    degree: "Intel Edge AI for IoT Nanodegree",
+    school: "Udacity",
+    period: "2020",
+  },
+  {
+    degree: "B.Sc. Electronics",
+    school: "Sri Aurobindo College",
+    period: "2012–2015",
+  },
+];
+
+const navLinks = [
+  ["About", "#about"],
+  ["Work", "#work"],
+  ["Experience", "#experience"],
+  ["Writing", "#writing"],
+  ["Contact", "#contact"],
+] as const;
+
+const icons = {
+  arrowUpRight: "M7 17 17 7M7 7h10v10",
+  arrowRight: "M5 12h14M13 6l6 6-6 6",
+  x: "M4 4l16 16M20 4 4 20",
+  mail: "M3 6h18v12H3zM3 7l9 6 9-6",
+  pin: "M12 21s7-6.3 7-11a7 7 0 1 0-14 0c0 4.7 7 11 7 11zM12 12a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z",
+  linkedin:
+    "M4.5 9.5H8V20H4.5zM6.25 4a1.75 1.75 0 1 0 0 3.5 1.75 1.75 0 0 0 0-3.5zM11 9.5h3.3v1.5h.05c.46-.85 1.6-1.75 3.3-1.75 3.5 0 4.15 2.2 4.15 5.1V20H21.5v-4.9c0-1.2-.02-2.7-1.7-2.7s-1.95 1.3-1.95 2.6V20H14.5z",
+  github:
+    "M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.1-1.46-1.1-1.46-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.9.83.1-.65.35-1.08.63-1.33-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.9-1.29 2.74-1.02 2.74-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.6 1.03 2.69 0 3.84-2.34 4.69-4.57 4.94.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2z",
+  external:
+    "M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5",
+  sparkle:
+    "M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8zM18 16l.7 2 2 .7-2 .7-.7 2-.7-2-2-.7 2-.7z",
+  doc: "M7 3h7l5 5v13H7zM14 3v5h5",
+  award:
+    "M12 3a5 5 0 1 0 0 10 5 5 0 0 0 0-10zM8.5 12.5 7 21l5-2.5L17 21l-1.5-8.5",
+  brain:
+    "M9 3a3 3 0 0 0-3 3 3 3 0 0 0-1 5.8A3 3 0 0 0 6 17a3 3 0 0 0 3 3M9 3a2.5 2.5 0 0 1 3 2.4v13.2A2.5 2.5 0 0 1 9 21M15 3a3 3 0 0 1 3 3 3 3 0 0 1 1 5.8A3 3 0 0 1 18 17a3 3 0 0 1-3 3M15 3a2.5 2.5 0 0 0-3 2.4",
+  link: "M10 14a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1M14 10a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1",
+} as const;
+
+function Icon({
+  name,
+  size = 18,
+  stroke = 1.6,
+  fill = false,
+  className,
+}: {
+  name: keyof typeof icons;
+  size?: number;
+  stroke?: number;
+  fill?: boolean;
+  className?: string;
+}) {
+  const d = icons[name];
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill={fill ? "currentColor" : "none"}
+      stroke={fill ? "none" : "currentColor"}
+      strokeWidth={stroke}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      aria-hidden="true"
+    >
+      <path d={d} />
+    </svg>
+  );
+}
+
+function useReveal() {
+  useEffect(() => {
+    const remaining = () =>
+      document.querySelectorAll<HTMLElement>(".rg-reveal:not(.in)");
+    const items = remaining();
+    if (!("IntersectionObserver" in window)) {
+      items.forEach((el) => el.classList.add("in"));
+      return;
+    }
+
+    let ioFired = false;
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            ioFired = true;
+            (entry.target as HTMLElement).classList.add("in");
+            io.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: "0px 0px -6% 0px" },
+    );
+
+    items.forEach((el) => io.observe(el));
+
+    const fallback = window.setTimeout(() => {
+      if (!ioFired) remaining().forEach((el) => el.classList.add("in"));
+    }, 1200);
+
+    return () => {
+      io.disconnect();
+      window.clearTimeout(fallback);
+    };
+  }, []);
+}
+
+function Reveal({
+  children,
+  delay = 0,
+  as = "div",
+  className = "",
+  ...rest
+}: {
+  children: ReactNode;
+  delay?: number;
+  as?: keyof JSX.IntrinsicElements;
+  className?: string;
+} & HTMLAttributes<HTMLElement>) {
+  const Tag = as;
+  return (
+    <Tag
+      className={`rg-reveal ${className}`.trim()}
+      style={{ transitionDelay: `${delay}ms` }}
+      {...rest}
+    >
+      {children}
+    </Tag>
+  );
+}
+
+function CountUp({ value }: { value: string }) {
+  const ref = useRef<HTMLSpanElement | null>(null);
+  const match = /^(\d+)(\D*)$/.exec(value);
+  const isNumeric = Boolean(match);
+  const [shown, setShown] = useState(() => (isNumeric ? "0" : value));
 
   useEffect(() => {
-    if (isSkillsInView) {
-      setSkillsVisible(true)
+    const match = /^(\d+)(\D*)$/.exec(value);
+    if (!match) {
+      return;
     }
-  }, [isSkillsInView])
 
-  // Timeline item visibility
-  const handleTimelineItemVisible = (id: string, isVisible: boolean) => {
-    if (isVisible && !visibleTimelineItems.includes(id)) {
-      setVisibleTimelineItems((prev) => [...prev, id])
+    const target = Number(match[1]);
+    const suffix = match[2] || "";
+    const el = ref.current;
+    let started = false;
+
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !started) {
+            started = true;
+            const duration = 1100;
+            const start = performance.now();
+            const tick = (now: number) => {
+              const progress = Math.min(1, (now - start) / duration);
+              const eased = 1 - Math.pow(1 - progress, 3);
+              setShown(`${Math.round(target * eased)}${suffix}`);
+              if (progress < 1) requestAnimationFrame(tick);
+            };
+            requestAnimationFrame(tick);
+          }
+        });
+      },
+      { threshold: 0.5 },
+    );
+
+    if (el) io.observe(el);
+    return () => io.disconnect();
+  }, [isNumeric, value]);
+
+  return <span ref={ref}>{shown}</span>;
+}
+
+function RoleRotator({ roles }: { roles: string[] }) {
+  const [index, setIndex] = useState(0);
+  const [text, setText] = useState(roles[0] ?? "");
+  const [phase, setPhase] = useState<"type" | "hold" | "delete">("hold");
+
+  useEffect(() => {
+    const full = roles[index];
+    let timeout: number | undefined;
+
+    if (phase === "hold") {
+      timeout = window.setTimeout(() => setPhase("delete"), 2200);
+    } else if (phase === "type") {
+      if (text.length < full.length) {
+        timeout = window.setTimeout(
+          () => setText(full.slice(0, text.length + 1)),
+          55,
+        );
+      } else {
+        timeout = window.setTimeout(() => setPhase("hold"), 1500);
+      }
+    } else if (text.length > 0) {
+      timeout = window.setTimeout(
+        () => setText(full.slice(0, text.length - 1)),
+        28,
+      );
+    } else {
+      timeout = window.setTimeout(() => {
+        setPhase("type");
+        setIndex((current) => (current + 1) % roles.length);
+      }, 0);
     }
-  }
+
+    return () => {
+      if (timeout) window.clearTimeout(timeout);
+    };
+  }, [index, phase, roles, text]);
 
   return (
-    <div className="min-h-screen bg-background dark relative overflow-x-hidden gamified-3d-world">
-      <ThreeBackground />
+    <div className="rg-role-rotator">
+      <span style={{ color: "var(--rg-text-3)" }}>{">"}</span>
+      <span className="rg-grad-text">{text}</span>
+      <span className="cursor" />
+    </div>
+  );
+}
 
-      {/* Scroll Progress */}
-      <ScrollProgress />
+function BackgroundCanvas({
+  accentA,
+  accentB,
+  intensity = 1,
+}: {
+  accentA: string;
+  accentB: string;
+  intensity?: number;
+}) {
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
-      {/* Floating Elements */}
-      <FloatingElements />
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
 
-      {/* Navigation Indicator */}
-      {typeof window !== "undefined" && window.innerWidth >= 1024 && (
-        <motion.div
-          className="nav-indicator"
-          initial={{ opacity: 0, x: 50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 1, duration: 0.5 }}
-        >
-          <ul>
-            {Object.keys(sectionRefs).map((section, index) => (
-              <motion.li
-                key={section}
-                className={activeSection === section ? "active" : ""}
-                onClick={() => scrollToSection(section)}
-                title={section.charAt(0).toUpperCase() + section.slice(1)}
-                initial={{ opacity: 0, scale: 0 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 1.2 + index * 0.1, duration: 0.3 }}
-                whileHover={{ scale: 1.2 }}
-                whileTap={{ scale: 0.9 }}
-              />
-            ))}
-          </ul>
-        </motion.div>
-      )}
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
 
-      {/* Header */}
-      <motion.header
-        className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-white/10"
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-      >
-        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <motion.div
-            className="text-xl font-bold gradient-text"
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.3, duration: 0.5 }}
-          >
-            Rohit Gupta
-          </motion.div>
+    let raf = 0;
+    let width = 0;
+    let height = 0;
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const reduced = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+    let nodes: Array<{
+      x: number;
+      y: number;
+      vx: number;
+      vy: number;
+      r: number;
+      hot: boolean;
+    }> = [];
+    let edges: Array<{ a: number; b: number }> = [];
+    const pulses: Array<{ a: number; b: number; t: number; speed: number }> =
+      [];
+    let mouse = { x: -9999, y: -9999 };
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
-            {Object.keys(sectionRefs).map((section, index) => (
-              <motion.button
-                key={section}
-                onClick={() => scrollToSection(section)}
-                className={`text-sm font-medium transition-colors hover:text-primary ${
-                  activeSection === section ? "text-primary" : "text-muted-foreground"
-                }`}
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4 + index * 0.1, duration: 0.5 }}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+    const hexToRgb = (hex: string) => {
+      const h = hex.replace("#", "");
+      const full =
+        h.length === 3
+          ? h
+              .split("")
+              .map((c) => c + c)
+              .join("")
+          : h;
+      const value = Number.parseInt(full, 16);
+      return [(value >> 16) & 255, (value >> 8) & 255, value & 255];
+    };
+
+    const targetCount = () => {
+      const area = width * height;
+      const base = Math.min(90, Math.max(28, Math.round(area / 26000)));
+      return Math.round(base * (0.5 + intensity * 0.6));
+    };
+
+    const build = () => {
+      const count = targetCount();
+      nodes = Array.from({ length: count }, () => ({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        vx: (Math.random() - 0.5) * 0.22,
+        vy: (Math.random() - 0.5) * 0.22,
+        r: Math.random() * 1.6 + 0.6,
+        hot: Math.random() < 0.18,
+      }));
+    };
+
+    const resize = () => {
+      width = canvas.clientWidth;
+      height = canvas.clientHeight;
+      canvas.width = width * dpr;
+      canvas.height = height * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      build();
+    };
+
+    const spawnPulse = () => {
+      if (!edges.length) return;
+      const edge = edges[(Math.random() * edges.length) | 0];
+      pulses.push({
+        a: edge.a,
+        b: edge.b,
+        t: 0,
+        speed: 0.012 + Math.random() * 0.02,
+      });
+    };
+
+    const link = 132;
+
+    const step = () => {
+      ctx.clearRect(0, 0, width, height);
+      const [ar, ag, ab] = hexToRgb(accentA);
+      const [br, bg, bb] = hexToRgb(accentB);
+
+      const speed = reduced ? 0 : 0.4 + intensity * 0.9;
+      for (const node of nodes) {
+        node.x += node.vx * speed;
+        node.y += node.vy * speed;
+        if (node.x < 0 || node.x > width) node.vx *= -1;
+        if (node.y < 0 || node.y > height) node.vy *= -1;
+        node.x = Math.max(0, Math.min(width, node.x));
+        node.y = Math.max(0, Math.min(height, node.y));
+
+        const dx = node.x - mouse.x;
+        const dy = node.y - mouse.y;
+        const d2 = dx * dx + dy * dy;
+        if (d2 < 16000) {
+          const force = ((16000 - d2) / 16000) * 0.6;
+          const dist = Math.sqrt(d2) || 1;
+          node.x += (dx / dist) * force;
+          node.y += (dy / dist) * force;
+        }
+      }
+
+      edges = [];
+      for (let i = 0; i < nodes.length; i += 1) {
+        for (let j = i + 1; j < nodes.length; j += 1) {
+          const a = nodes[i];
+          const b = nodes[j];
+          const dx = a.x - b.x;
+          const dy = a.y - b.y;
+          const dist = Math.hypot(dx, dy);
+          if (dist < link) {
+            const opacity = (1 - dist / link) * 0.5;
+            ctx.strokeStyle = `rgba(${ar},${ag},${ab},${opacity * 0.5})`;
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(a.x, a.y);
+            ctx.lineTo(b.x, b.y);
+            ctx.stroke();
+            edges.push({ a: i, b: j });
+          }
+        }
+      }
+
+      for (const node of nodes) {
+        if (node.hot) {
+          ctx.fillStyle = `rgba(${br},${bg},${bb},0.95)`;
+          ctx.shadowColor = `rgba(${br},${bg},${bb},0.9)`;
+          ctx.shadowBlur = 10;
+        } else {
+          ctx.fillStyle = `rgba(${ar},${ag},${ab},0.7)`;
+          ctx.shadowBlur = 0;
+        }
+        ctx.beginPath();
+        ctx.arc(node.x, node.y, node.r, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      ctx.shadowBlur = 0;
+
+      for (let i = pulses.length - 1; i >= 0; i -= 1) {
+        const pulse = pulses[i];
+        const a = nodes[pulse.a];
+        const b = nodes[pulse.b];
+        if (!a || !b) {
+          pulses.splice(i, 1);
+          continue;
+        }
+        pulse.t += pulse.speed * (reduced ? 0 : 1);
+        if (pulse.t >= 1) {
+          pulses.splice(i, 1);
+          continue;
+        }
+        const x = a.x + (b.x - a.x) * pulse.t;
+        const y = a.y + (b.y - a.y) * pulse.t;
+        ctx.fillStyle = `rgba(${br},${bg},${bb},1)`;
+        ctx.shadowColor = `rgba(${br},${bg},${bb},1)`;
+        ctx.shadowBlur = 12;
+        ctx.beginPath();
+        ctx.arc(x, y, 2, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.shadowBlur = 0;
+      }
+
+      if (
+        !reduced &&
+        Math.random() < 0.02 * (0.5 + intensity) &&
+        pulses.length < 8 + intensity * 6
+      ) {
+        spawnPulse();
+      }
+
+      if (!reduced) {
+        raf = window.requestAnimationFrame(step);
+      }
+    };
+
+    const onMove = (event: MouseEvent) => {
+      const rect = canvas.getBoundingClientRect();
+      mouse = { x: event.clientX - rect.left, y: event.clientY - rect.top };
+    };
+
+    const onLeave = () => {
+      mouse = { x: -9999, y: -9999 };
+    };
+
+    resize();
+    window.addEventListener("resize", resize);
+    window.addEventListener("mousemove", onMove);
+    window.addEventListener("mouseleave", onLeave);
+
+    if (reduced) {
+      step();
+      return () => {
+        window.removeEventListener("resize", resize);
+        window.removeEventListener("mousemove", onMove);
+        window.removeEventListener("mouseleave", onLeave);
+      };
+    }
+
+    step();
+
+    return () => {
+      window.cancelAnimationFrame(raf);
+      window.removeEventListener("resize", resize);
+      window.removeEventListener("mousemove", onMove);
+      window.removeEventListener("mouseleave", onLeave);
+    };
+  }, [accentA, accentB, intensity]);
+
+  return <canvas id="rg-bg-canvas" ref={canvasRef} />;
+}
+
+function SectionLabel({ children }: { children: React.ReactNode }) {
+  return <span className="rg-eyebrow">{children}</span>;
+}
+
+function AppLink({
+  href,
+  children,
+  className = "",
+  ...props
+}: {
+  href: string;
+  children: ReactNode;
+  className?: string;
+} & AnchorHTMLAttributes<HTMLAnchorElement>) {
+  return (
+    <a href={href} className={className} {...props}>
+      {children}
+    </a>
+  );
+}
+
+export default function Home() {
+  const [theme, setTheme] = useState<Theme>("dark");
+  const [scrolled, setScrolled] = useState(false);
+
+  useReveal();
+
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+  }, [theme]);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  const toggleTheme = () =>
+    setTheme((current) => (current === "dark" ? "light" : "dark"));
+
+  const navButtons = useMemo(
+    () =>
+      navLinks.map(([label, href]) => (
+        <AppLink key={href} href={href} className="rg-nav-link">
+          {label}
+        </AppLink>
+      )),
+    [],
+  );
+
+  return (
+    <div className="rg-shell">
+      <BackgroundCanvas accentA="#3b82f6" accentB="#22d3ee" intensity={1} />
+      <div className="rg-bg-grid" />
+
+      <div className="rg-app">
+        <nav className={`rg-nav ${scrolled ? "scrolled" : ""}`}>
+          <div className="rg-nav-inner">
+            <AppLink href="#top" className="rg-logo">
+              <span className="rg-logo-mark">RG</span>
+              <span>{profile.name}</span>
+            </AppLink>
+
+            <div className="rg-nav-links">{navButtons}</div>
+
+            <div className="rg-nav-cta">
+              <button
+                type="button"
+                className="rg-soc"
+                onClick={toggleTheme}
+                title="Toggle theme"
+                aria-label="Toggle theme"
               >
-                {section.charAt(0).toUpperCase() + section.slice(1)}
-              </motion.button>
-            ))}
-          </nav>
-
-          {/* Mobile Menu Button */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.3, duration: 0.5 }}
-          >
-            <Button
-              variant="ghost"
-              size="icon"
-              className="md:hidden"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
-            >
-              <motion.div animate={{ rotate: mobileMenuOpen ? 180 : 0 }} transition={{ duration: 0.3 }}>
-                {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-              </motion.div>
-            </Button>
-          </motion.div>
-        </div>
-
-        {/* Mobile Navigation */}
-        <AnimatePresence>
-          {mobileMenuOpen && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.3, ease: "easeInOut" }}
-              className="md:hidden absolute w-full bg-background/95 backdrop-blur-md border-b border-white/10"
-            >
-              <div className="container mx-auto px-4 py-4 flex flex-col space-y-4">
-                {Object.keys(sectionRefs).map((section, index) => (
-                  <motion.button
-                    key={section}
-                    onClick={() => scrollToSection(section)}
-                    className="text-sm font-medium py-2 hover:text-primary text-left"
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.1, duration: 0.3 }}
+                {theme === "dark" ? (
+                  <svg
+                    width="17"
+                    height="17"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.7"
+                    strokeLinecap="round"
                   >
-                    {section.charAt(0).toUpperCase() + section.slice(1)}
-                  </motion.button>
+                    <circle cx="12" cy="12" r="4" />
+                    <path d="M12 2v2M12 20v2M4 12H2M22 12h-2M5 5l1.5 1.5M17.5 17.5 19 19M19 5l-1.5 1.5M6.5 17.5 5 19" />
+                  </svg>
+                ) : (
+                  <svg
+                    width="17"
+                    height="17"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.7"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z" />
+                  </svg>
+                )}
+              </button>
+              <AppLink
+                href={profile.bookingUrl}
+                className="rg-btn rg-btn-primary rg-btn-sm"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Book team calendar <Icon name="arrowUpRight" size={15} />
+              </AppLink>
+            </div>
+          </div>
+        </nav>
+
+        <main>
+          <header className="rg-section rg-hero" id="top">
+            <div className="rg-wrap">
+              <div className="rg-hero-grid">
+                <div>
+                  <Reveal className="rg-hero-status">
+                    <span className="rg-pill">
+                      <span className="rg-dot live" />
+                      {profile.available}
+                    </span>
+                  </Reveal>
+                  <Reveal as="h1" delay={60}>
+                    <span className="line">{profile.name}</span>
+                  </Reveal>
+                  <Reveal delay={130}>
+                    <RoleRotator roles={profile.roleLine} />
+                  </Reveal>
+                  <Reveal delay={200}>
+                    <p className="rg-hero-lead">{profile.tagline}</p>
+                  </Reveal>
+                  <Reveal delay={270} className="rg-hero-cta">
+                    <AppLink
+                      href={profile.bookingUrl}
+                      className="rg-btn rg-btn-primary"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Book team calendar <Icon name="arrowUpRight" size={16} />
+                    </AppLink>
+                    <AppLink href="#work" className="rg-btn rg-btn-ghost">
+                      View selected work
+                    </AppLink>
+                  </Reveal>
+                  <Reveal delay={340} className="rg-hero-meta">
+                    <div className="m">
+                      <span className="v">
+                        <CountUp value="10+" />
+                      </span>
+                      <span className="l">AI · Blockchain · IoT</span>
+                    </div>
+                    <div className="m">
+                      <span className="v">
+                        <CountUp value="13" />
+                      </span>
+                      <span className="l">products shipped</span>
+                    </div>
+                    <div className="m">
+                      <span className="v">
+                        <CountUp value="80+" />
+                      </span>
+                      <span className="l">articles published</span>
+                    </div>
+                  </Reveal>
+                </div>
+
+                <Reveal delay={180} className="rg-hero-portrait">
+                  <div className="rg-portrait-deco" />
+                  <div className="rg-portrait-frame">
+                      <Image
+                      src={withBasePath("/rohit.png")}
+                      alt="Rohit Gupta"
+                      className="rg-portrait-image"
+                      fill
+                      priority
+                      sizes="(max-width: 768px) 90vw, (max-width: 1200px) 30vw, 380px"
+                    />
+                    <div className="rg-portrait-badge">
+                      <span
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          gap: 8,
+                        }}
+                      >
+                        <span className="rg-dot" />
+                        ghaziabad · ind
+                      </span>
+                      <span style={{ color: "var(--rg-accent-2)" }}>
+                        UTC+5:30
+                      </span>
+                    </div>
+                  </div>
+                </Reveal>
+              </div>
+            </div>
+            <div className="rg-scroll-hint">
+              <span>scroll</span>
+              <span className="bar" />
+            </div>
+          </header>
+
+          <div className="rg-marquee">
+            <div className="rg-marquee-track">
+              {[
+                ...[
+                  "Python",
+                  "Solidity",
+                  "Azure",
+                  ".NET 6",
+                  "Django",
+                  "EVM",
+                  "Algorand",
+                  "Polygon",
+                  "OpenVINO",
+                  "Edge AI",
+                  "Blazor",
+                  "Smart Contracts",
+                  "LLM Ops",
+                  "Agile",
+                ],
+                ...[
+                  "Python",
+                  "Solidity",
+                  "Azure",
+                  ".NET 6",
+                  "Django",
+                  "EVM",
+                  "Algorand",
+                  "Polygon",
+                  "OpenVINO",
+                  "Edge AI",
+                  "Blazor",
+                  "Smart Contracts",
+                  "LLM Ops",
+                  "Agile",
+                ],
+              ].map((item, index) => (
+                <span className="rg-marquee-item" key={`${item}-${index}`}>
+                  <span>{"//"}</span>
+                  {item}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          <section className="rg-section" id="about">
+            <div className="rg-wrap">
+              <div className="rg-about-grid">
+                <div>
+                  <Reveal>
+                    <SectionLabel>01 - Who I am</SectionLabel>
+                  </Reveal>
+                  <Reveal delay={60}>
+                    <h2 className="rg-section-title">
+                      I build at the intersection of intelligence and trust.
+                    </h2>
+                  </Reveal>
+                </div>
+
+                <Reveal delay={120} className="rg-about-body">
+                  <p>
+                    I am an <strong>Intel® AI Edge Scholar</strong>,{" "}
+                    <strong>Web3 Enthusiast</strong>, and{" "}
+                    <strong>2 times C# Corner MVP</strong>. I feel that bonding
+                    between Machines and Humans will make this world a better
+                    place.
+                  </p>
+                  <p>
+                    I have worked on various blockchains like{" "}
+                    <strong>Stratis</strong>, <strong>Algorand</strong>,{" "}
+                    <strong>Near</strong>, and <strong>Polygon</strong>, and I
+                    write about AI, Web3, and software delivery for the C#
+                    Corner community.
+                  </p>
+                  <div className="rg-edu-list">
+                    {education.map((item) => (
+                      <div className="rg-edu" key={item.degree}>
+                        <div>
+                          <div className="d">{item.degree}</div>
+                          <div className="s">{item.school}</div>
+                        </div>
+                        <div className="p">{item.period}</div>
+                      </div>
+                    ))}
+                  </div>
+                </Reveal>
+              </div>
+
+              <div className="rg-pillars">
+                {pillars.map((pillar, index) => (
+                  <Reveal
+                    key={pillar.code}
+                    delay={index * 90}
+                    className="rg-card rg-card-glow rg-pillar"
+                  >
+                    <span className="code">{pillar.code} / 03</span>
+                    <h3>{pillar.title}</h3>
+                    <p>{pillar.body}</p>
+                    <div className="tags">
+                      {pillar.tags.map((tag) => (
+                        <span className="rg-tag" key={tag}>
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </Reveal>
                 ))}
               </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </motion.header>
-
-      <main>
-        {/* Hero Section */}
-        <section
-          ref={sectionRefs.home}
-          id="home"
-          className="min-h-screen flex items-center relative overflow-hidden animated-gradient-bg"
-        >
-          <MorphingBlob />
-
-          <motion.div className="absolute inset-0 z-0" style={{ y: heroY, opacity: heroOpacity, scale: heroScale }}>
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-900/20 via-background to-background"></div>
-          </motion.div>
-
-          <div className="container mx-auto px-4 py-20 relative z-10">
-            <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
-              <motion.div
-                className="flex-1 space-y-6"
-                initial={{ opacity: 0, x: -100 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 1, ease: "easeOut" }}
-              >
-                <motion.h1
-                  className="text-5xl md:text-7xl font-bold leading-tight text-shadow"
-                  initial={{ opacity: 0, y: 50 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.2, duration: 0.8 }}
-                >
-                  I'm <span className="gradient-text">Rohit Gupta</span>
-                </motion.h1>
-
-                <TextReveal className="text-2xl md:text-3xl font-medium text-white/80" delay={0.5}>
-                  Technical Project Manager & AI Expert
-                </TextReveal>
-
-                <TextReveal className="text-lg text-white/70 max-w-xl" delay={0.8}>
-                  AI, Blockchain & IoT Specialist | Agile Leader | Azure | Python | EVM & Solidity | Driving Innovation Through
-                  Emerging Tech & Scalable Architecture
-                </TextReveal>
-
-                <motion.div
-                  className="flex flex-wrap gap-4 pt-4"
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 1.2, duration: 0.6 }}
-                >
-                  <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                    <Button
-                      size="lg"
-                      className="bg-gradient-to-r from-blue-500 to-violet-500 hover:from-blue-600 hover:to-violet-600"
-                      onClick={() => scrollToSection("about")}
-                    >
-                      Learn More About Me
-                    </Button>
-                  </motion.div>
-                  <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                    <Button
-                      variant="outline"
-                      size="lg"
-                      className="border-white/20 hover:bg-white/10"
-                      onClick={() => scrollToSection("contact")}
-                    >
-                      Get In Touch
-                    </Button>
-                  </motion.div>
-                </motion.div>
-              </motion.div>
-
-              <motion.div
-                className="relative w-64 h-64 md:w-80 md:h-80"
-                initial={{ opacity: 0, scale: 0.5, rotate: -10 }}
-                animate={{ opacity: 1, scale: 1, rotate: 0 }}
-                transition={{ duration: 1, ease: "easeOut", delay: 0.4 }}
-                whileHover={{ scale: 1.05, rotate: 2 }}
-              >
-                <motion.div
-                  className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 to-violet-500 blur-2xl opacity-30"
-                  animate={{
-                    scale: [1, 1.2, 1],
-                    opacity: [0.3, 0.5, 0.3],
-                  }}
-                  transition={{
-                    duration: 4,
-                    repeat: Number.POSITIVE_INFINITY,
-                    ease: "easeInOut",
-                  }}
-                />
-                <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-white/20">
-                  <Image
-                    src={
-                      getOptimizedImageUrl(
-                        "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Rohit.jpg-v0vd0xDZFnAZoKjZtI4MfOVaxX0iUj.jpeg",
-                        320,
-                      ) || "/placeholder.svg"
-                    }
-                    alt="Rohit Gupta"
-                    fill
-                    sizes="(max-width: 768px) 256px, 320px"
-                    className="object-cover"
-                    priority
-                    loading="eager"
-                  />
-                </div>
-              </motion.div>
-            </div>
-
-            <motion.div
-              className="absolute bottom-10 left-1/2 transform -translate-x-1/2"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.5, duration: 0.8 }}
-            >
-              <motion.div
-                className="scroll-indicator text-white/50"
-                animate={{ y: [0, 10, 0] }}
-                transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
-              />
-            </motion.div>
-          </div>
-        </section>
-
-        {/* About Section */}
-        <ParallaxSection speed={0.3}>
-          <section ref={sectionRefs.about} id="about" className="py-20 md:py-32 relative">
-            <div className="container mx-auto px-4">
-              <motion.div
-                className="max-w-3xl mx-auto"
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.2 }}
-                variants={animations.staggerContainer}
-              >
-                <motion.h2
-                  className="text-4xl md:text-5xl font-bold mb-12 text-center gradient-text"
-                  variants={animations.fadeInUp}
-                >
-                  About Me
-                </motion.h2>
-
-                <motion.div className="space-y-8" variants={animations.fadeInUp}>
-                  <TextReveal className="text-lg text-white/80 leading-relaxed">
-                    As a Technical Lead specializing in Blockchain, IoT, and AI solutions, I thrive at the intersection of
-                    cutting-edge technology and practical business impact. With hands-on experience designing,
-                    developing, and deploying decentralized and connected systems, I lead high-performing engineering
-                    teams to deliver secure, scalable, and innovative solutions across industries.
-                  </TextReveal>
-
-                  <TextReveal className="text-lg text-white/80 leading-relaxed" delay={0.3}>
-                    Currently at MCN Solutions, I architect technical frameworks, define coding standards, and ensure
-                    rigorous testing and deployment protocols for next-gen blockchain, IoT, and AI projects. Beyond delivery,
-                    I take pride in mentoring junior engineers, fostering a growth-driven team culture, and embedding
-                    Agile best practices using tools like Jira, ClickUp, and Azure Boards.
-                  </TextReveal>
-
-                  <StaggeredGrid className="grid md:grid-cols-2 gap-8" staggerDelay={0.2}>
-                    <motion.div
-                      className="glass-card p-8 rounded-xl hover-lift"
-                      whileHover={{ scale: 1.02, rotateY: 5 }}
-                      transition={{ type: "spring", stiffness: 300 }}
-                    >
-                      <div className="flex items-center gap-4 mb-4">
-                        <motion.div
-                          className="p-3 rounded-full bg-blue-500/20 text-blue-400"
-                          whileHover={{ rotate: 360 }}
-                          transition={{ duration: 0.5 }}
-                        >
-                          <GraduationCap className="h-6 w-6" />
-                        </motion.div>
-                        <h3 className="text-xl font-bold">Education</h3>
-                      </div>
-                      <div className="space-y-4">
-                        <motion.div
-                          initial={{ opacity: 0, x: -20 }}
-                          whileInView={{ opacity: 1, x: 0 }}
-                          transition={{ delay: 0.1 }}
-                        >
-                          <h4 className="font-medium">M.Sc. Informatics</h4>
-                          <p className="text-sm text-white/60">
-                            Institute of Informatics & Communication, DU | 2016-2019
-                          </p>
-                        </motion.div>
-                        <motion.div
-                          initial={{ opacity: 0, x: -20 }}
-                          whileInView={{ opacity: 1, x: 0 }}
-                          transition={{ delay: 0.2 }}
-                        >
-                          <h4 className="font-medium">Intel Edge AI for IoT Nanodegree</h4>
-                          <p className="text-sm text-white/60">Udacity | 2020</p>
-                        </motion.div>
-                        <motion.div
-                          initial={{ opacity: 0, x: -20 }}
-                          whileInView={{ opacity: 1, x: 0 }}
-                          transition={{ delay: 0.3 }}
-                        >
-                          <h4 className="font-medium">B.Sc. Electronics</h4>
-                          <p className="text-sm text-white/60">Sri Aurobindo College | 2012-2015</p>
-                        </motion.div>
-                      </div>
-                    </motion.div>
-
-                    <motion.div
-                      className="glass-card p-8 rounded-xl hover-lift"
-                      whileHover={{ scale: 1.02, rotateY: -5 }}
-                      transition={{ type: "spring", stiffness: 300 }}
-                    >
-                      <div className="flex items-center gap-4 mb-4">
-                        <motion.div
-                          className="p-3 rounded-full bg-purple-500/20 text-purple-400"
-                          whileHover={{ rotate: 360 }}
-                          transition={{ duration: 0.5 }}
-                        >
-                          <Award className="h-6 w-6" />
-                        </motion.div>
-                        <h3 className="text-xl font-bold">Awards & Honors</h3>
-                      </div>
-                      <div className="space-y-2">
-                        {[
-                          "C# Corner MVP 2019",
-                          "Sarita Gupta Memorial Scholarship",
-                          "Pasricha Memorial Award",
-                          "Student of the Month",
-                          "Medhavi Chatravriti + Vigyan Pratibha Khoj",
-                        ].map((award, index) => (
-                          <motion.p
-                            key={award}
-                            className="text-white/80"
-                            initial={{ opacity: 0, x: -20 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            transition={{ delay: index * 0.1 }}
-                          >
-                            • {award}
-                          </motion.p>
-                        ))}
-                      </div>
-                    </motion.div>
-                  </StaggeredGrid>
-                </motion.div>
-              </motion.div>
             </div>
           </section>
-        </ParallaxSection>
 
-        {/* Experience Section */}
-        <section ref={sectionRefs.experience} id="experience" className="py-20 md:py-32 gradient-bg relative">
-          <div className="container mx-auto px-4">
-            <motion.h2
-              className="text-4xl md:text-5xl font-bold mb-12 text-center gradient-text"
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.8 }}
-            >
-              Professional Journey
-            </motion.h2>
-
-            <div className="max-w-4xl mx-auto">
-              <div className="timeline-container">
-                {timelineData.slice(0, 4).map((item, index) => (
-                  <motion.div
-                    key={item.id}
-                    className="mb-12 relative"
-                    initial={{ opacity: 0, x: -50 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true, margin: "-100px" }}
-                    transition={{
-                      duration: 0.8,
-                      delay: index * 0.2,
-                      type: "spring",
-                      stiffness: 100,
-                    }}
-                    onViewportEnter={() => handleTimelineItemVisible(item.id, true)}
-                  >
-                    <motion.div
-                      className="timeline-dot"
-                      style={{ top: "24px" }}
-                      initial={{ scale: 0 }}
-                      whileInView={{ scale: 1 }}
-                      transition={{ delay: index * 0.2 + 0.3, type: "spring" }}
-                    />
-                    <motion.div
-                      className="glass-card p-6 rounded-xl hover-lift"
-                      whileHover={{
-                        scale: 1.02,
-                        boxShadow: "0 20px 40px rgba(0,0,0,0.3)",
-                      }}
-                      transition={{ type: "spring", stiffness: 300 }}
-                    >
-                      <div className="flex items-center gap-4 mb-4">
-                        <motion.div
-                          className="p-3 rounded-full bg-blue-500/20 text-blue-400"
-                          whileHover={{ rotate: 360, scale: 1.1 }}
-                          transition={{ duration: 0.5 }}
-                        >
-                          {item.icon === "Code" ? (
-                            <Code className="h-6 w-6" />
-                          ) : item.icon === "Briefcase" ? (
-                            <Briefcase className="h-6 w-6" />
-                          ) : item.icon === "FileText" ? (
-                            <FileText className="h-6 w-6" />
-                          ) : (
-                            <Users className="h-6 w-6" />
-                          )}
-                        </motion.div>
-                        <div>
-                          <h3 className="text-xl font-bold">{item.title}</h3>
-                          <p className="text-white/60">{item.company}</p>
-                        </div>
-                      </div>
-                      <div className="flex justify-between items-center mb-4">
-                        <motion.div
-                          className="text-sm font-medium bg-white/10 px-3 py-1 rounded-full"
-                          initial={{ opacity: 0, scale: 0.8 }}
-                          whileInView={{ opacity: 1, scale: 1 }}
-                          transition={{ delay: index * 0.2 + 0.5 }}
-                        >
-                          {item.startDate} - {item.endDate}
-                        </motion.div>
-                      </div>
-                      <p className="text-white/80 mb-4">{item.description}</p>
-                      <div className="mt-4">
-                        <h4 className="font-medium mb-2 text-white/90">Key Achievements:</h4>
-                        <ul className="space-y-1 text-white/70">
-                          {item.achievements.map((achievement, i) => (
-                            <motion.li
-                              key={i}
-                              className="flex items-start"
-                              initial={{ opacity: 0, x: -20 }}
-                              whileInView={{ opacity: 1, x: 0 }}
-                              transition={{ delay: index * 0.2 + i * 0.1 + 0.6 }}
-                            >
-                              <span className="mr-2">•</span>
-                              <span>{achievement}</span>
-                            </motion.li>
-                          ))}
-                        </ul>
-                      </div>
-                    </motion.div>
-                  </motion.div>
+          <section className="rg-section" style={{ paddingTop: 0 }}>
+            <div className="rg-wrap">
+              <Reveal className="rg-stats">
+                {stats.map((stat) => (
+                  <div className="rg-stat" key={stat.label}>
+                    <span className="v">
+                      <CountUp value={stat.value} />
+                    </span>
+                    <span className="l">{stat.label}</span>
+                    <span className="s">{stat.sub}</span>
+                  </div>
                 ))}
-              </div>
+              </Reveal>
             </div>
-          </div>
-        </section>
+          </section>
 
-        {/* Skills Section */}
-        <ParallaxSection speed={0.2}>
-          <section ref={sectionRefs.skills} id="skills" className="py-20 md:py-32 relative">
-            <div className="container mx-auto px-4" ref={skillsSectionRef}>
-              <motion.h2
-                className="text-4xl md:text-5xl font-bold mb-12 text-center gradient-text"
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.8 }}
-              >
-                Skills & Expertise
-              </motion.h2>
+          <section className="rg-section" id="work">
+            <div className="rg-wrap">
+              <div className="rg-work-head">
+                <div>
+                  <Reveal>
+                    <SectionLabel>02 - Selected work</SectionLabel>
+                  </Reveal>
+                  <Reveal delay={60}>
+                    <h2 className="rg-section-title">
+                      Products I&apos;ve shipped, end to end.
+                    </h2>
+                  </Reveal>
+                </div>
+                <Reveal delay={120}>
+                  <p className="rg-section-lead" style={{ marginTop: 0 }}>
+                    From AI-native tools to blockchain platforms in regulated
+                    industries - a selection of what I&apos;ve architected and
+                    led.
+                  </p>
+                </Reveal>
+              </div>
 
-              <div className="max-w-4xl mx-auto">
-                <StaggeredGrid className="grid md:grid-cols-3 gap-8" staggerDelay={0.15}>
-                  {skillCategories.map((category, categoryIndex) => (
-                    <motion.div
-                      key={category.name}
-                      className="glass-card p-8 rounded-xl"
-                      whileHover={{
-                        scale: 1.05,
-                        rotateY: 5,
-                        boxShadow: "0 25px 50px rgba(0,0,0,0.3)",
-                      }}
-                      transition={{ type: "spring", stiffness: 300 }}
-                    >
-                      <h3 className="text-xl font-bold mb-6 gradient-text">{category.name}</h3>
-                      <div className="space-y-6">
-                        {category.skills.map((skill, skillIndex) => (
-                          <div key={skill.name} className="space-y-2">
-                            <div className="flex justify-between items-center">
-                              <span className="text-white/90">{skill.name}</span>
-                              <motion.span
-                                className="text-sm text-white/60"
-                                initial={{ opacity: 0 }}
-                                whileInView={{ opacity: 1 }}
-                                transition={{ delay: skillIndex * 0.1 + 0.5 }}
-                              >
-                                {skill.level}%
-                              </motion.span>
-                            </div>
-                            <div className="skill-bar">
-                              <motion.div
-                                className="skill-progress"
-                                initial={{ width: 0 }}
-                                whileInView={{ width: skillsVisible ? `${skill.level}%` : "0%" }}
-                                transition={{
-                                  delay: skillIndex * 0.1 + 0.3,
-                                  duration: 1.5,
-                                  ease: "easeOut",
-                                }}
-                              />
-                            </div>
+              <div className="rg-featured">
+                {featured.map((item, index) => (
+                  <Reveal
+                    key={item.id}
+                    delay={index * 60}
+                    className="rg-card rg-card-glow rg-case"
+                  >
+                    <div className="rg-case-body">
+                      <div className="rg-case-meta">
+                        <span>{item.year}</span>
+                        <span>
+                          Client · <b>{item.client}</b>
+                        </span>
+                        <span>
+                          Role · <b>{item.role}</b>
+                        </span>
+                      </div>
+                      <h3>{item.name}</h3>
+                      <p className="desc">{item.detail}</p>
+                      <div className="rg-case-outcomes">
+                        {item.outcomes.map((outcome) => (
+                          <div className="o" key={outcome.k}>
+                            <span className="ov">{outcome.v}</span>
+                            <span className="ok">{outcome.k}</span>
                           </div>
                         ))}
                       </div>
-                    </motion.div>
-                  ))}
-                </StaggeredGrid>
-
-                <StaggeredGrid className="mt-16 grid md:grid-cols-2 gap-8" staggerDelay={0.2}>
-                  <motion.div
-                    className="glass-card p-8 rounded-xl"
-                    whileHover={{ scale: 1.02, rotateY: 3 }}
-                    transition={{ type: "spring", stiffness: 300 }}
-                  >
-                    <div className="flex items-center gap-4 mb-6">
-                      <motion.div
-                        className="p-3 rounded-full bg-blue-500/20 text-blue-400"
-                        whileHover={{ rotate: 360 }}
-                        transition={{ duration: 0.5 }}
-                      >
-                        <Code className="h-6 w-6" />
-                      </motion.div>
-                      <h3 className="text-xl font-bold">Technical Leadership</h3>
+                      <div className="rg-case-foot">
+                        <div className="rg-case-tags">
+                          {item.tags.map((tag) => (
+                            <span className="rg-tag" key={tag}>
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                        {item.link ? (
+                          <AppLink
+                            href={item.link}
+                            className="rg-case-link"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            Visit project <Icon name="arrowUpRight" size={14} />
+                          </AppLink>
+                        ) : null}
+                      </div>
                     </div>
-                    <ul className="space-y-2 text-white/80">
-                      {[
-                        "Architecture design and system planning",
-                        "Code quality and standards enforcement",
-                        "Technical mentorship and team development",
-                        "Research and innovation initiatives",
-                        "Cross-functional team collaboration",
-                      ].map((item, index) => (
-                        <motion.li
-                          key={item}
-                          className="flex items-start"
-                          initial={{ opacity: 0, x: -20 }}
-                          whileInView={{ opacity: 1, x: 0 }}
-                          transition={{ delay: index * 0.1 }}
-                        >
-                          <span className="mr-2">•</span>
-                          <span>{item}</span>
-                        </motion.li>
-                      ))}
-                    </ul>
-                  </motion.div>
+                  </Reveal>
+                ))}
+              </div>
 
-                  <motion.div
-                    className="glass-card p-8 rounded-xl"
-                    whileHover={{ scale: 1.02, rotateY: -3 }}
-                    transition={{ type: "spring", stiffness: 300 }}
-                  >
-                    <div className="flex items-center gap-4 mb-6">
-                      <motion.div
-                        className="p-3 rounded-full bg-purple-500/20 text-purple-400"
-                        whileHover={{ rotate: 360 }}
-                        transition={{ duration: 0.5 }}
+              <Reveal className="rg-eyebrow" style={{ marginTop: 80 }}>
+                More projects
+              </Reveal>
+              <div className="rg-pgrid">
+                {projects.map((project, index) => {
+                  const Wrapper = project.link ? "a" : "div";
+                  const wrapperProps = project.link
+                    ? {
+                        href: project.link,
+                        target: "_blank",
+                        rel: "noopener noreferrer",
+                      }
+                    : {};
+
+                  return (
+                    <Reveal delay={(index % 4) * 60} key={project.name}>
+                      <Wrapper
+                        className="rg-card rg-card-glow rg-proj"
+                        {...wrapperProps}
                       >
-                        <Briefcase className="h-6 w-6" />
-                      </motion.div>
-                      <h3 className="text-xl font-bold">Project Management</h3>
-                    </div>
-                    <ul className="space-y-2 text-white/80">
-                      {[
-                        "Agile methodologies implementation",
-                        "Sprint planning and execution",
-                        "Resource allocation and optimization",
-                        "Risk assessment and mitigation",
-                        "Stakeholder communication",
-                      ].map((item, index) => (
-                        <motion.li
-                          key={item}
-                          className="flex items-start"
-                          initial={{ opacity: 0, x: -20 }}
-                          whileInView={{ opacity: 1, x: 0 }}
-                          transition={{ delay: index * 0.1 }}
-                        >
-                          <span className="mr-2">•</span>
-                          <span>{item}</span>
-                        </motion.li>
-                      ))}
-                    </ul>
-                  </motion.div>
-                </StaggeredGrid>
+                        <div className="top">
+                          <span className="pglyph">{project.glyph}</span>
+                          <span className="arrow">
+                            <Icon
+                              name={project.link ? "arrowUpRight" : "link"}
+                              size={18}
+                            />
+                          </span>
+                        </div>
+                        <h4>{project.name}</h4>
+                        <span className="client">
+                          {project.client} - {project.role}
+                        </span>
+                        <div className="ptags">
+                          {project.tags.map((tag) => (
+                            <span className="rg-tag" key={tag}>
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                      </Wrapper>
+                    </Reveal>
+                  );
+                })}
               </div>
             </div>
           </section>
-        </ParallaxSection>
 
-        {/* Projects Section */}
-        <section ref={sectionRefs.projects} id="projects" className="py-20 md:py-32 gradient-bg relative">
-          <Suspense fallback={<SectionLoading />}>
-            <ProjectsSection />
-          </Suspense>
-        </section>
+          <section className="rg-section" id="experience">
+            <div className="rg-wrap">
+              <Reveal>
+                <SectionLabel>03 - Trajectory</SectionLabel>
+              </Reveal>
+              <Reveal delay={60}>
+                <h2 className="rg-section-title">
+                  A decade of leading, building, and teaching.
+                </h2>
+              </Reveal>
 
-        {/* Contact Section */}
-        <ParallaxSection speed={0.1}>
-          <section ref={sectionRefs.contact} id="contact" className="py-20 md:py-32 relative">
-            <Suspense fallback={<SectionLoading />}>
-              <ContactSection />
-            </Suspense>
+              <div className="rg-exp-grid">
+                <div className="rg-exp-aside">
+                  <Reveal>
+                    <div className="rg-card rg-pillar" style={{ padding: 28 }}>
+                      <span
+                        className="code"
+                        style={{
+                          color: "var(--rg-accent-2)",
+                          fontFamily: "var(--rg-mono)",
+                          fontSize: 13,
+                        }}
+                      >
+                        {"// expertise"}
+                      </span>
+                      <div className="rg-skillset" style={{ marginTop: 8 }}>
+                        {skills.map((group) => (
+                          <div className="rg-skillgroup" key={group.group}>
+                            <div className="sg-title">{group.group}</div>
+                            {group.items.map(([name, value]) => (
+                              <Skill key={name} name={name} val={value} />
+                            ))}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </Reveal>
+                </div>
+
+                <div className="rg-timeline">
+                  {experience.map((item, index) => (
+                    <Reveal
+                      delay={index * 70}
+                      key={`${item.role}-${item.org}`}
+                      className={`rg-tl-item ${item.current ? "current" : ""}`}
+                    >
+                      <div className="rg-tl-period">
+                        {item.period}
+                        {item.current ? " - now" : ""}
+                      </div>
+                      <div className="rg-tl-role">{item.role}</div>
+                      <div className="rg-tl-org">{item.org}</div>
+                      <ul className="rg-tl-points">
+                        {item.points.map((point) => (
+                          <li key={point}>{point}</li>
+                        ))}
+                      </ul>
+                    </Reveal>
+                  ))}
+                </div>
+              </div>
+            </div>
           </section>
-        </ParallaxSection>
-      </main>
 
-      {/* Footer */}
-      <motion.footer
-        className="py-8 border-t border-white/10"
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8 }}
-      >
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <motion.div
-              className="mb-4 md:mb-0"
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.2 }}
-            >
-              <div className="text-xl font-bold gradient-text mb-2">Rohit Gupta</div>
-              <p className="text-sm text-white/60">Technical Project Manager & AI Expert</p>
-            </motion.div>
-            <motion.div
-              className="text-sm text-white/60"
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.4 }}
-            >
-              © {new Date().getFullYear()} Rohit Gupta. All rights reserved.
-            </motion.div>
+          <section className="rg-section" id="writing">
+            <div className="rg-wrap">
+              <div className="rg-writing-grid">
+                <div>
+                  <Reveal>
+                    <SectionLabel>04 - Thought leadership</SectionLabel>
+                  </Reveal>
+                  <Reveal delay={60}>
+                    <h2 className="rg-section-title">I teach what I build.</h2>
+                  </Reveal>
+                  <Reveal delay={120}>
+                    <p className="rg-section-lead">{writing.blurb}</p>
+                  </Reveal>
+                  <Reveal delay={180} className="rg-topic-cloud">
+                    {writing.topics.map((topic) => (
+                      <span className="rg-pill" key={topic}>
+                        {topic}
+                      </span>
+                    ))}
+                  </Reveal>
+                </div>
+
+                <Reveal delay={120} className="rg-highlights">
+                  {writing.highlights.map((item) => (
+                    <div className="rg-hl" key={item.title}>
+                      <div className="hl-l">
+                        <span className="hl-title">{item.title}</span>
+                        <span className="hl-meta">{item.meta}</span>
+                      </div>
+                      <span className="hl-kind">{item.kind}</span>
+                    </div>
+                  ))}
+                </Reveal>
+              </div>
+            </div>
+          </section>
+
+          <section className="rg-section rg-contact" id="contact">
+            <div className="rg-wrap">
+              <Reveal className="rg-contact-card">
+                <div>
+                  <SectionLabel>05 - Let&apos;s build</SectionLabel>
+                  <h2 style={{ marginTop: 18 }}>
+                    Have an AI or blockchain
+                    <br />
+                    problem worth solving?
+                  </h2>
+                  <p className="sub">
+                    I take on select consulting engagements — architecture,
+                    AI-native product delivery, and technical leadership. Tell
+                    me what you&apos;re building.
+                  </p>
+                  <div className="rg-contact-points">
+                    {[
+                      {
+                        ico: "mail" as const,
+                        k: "Email",
+                        v: profile.email,
+                        href: `mailto:${profile.email}`,
+                      },
+                      {
+                        ico: "pin" as const,
+                        k: "Location",
+                        v: profile.location,
+                        href: null,
+                      },
+                    ].map((item) => {
+                      const inner = (
+                        <>
+                          <span className="ico">
+                            <Icon name={item.ico} size={17} />
+                          </span>
+                          <span className="ct">
+                            <span className="k">{item.k}</span>
+                            <span className="v">{item.v}</span>
+                          </span>
+                        </>
+                      );
+                      return item.href ? (
+                        <a className="rg-cp" key={item.k} href={item.href}>
+                          {inner}
+                        </a>
+                      ) : (
+                        <div className="rg-cp" key={item.k}>
+                          {inner}
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                <div className="rg-booking-panel">
+                  <span className="rg-eyebrow">Schedule a conversation</span>
+                  <h3>Use the team calendar for meetings.</h3>
+                  <p>
+                    For consulting, partnerships, or serious collaboration
+                    requests, book directly with my team. There is no phone
+                    intake or contact form on this site.
+                  </p>
+                  <div className="rg-booking-actions">
+                    <AppLink
+                      href={profile.bookingUrl}
+                      className="rg-btn rg-btn-primary"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Book team calendar <Icon name="arrowUpRight" size={16} />
+                    </AppLink>
+                    <AppLink
+                      href={`mailto:${profile.email}`}
+                      className="rg-btn rg-btn-ghost"
+                    >
+                      Email instead <Icon name="mail" size={16} />
+                    </AppLink>
+                  </div>
+                  <p className="rg-booking-note">
+                    Replies are routed through email and the team booking page.
+                  </p>
+                </div>
+              </Reveal>
+            </div>
+          </section>
+        </main>
+
+        <footer className="rg-footer">
+          <div className="rg-wrap rg-footer-inner">
+            <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
+              <span
+                className="rg-logo-mark"
+                style={{ width: 30, height: 30, fontSize: 13 }}
+              >
+                RG
+              </span>
+              <div>
+                <div style={{ fontWeight: 600, fontSize: 15 }}>
+                  {profile.name}
+                </div>
+                <div className="copy">
+                  Technical PM · AI-Native · Blockchain
+                </div>
+              </div>
+            </div>
+            <div className="copy">
+              © 2026 - built for the next decade of AI.
+            </div>
+            <div className="rg-footer-soc">
+              {[
+                { ico: "x" as const, href: profile.x, fill: false },
+                {
+                  ico: "linkedin" as const,
+                  href: profile.linkedin,
+                  fill: true,
+                },
+                { ico: "github" as const, href: profile.github, fill: true },
+              ].map((item) => (
+                <a
+                  key={item.ico}
+                  className="rg-soc"
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={item.ico}
+                >
+                  <Icon name={item.ico} size={18} fill={item.fill} />
+                </a>
+              ))}
+            </div>
           </div>
-        </div>
-      </motion.footer>
+        </footer>
+      </div>
     </div>
-  )
+  );
+}
+
+function Skill({ name, val }: { name: string; val: number }) {
+  const ref = useRef<HTMLDivElement | null>(null);
+  const [width, setWidth] = useState(0);
+
+  useEffect(() => {
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setWidth(val);
+            io.disconnect();
+          }
+        });
+      },
+      { threshold: 0.4 },
+    );
+
+    if (ref.current) io.observe(ref.current);
+    return () => io.disconnect();
+  }, [val]);
+
+  return (
+    <div className="rg-skill" ref={ref}>
+      <div className="sk-top">
+        <span className="sk-name">{name}</span>
+        <span className="sk-val">{val}%</span>
+      </div>
+      <div className="sk-bar">
+        <div className="sk-fill" style={{ width: `${width}%` }} />
+      </div>
+    </div>
+  );
 }

@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
+import { motion } from "framer-motion";
 
 export function MorphingBlob() {
   return (
@@ -32,5 +32,5 @@ export function MorphingBlob() {
         }}
       />
     </div>
-  )
+  );
 }

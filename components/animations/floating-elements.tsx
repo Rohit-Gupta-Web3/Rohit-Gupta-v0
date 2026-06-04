@@ -1,10 +1,10 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import { useScrollAnimations } from "@/hooks/use-scroll-animations"
+import { motion } from "framer-motion";
+import { useScrollAnimations } from "@/hooks/use-scroll-animations";
 
 export function FloatingElements() {
-  const { scrollY } = useScrollAnimations()
+  const { scrollY } = useScrollAnimations();
 
   const floatingVariants = {
     animate: {
@@ -16,7 +16,7 @@ export function FloatingElements() {
         ease: "easeInOut",
       },
     },
-  }
+  };
 
   const elements = [
     { size: 60, left: "10%", top: "20%", delay: 0 },
@@ -25,7 +25,7 @@ export function FloatingElements() {
     { size: 50, left: "80%", top: "75%", delay: 1 },
     { size: 35, left: "50%", top: "10%", delay: 3 },
     { size: 45, left: "90%", top: "50%", delay: 5 },
-  ]
+  ];
 
   return (
     <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
@@ -46,5 +46,5 @@ export function FloatingElements() {
         />
       ))}
     </div>
-  )
+  );
 }

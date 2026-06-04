@@ -1,9 +1,9 @@
-"use client"
+"use client";
 
-import { useState, useEffect, useRef } from "react"
-import { motion } from "framer-motion"
-import { cn } from "@/lib/utils"
-import type { TimelineEntry } from "@/types/timeline"
+import { useState, useEffect, useRef } from "react";
+import { motion } from "framer-motion";
+import { cn } from "@/lib/utils";
+import type { TimelineEntry } from "@/types/timeline";
 import {
   Briefcase,
   GraduationCap,
@@ -16,73 +16,73 @@ import {
   PinIcon as Chip,
   ChevronDown,
   ChevronUp,
-} from "lucide-react"
+} from "lucide-react";
 
 interface TimelineItemProps {
-  item: TimelineEntry
-  isEven: boolean
+  item: TimelineEntry;
+  isEven: boolean;
 }
 
 export function TimelineItem({ item, isEven }: TimelineItemProps) {
-  const [isExpanded, setIsExpanded] = useState(false)
-  const [isVisible, setIsVisible] = useState(false)
-  const itemRef = useRef<HTMLDivElement>(null)
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+  const itemRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setIsVisible(true)
-          observer.disconnect()
+          setIsVisible(true);
+          observer.disconnect();
         }
       },
       { threshold: 0.2 },
-    )
+    );
 
     if (itemRef.current) {
-      observer.observe(itemRef.current)
+      observer.observe(itemRef.current);
     }
 
     return () => {
-      observer.disconnect()
-    }
-  }, [])
+      observer.disconnect();
+    };
+  }, []);
 
   const getIcon = () => {
     switch (item.icon) {
       case "Code":
-        return <Code className="h-6 w-6" />
+        return <Code className="h-6 w-6" />;
       case "FileText":
-        return <FileText className="h-6 w-6" />
+        return <FileText className="h-6 w-6" />;
       case "Users":
-        return <Users className="h-6 w-6" />
+        return <Users className="h-6 w-6" />;
       case "BookOpen":
-        return <BookOpen className="h-6 w-6" />
+        return <BookOpen className="h-6 w-6" />;
       case "Cpu":
-        return <Cpu className="h-6 w-6" />
+        return <Cpu className="h-6 w-6" />;
       case "Chip":
-        return <Chip className="h-6 w-6" />
+        return <Chip className="h-6 w-6" />;
       case "GraduationCap":
-        return <GraduationCap className="h-6 w-6" />
+        return <GraduationCap className="h-6 w-6" />;
       case "Award":
-        return <Award className="h-6 w-6" />
+        return <Award className="h-6 w-6" />;
       default:
-        return <Briefcase className="h-6 w-6" />
+        return <Briefcase className="h-6 w-6" />;
     }
-  }
+  };
 
   const getCategoryColor = () => {
     switch (item.category) {
       case "work":
-        return "bg-blue-600"
+        return "bg-blue-600";
       case "education":
-        return "bg-purple-600"
+        return "bg-purple-600";
       case "achievement":
-        return "bg-amber-600"
+        return "bg-amber-600";
       default:
-        return "bg-blue-600"
+        return "bg-blue-600";
     }
-  }
+  };
 
   const variants = {
     hidden: {
@@ -97,7 +97,7 @@ export function TimelineItem({ item, isEven }: TimelineItemProps) {
         ease: "easeOut",
       },
     },
-  }
+  };
 
   return (
     <div
@@ -122,7 +122,9 @@ export function TimelineItem({ item, isEven }: TimelineItemProps) {
         onClick={() => setIsExpanded(!isExpanded)}
       >
         <div className="flex items-center gap-4 mb-4">
-          <div className={`p-3 rounded-full ${getCategoryColor()} text-white`}>{getIcon()}</div>
+          <div className={`p-3 rounded-full ${getCategoryColor()} text-white`}>
+            {getIcon()}
+          </div>
           <div>
             <h3 className="text-xl font-bold">{item.title}</h3>
             <p className="text-muted-foreground">{item.company}</p>
@@ -136,11 +138,15 @@ export function TimelineItem({ item, isEven }: TimelineItemProps) {
           <button
             className="text-muted-foreground hover:text-foreground"
             onClick={(e) => {
-              e.stopPropagation()
-              setIsExpanded(!isExpanded)
+              e.stopPropagation();
+              setIsExpanded(!isExpanded);
             }}
           >
-            {isExpanded ? <ChevronUp className="h-5 w-5" /> : <ChevronDown className="h-5 w-5" />}
+            {isExpanded ? (
+              <ChevronUp className="h-5 w-5" />
+            ) : (
+              <ChevronDown className="h-5 w-5" />
+            )}
           </button>
         </div>
 
@@ -164,5 +170,5 @@ export function TimelineItem({ item, isEven }: TimelineItemProps) {
         )}
       </motion.div>
     </div>
-  )
+  );
 }

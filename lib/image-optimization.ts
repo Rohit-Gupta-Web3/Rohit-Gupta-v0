@@ -5,22 +5,22 @@
  * @param quality Image quality (1-100)
  * @returns Optimized image URL
  */
-export function getOptimizedImageUrl(src: string, width = 800, quality = 80): string {
+export function getOptimizedImageUrl(src: string): string {
   // If it's already a placeholder, return as is
   if (src.includes("placeholder.svg")) {
-    return src
+    return src;
   }
 
   // If it's a blob URL from v0.dev, return as is
   if (src.includes("blob.v0.dev")) {
-    return src
+    return src;
   }
 
   // For external images, we can't optimize them directly
   if (src.startsWith("http")) {
-    return src
+    return src;
   }
 
   // For local images in the public directory, just return the path
-  return src
+  return src;
 }
