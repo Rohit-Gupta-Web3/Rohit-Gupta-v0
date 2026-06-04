@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import { getSiteUrl } from "@/lib/site";
 
+export const dynamic = "force-static";
+
 export async function GET() {
   const baseUrl = getSiteUrl();
   const pages = ["", "/todo"];
