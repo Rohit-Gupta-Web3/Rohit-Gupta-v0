@@ -8,6 +8,23 @@ if (!globalThis.crypto) {
   })
 }
 
+if (!window.matchMedia) {
+  Object.defineProperty(window, "matchMedia", {
+    writable: true,
+    configurable: true,
+    value: (query: string): MediaQueryList => ({
+      matches: false,
+      media: query,
+      onchange: null,
+      addEventListener: () => {},
+      removeEventListener: () => {},
+      addListener: () => {},
+      removeListener: () => {},
+      dispatchEvent: () => false,
+    }),
+  })
+}
+
 if (!Element.prototype.hasPointerCapture) {
   Element.prototype.hasPointerCapture = () => false
 }
