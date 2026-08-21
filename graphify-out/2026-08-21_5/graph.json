@@ -400,10 +400,19 @@
       "norm_label": "@sveltejs/kit"
     },
     {
-      "label": "class-variance-authority",
+      "label": "@vercel/analytics",
       "file_type": "code",
       "source_file": "package.json",
       "source_location": "L25",
+      "id": "rohit_gupta_v0_package_dependencies_vercel_analytics",
+      "community": 4,
+      "norm_label": "@vercel/analytics"
+    },
+    {
+      "label": "class-variance-authority",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L26",
       "id": "rohit_gupta_v0_package_dependencies_class_variance_authority",
       "community": 4,
       "norm_label": "class-variance-authority"
@@ -412,7 +421,7 @@
       "label": "clsx",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L26",
+      "source_location": "L27",
       "id": "rohit_gupta_v0_package_dependencies_clsx",
       "community": 4,
       "norm_label": "clsx"
@@ -421,7 +430,7 @@
       "label": "framer-motion",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L27",
+      "source_location": "L28",
       "id": "rohit_gupta_v0_package_dependencies_framer_motion",
       "community": 4,
       "norm_label": "framer-motion"
@@ -430,7 +439,7 @@
       "label": "lucide-react",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L28",
+      "source_location": "L29",
       "id": "rohit_gupta_v0_package_dependencies_lucide_react",
       "community": 4,
       "norm_label": "lucide-react"
@@ -439,7 +448,7 @@
       "label": "next",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L29",
+      "source_location": "L30",
       "id": "rohit_gupta_v0_package_dependencies_next",
       "community": 4,
       "norm_label": "next"
@@ -448,7 +457,7 @@
       "label": "next-themes",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L30",
+      "source_location": "L31",
       "id": "rohit_gupta_v0_package_dependencies_next_themes",
       "community": 4,
       "norm_label": "next-themes"
@@ -457,7 +466,7 @@
       "label": "react",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L31",
+      "source_location": "L32",
       "id": "rohit_gupta_v0_package_dependencies_react",
       "community": 4,
       "norm_label": "react"
@@ -466,7 +475,7 @@
       "label": "react-dom",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L32",
+      "source_location": "L33",
       "id": "rohit_gupta_v0_package_dependencies_react_dom",
       "community": 4,
       "norm_label": "react-dom"
@@ -475,7 +484,7 @@
       "label": "svelte",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L33",
+      "source_location": "L34",
       "id": "rohit_gupta_v0_package_dependencies_svelte",
       "community": 4,
       "norm_label": "svelte"
@@ -484,7 +493,7 @@
       "label": "tailwind-merge",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L34",
+      "source_location": "L35",
       "id": "rohit_gupta_v0_package_dependencies_tailwind_merge",
       "community": 4,
       "norm_label": "tailwind-merge"
@@ -493,7 +502,7 @@
       "label": "tailwindcss-animate",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L35",
+      "source_location": "L36",
       "id": "rohit_gupta_v0_package_dependencies_tailwindcss_animate",
       "community": 4,
       "norm_label": "tailwindcss-animate"
@@ -502,7 +511,7 @@
       "label": "three",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L36",
+      "source_location": "L37",
       "id": "rohit_gupta_v0_package_dependencies_three",
       "community": 4,
       "norm_label": "three"
@@ -511,7 +520,7 @@
       "label": "vue",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L37",
+      "source_location": "L38",
       "id": "rohit_gupta_v0_package_dependencies_vue",
       "community": 4,
       "norm_label": "vue"
@@ -520,7 +529,7 @@
       "label": "vue-router",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L38",
+      "source_location": "L39",
       "id": "rohit_gupta_v0_package_dependencies_vue_router",
       "community": 4,
       "norm_label": "vue-router"
@@ -529,7 +538,7 @@
       "label": "devDependencies",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L40",
+      "source_location": "L41",
       "id": "rohit_gupta_v0_package_devdependencies",
       "community": 3,
       "norm_label": "devdependencies"
@@ -538,7 +547,7 @@
       "label": "@tailwindcss/postcss",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L41",
+      "source_location": "L42",
       "id": "rohit_gupta_v0_package_devdependencies_tailwindcss_postcss",
       "community": 3,
       "norm_label": "@tailwindcss/postcss"
@@ -547,7 +556,7 @@
       "label": "@testing-library/jest-dom",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L42",
+      "source_location": "L43",
       "id": "rohit_gupta_v0_package_devdependencies_testing_library_jest_dom",
       "community": 3,
       "norm_label": "@testing-library/jest-dom"
@@ -556,7 +565,7 @@
       "label": "@testing-library/react",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L43",
+      "source_location": "L44",
       "id": "rohit_gupta_v0_package_devdependencies_testing_library_react",
       "community": 3,
       "norm_label": "@testing-library/react"
@@ -565,7 +574,7 @@
       "label": "@testing-library/user-event",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L44",
+      "source_location": "L45",
       "id": "rohit_gupta_v0_package_devdependencies_testing_library_user_event",
       "community": 3,
       "norm_label": "@testing-library/user-event"
@@ -574,7 +583,7 @@
       "label": "@types/node",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L45",
+      "source_location": "L46",
       "id": "rohit_gupta_v0_package_devdependencies_types_node",
       "community": 3,
       "norm_label": "@types/node"
@@ -583,7 +592,7 @@
       "label": "@types/react",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L46",
+      "source_location": "L47",
       "id": "rohit_gupta_v0_package_devdependencies_types_react",
       "community": 3,
       "norm_label": "@types/react"
@@ -592,7 +601,7 @@
       "label": "@types/react-dom",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L47",
+      "source_location": "L48",
       "id": "rohit_gupta_v0_package_devdependencies_types_react_dom",
       "community": 3,
       "norm_label": "@types/react-dom"
@@ -601,7 +610,7 @@
       "label": "@vitejs/plugin-react",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L48",
+      "source_location": "L49",
       "id": "rohit_gupta_v0_package_devdependencies_vitejs_plugin_react",
       "community": 3,
       "norm_label": "@vitejs/plugin-react"
@@ -610,7 +619,7 @@
       "label": "autoprefixer",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L49",
+      "source_location": "L50",
       "id": "rohit_gupta_v0_package_devdependencies_autoprefixer",
       "community": 3,
       "norm_label": "autoprefixer"
@@ -619,7 +628,7 @@
       "label": "eslint",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L50",
+      "source_location": "L51",
       "id": "rohit_gupta_v0_package_devdependencies_eslint",
       "community": 3,
       "norm_label": "eslint"
@@ -628,7 +637,7 @@
       "label": "eslint-config-next",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L51",
+      "source_location": "L52",
       "id": "rohit_gupta_v0_package_devdependencies_eslint_config_next",
       "community": 3,
       "norm_label": "eslint-config-next"
@@ -637,7 +646,7 @@
       "label": "jsdom",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L52",
+      "source_location": "L53",
       "id": "rohit_gupta_v0_package_devdependencies_jsdom",
       "community": 3,
       "norm_label": "jsdom"
@@ -646,7 +655,7 @@
       "label": "postcss",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L53",
+      "source_location": "L54",
       "id": "rohit_gupta_v0_package_devdependencies_postcss",
       "community": 3,
       "norm_label": "postcss"
@@ -655,7 +664,7 @@
       "label": "tailwindcss",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L54",
+      "source_location": "L55",
       "id": "rohit_gupta_v0_package_devdependencies_tailwindcss",
       "community": 3,
       "norm_label": "tailwindcss"
@@ -664,7 +673,7 @@
       "label": "typescript",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L55",
+      "source_location": "L56",
       "id": "rohit_gupta_v0_package_devdependencies_typescript",
       "community": 3,
       "norm_label": "typescript"
@@ -673,7 +682,7 @@
       "label": "vitest",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L56",
+      "source_location": "L57",
       "id": "rohit_gupta_v0_package_devdependencies_vitest",
       "community": 3,
       "norm_label": "vitest"
@@ -1042,7 +1051,7 @@
       "label": "viewport",
       "file_type": "code",
       "source_file": "app/layout.tsx",
-      "source_location": "L77",
+      "source_location": "L78",
       "id": "app_layout_viewport",
       "community": 1,
       "norm_label": "viewport"
@@ -1051,7 +1060,7 @@
       "label": "RootLayout()",
       "file_type": "code",
       "source_file": "app/layout.tsx",
-      "source_location": "L84",
+      "source_location": "L85",
       "id": "app_layout_rootlayout",
       "community": 1,
       "norm_label": "rootlayout()"
@@ -4954,15 +4963,6 @@
       "norm_label": "code:block1 (pnpm test)"
     },
     {
-      "label": "@vercel/analytics",
-      "file_type": "code",
-      "source_file": "package.json",
-      "source_location": "L25",
-      "community": 4,
-      "norm_label": "@vercel/analytics",
-      "id": "rohit_gupta_v0_package_dependencies_vercel_analytics"
-    },
-    {
       "label": "page.tsx",
       "file_type": "code",
       "source_file": "app/todo/page.tsx",
@@ -5821,6 +5821,16 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "package.json",
+      "source_location": "L25",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "rohit_gupta_v0_package_dependencies",
+      "target": "rohit_gupta_v0_package_dependencies_vercel_analytics"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
       "source_location": "L26",
       "weight": 1.0,
       "confidence_score": 1.0,
@@ -5956,16 +5966,6 @@
       "confidence_score": 1.0,
       "source": "rohit_gupta_v0_package_dependencies",
       "target": "rohit_gupta_v0_package_dependencies_vue_router"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "package.json",
-      "source_location": "L25",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "rohit_gupta_v0_package_dependencies",
-      "target": "rohit_gupta_v0_package_dependencies_vercel_analytics"
     },
     {
       "relation": "calls",
@@ -6468,9 +6468,9 @@
       "source_file": "app/layout.tsx",
       "source_location": "L19",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "app_layout_tsx",
-      "target": "app_layout_siteurl"
+      "target": "app_layout_siteurl",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6478,9 +6478,9 @@
       "source_file": "app/layout.tsx",
       "source_location": "L21",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "app_layout_tsx",
-      "target": "app_layout_profilelinks"
+      "target": "app_layout_profilelinks",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -14252,5 +14252,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "2daf007da72e9f04f89d49746aba988b89613db9"
+  "built_at_commit": "f2c3ed599933f0200f694daa6fdf14c82bbea1fb"
 }

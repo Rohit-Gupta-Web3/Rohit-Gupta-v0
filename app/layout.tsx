@@ -72,7 +72,6 @@ export const metadata: Metadata = {
     creator: "@RohitGuptaWeb3",
     images: [`${siteUrl}/rohit.png`],
   },
-  generator: "v0.dev",
 };
 
 export const viewport: Viewport = {
