@@ -1,6 +1,6 @@
 # Rohit Gupta Portfolio
 
-Next.js portfolio for Rohit Gupta.
+Next.js portfolio for Rohit Gupta
 
 ## Local Development
 
