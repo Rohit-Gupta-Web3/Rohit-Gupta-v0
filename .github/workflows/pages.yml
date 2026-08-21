@@ -24,6 +24,9 @@ jobs:
       # repository sub-path — base path must be empty.
       NEXT_PUBLIC_BASE_PATH: ""
       NEXT_PUBLIC_SITE_URL: https://rohit-gupta.in
+      # Set a repository Actions variable named GA_MEASUREMENT_ID (G-XXXXXXXXXX)
+      # to enable Google Analytics. Empty = analytics disabled (no-op).
+      NEXT_PUBLIC_GA_ID: ${{ vars.GA_MEASUREMENT_ID }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4

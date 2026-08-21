@@ -1,16 +1,16 @@
 # Graph Report - Rohit-Gupta-v0  (2026-08-21)
 
 ## Corpus Check
-- 102 files · ~63,557 words
+- 102 files · ~63,451 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 595 nodes · 854 edges · 62 communities (44 shown, 18 thin omitted)
+- 594 nodes · 853 edges · 63 communities (45 shown, 18 thin omitted)
 - Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 8 edges (avg confidence: 0.69)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `addc7c7e`
+- Built from commit: `2daf007d`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -64,6 +64,7 @@
 - [[_COMMUNITY_Community 50|Community 50]]
 - [[_COMMUNITY_Community 51|Community 51]]
 - [[_COMMUNITY_Community 53|Community 53]]
+- [[_COMMUNITY_Community 62|Community 62]]
 
 ## God Nodes (most connected - your core abstractions)
 1. `cn()` - 79 edges
@@ -89,7 +90,7 @@
 - `AlertDialogFooter()` --calls--> `cn()`  [EXTRACTED]
   components/ui/alert-dialog.tsx → lib/utils.ts
 
-## Communities (62 total, 18 thin omitted)
+## Communities (63 total, 18 thin omitted)
 
 ### Community 0 - "Community 0"
 Cohesion: 0.05
@@ -97,7 +98,7 @@ Nodes (36): useIsMobile(), SheetContent, SheetContentProps, SheetDescription, Sh
 
 ### Community 1 - "Community 1"
 Cohesion: 0.05
-Nodes (31): gaId, geistMono, geistSans, metadata, profileLinks, siteUrl, viewport, aiProjects (+23 more)
+Nodes (30): geistMono, geistSans, metadata, profileLinks, siteUrl, viewport, aiProjects, education (+22 more)
 
 ### Community 2 - "Community 2"
 Cohesion: 0.09
@@ -112,8 +113,8 @@ Cohesion: 0.05
 Nodes (37): dependencies, class-variance-authority, clsx, @emotion/is-prop-valid, framer-motion, lucide-react, next, next-themes (+29 more)
 
 ### Community 5 - "Community 5"
-Cohesion: 0.11
-Nodes (22): SkillBadge(), SkillBadgeProps, Skill, SkillCategory(), SkillCategoryProps, SkillsGrid(), Button, Carousel (+14 more)
+Cohesion: 0.13
+Nodes (15): timelineData, SkillBadge(), SkillBadgeProps, Skill, SkillCategory(), SkillCategoryProps, SkillsGrid(), FilterCategory (+7 more)
 
 ### Community 6 - "Community 6"
 Cohesion: 0.06
@@ -124,8 +125,8 @@ Cohesion: 0.29
 Nodes (11): ButtonProps, buttonVariants, Calendar(), CalendarProps, Pagination(), PaginationContent, PaginationEllipsis(), PaginationItem (+3 more)
 
 ### Community 8 - "Community 8"
-Cohesion: 0.13
-Nodes (14): cn(), Checkbox, HoverCardContent, PaginationNext(), PopoverContent, RadioGroup, RadioGroupItem, ResizableHandle() (+6 more)
+Cohesion: 0.17
+Nodes (11): cn(), Checkbox, HoverCardContent, PaginationNext(), PopoverContent, ResizableHandle(), ResizablePanelGroup(), ScrollArea (+3 more)
 
 ### Community 9 - "Community 9"
 Cohesion: 0.10
@@ -164,8 +165,8 @@ Cohesion: 0.22
 Nodes (8): Table, TableBody, TableCaption, TableCell, TableFooter, TableHead, TableHeader, TableRow
 
 ### Community 18 - "Community 18"
-Cohesion: 0.40
-Nodes (6): timelineData, FilterCategory, TimelineItem(), TimelineItemProps, Timeline(), TimelineEntry
+Cohesion: 0.27
+Nodes (13): Carousel, CarouselApi, CarouselContent, CarouselContext, CarouselContextProps, CarouselItem, CarouselNext, CarouselOptions (+5 more)
 
 ### Community 19 - "Community 19"
 Cohesion: 0.25
@@ -215,12 +216,16 @@ Nodes (3): circle, path, rect
 Cohesion: 0.67
 Nodes (3): circle, path, rect
 
+### Community 40 - "Community 40"
+Cohesion: 0.50
+Nodes (3): TabsContent, TabsList, TabsTrigger
+
 ## Ambiguous Edges - Review These
 - `Rohit Gupta Portfolio` → `Todo UI Test Suite`  [AMBIGUOUS]
   tests/README.md · relation: conceptually_related_to
 
 ## Knowledge Gaps
-- **287 isolated node(s):** `$schema`, `style`, `rsc`, `tsx`, `config` (+282 more)
+- **286 isolated node(s):** `$schema`, `style`, `rsc`, `tsx`, `config` (+281 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **18 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
@@ -229,15 +234,15 @@ _Questions this graph is uniquely positioned to answer:_
 
 - **What is the exact relationship between `Rohit Gupta Portfolio` and `Todo UI Test Suite`?**
   _Edge tagged AMBIGUOUS (relation: conceptually_related_to) - confidence is low._
-- **Why does `cn()` connect `Community 8` to `Community 0`, `Community 2`, `Community 4`, `Community 5`, `Community 6`, `Community 7`, `Community 11`, `Community 12`, `Community 13`, `Community 14`, `Community 15`, `Community 16`, `Community 17`, `Community 18`, `Community 19`, `Community 20`, `Community 24`, `Community 26`, `Community 31`, `Community 32`, `Community 33`, `Community 40`?**
-  _High betweenness centrality (0.275) - this node is a cross-community bridge._
+- **Why does `cn()` connect `Community 8` to `Community 0`, `Community 2`, `Community 4`, `Community 5`, `Community 6`, `Community 7`, `Community 11`, `Community 12`, `Community 13`, `Community 14`, `Community 15`, `Community 16`, `Community 17`, `Community 18`, `Community 19`, `Community 20`, `Community 24`, `Community 26`, `Community 31`, `Community 32`, `Community 33`, `Community 40`, `Community 62`?**
+  _High betweenness centrality (0.276) - this node is a cross-community bridge._
 - **Why does `clsx` connect `Community 4` to `Community 8`?**
   _High betweenness centrality (0.110) - this node is a cross-community bridge._
 - **What connects `$schema`, `style`, `rsc` to the rest of the system?**
-  _287 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _286 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Community 0` be split into smaller, more focused modules?**
   _Cohesion score 0.05226480836236934 - nodes in this community are weakly interconnected._
 - **Should `Community 1` be split into smaller, more focused modules?**
-  _Cohesion score 0.04846938775510204 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.04964539007092199 - nodes in this community are weakly interconnected._
 - **Should `Community 2` be split into smaller, more focused modules?**
   _Cohesion score 0.08974358974358974 - nodes in this community are weakly interconnected._

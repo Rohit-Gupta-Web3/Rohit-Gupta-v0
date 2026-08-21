@@ -1,0 +1,557 @@
+{
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\components.json": {
+    "mtime": 1780551963.1699314,
+    "ast_hash": "ddd0ce70589615d5db283aadcf4d5e20",
+    "semantic_hash": "ddd0ce70589615d5db283aadcf4d5e20"
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\eslint.config.mjs": {
+    "mtime": 1780560231.0542703,
+    "ast_hash": "c46921b15de58b9a017ded72edcc29b3",
+    "semantic_hash": "c46921b15de58b9a017ded72edcc29b3"
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\next.config.mjs": {
+    "mtime": 1780586849.4656897,
+    "ast_hash": "3554071ed27535296f9dc095fb0dba12",
+    "semantic_hash": "3554071ed27535296f9dc095fb0dba12"
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\package.json": {
+    "mtime": 1787304110.2868004,
+    "ast_hash": "635266353616c618d3ff284b4461ccfe",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\postcss.config.mjs": {
+    "mtime": 1780559748.550566,
+    "ast_hash": "4ae674cb9a5e6dc8c6afe2598c150776",
+    "semantic_hash": "4ae674cb9a5e6dc8c6afe2598c150776"
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\run-project.ps1": {
+    "mtime": 1780569075.6870914,
+    "ast_hash": "f28d3de6faaeb2708f605fc8b200f219",
+    "semantic_hash": "f28d3de6faaeb2708f605fc8b200f219"
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\tailwind.config.ts": {
+    "mtime": 1780571188.8558958,
+    "ast_hash": "b13e06c002214b044d65ed80491f0dda",
+    "semantic_hash": "b13e06c002214b044d65ed80491f0dda"
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\tsconfig.json": {
+    "mtime": 1780569296.6319683,
+    "ast_hash": "de0cc4f341d96236b900aa9d87a76a9e",
+    "semantic_hash": "de0cc4f341d96236b900aa9d87a76a9e"
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\vitest.config.ts": {
+    "mtime": 1787298666.9630022,
+    "ast_hash": "427f5b04eee1ade078cc91b57806314f",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\.claude\\settings.json": {
+    "mtime": 1780556827.60326,
+    "ast_hash": "5d6ecd96cf065b16e8bb9fbf5d7d8f0d",
+    "semantic_hash": "5d6ecd96cf065b16e8bb9fbf5d7d8f0d"
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\.codex\\hooks.json": {
+    "mtime": 1780556827.3467908,
+    "ast_hash": "5ebef3dd159986e465ab65e4014107ec",
+    "semantic_hash": "5ebef3dd159986e465ab65e4014107ec"
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\app\\global-error.tsx": {
+    "mtime": 1780557865.293248,
+    "ast_hash": "43e8415b44841d5ba54fe49c0d2e3cf2",
+    "semantic_hash": "43e8415b44841d5ba54fe49c0d2e3cf2"
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\app\\layout.tsx": {
+    "mtime": 1787304111.2080321,
+    "ast_hash": "e36a67a77a9744a835124530f6994b36",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\app\\not-found.tsx": {
+    "mtime": 1780557866.0487056,
+    "ast_hash": "1d4fb1749b687fd7b02028772dd27c5a",
+    "semantic_hash": "1d4fb1749b687fd7b02028772dd27c5a"
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\app\\page.tsx": {
+    "mtime": 1787297604.8538291,
+    "ast_hash": "a5aeafe6edb130dd490fe2424d31dae5",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\app\\robots.txt\\route.ts": {
+    "mtime": 1787298294.6856434,
+    "ast_hash": "1850d141e7287c0c84d1f04415bf13ee",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\app\\sitemap.xml\\route.ts": {
+    "mtime": 1787297477.798386,
+    "ast_hash": "29ab40fcd4fd2183a1c46275db1dd0c8",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\components\\theme-provider.tsx": {
+    "mtime": 1780569293.7653692,
+    "ast_hash": "fb85c86db36464c5ea7ed61929b7d8b7",
+    "semantic_hash": "fb85c86db36464c5ea7ed61929b7d8b7"
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\components\\animations\\floating-elements.tsx": {
+    "mtime": 1780569293.5636742,
+    "ast_hash": "3302d988fbb0e2e53a6360a07fe35e8e",
+    "semantic_hash": "3302d988fbb0e2e53a6360a07fe35e8e"
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\components\\animations\\morphing-blob.tsx": {
+    "mtime": 1780569293.576087,
+    "ast_hash": "a8c5756c56f1ac25cbe2bab90feb5f61",
+    "semantic_hash": "a8c5756c56f1ac25cbe2bab90feb5f61"
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\components\\animations\\parallax-section.tsx": {
+    "mtime": 1780569293.5891817,
+    "ast_hash": "077cac1b82c27a41b91bd8d1bd5a959c",
+    "semantic_hash": "077cac1b82c27a41b91bd8d1bd5a959c"
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\components\\animations\\scroll-progress.tsx": {
+    "mtime": 1780569293.595181,
+    "ast_hash": "88a684ce5eb553981b37ff8746364100",
+    "semantic_hash": "88a684ce5eb553981b37ff8746364100"
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\components\\animations\\staggered-grid.tsx": {
+    "mtime": 1780569293.6079972,
+    "ast_hash": "ed7d336d759bb197c693626014aca2ed",
+    "semantic_hash": "ed7d336d759bb197c693626014aca2ed"
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\components\\animations\\text-reveal.tsx": {
+    "mtime": 1780569293.6204278,
+    "ast_hash": "f1baf97395598f0704be1e2e3afabbf4",
+    "semantic_hash": "f1baf97395598f0704be1e2e3afabbf4"
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\components\\animations\\three-background.tsx": {
+    "mtime": 1780569293.6540575,
+    "ast_hash": "7ce1a06d33a7b7451e3f7a7507a232d2",
+    "semantic_hash": "7ce1a06d33a7b7451e3f7a7507a232d2"
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\components\\skills\\skill-badge.tsx": {
+    "mtime": 1780569293.7394545,
+    "ast_hash": "397f3d10a730047dd0b3f54d3824c690",
+    "semantic_hash": "397f3d10a730047dd0b3f54d3824c690"
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\components\\skills\\skill-category.tsx": {
+    "mtime": 1780569293.745474,
+    "ast_hash": "cd949c618bafcd91bbf9a104cc0a6e9c",
+    "semantic_hash": "cd949c618bafcd91bbf9a104cc0a6e9c"
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\components\\skills\\skills-grid.tsx": {
+    "mtime": 1780569293.759366,
+    "ast_hash": "48d7312f97dd5102dc23aacebedf2971",
+    "semantic_hash": "48d7312f97dd5102dc23aacebedf2971"
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\components\\timeline\\timeline-item.tsx": {
+    "mtime": 1780569293.7950807,
+    "ast_hash": "6f95692b1456e445c9df9f61c2c84c32",
+    "semantic_hash": "6f95692b1456e445c9df9f61c2c84c32"
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\components\\timeline\\timeline.tsx": {
+    "mtime": 1780569293.8105583,
+    "ast_hash": "46de48cf98fde21834c6c110abb42be6",
+    "semantic_hash": "46de48cf98fde21834c6c110abb42be6"
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\components\\ui\\accordion.tsx": {
+    "mtime": 1780569294.078228,
+    "ast_hash": "07d4f3e6ff549dbdfbd54e2bb8a2e21c",
+    "semantic_hash": "07d4f3e6ff549dbdfbd54e2bb8a2e21c"
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\components\\ui\\alert-dialog.tsx": {
+    "mtime": 1780569294.1048079,
+    "ast_hash": "dca10c9ccb892ff804348c678ad2bb32",
+    "semantic_hash": "dca10c9ccb892ff804348c678ad2bb32"
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\components\\ui\\alert.tsx": {
+    "mtime": 1780569294.1213784,
+    "ast_hash": "d4b90cab6b1fbb9b54364a0835f64991",
+    "semantic_hash": "d4b90cab6b1fbb9b54364a0835f64991"
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\components\\ui\\aspect-ratio.tsx": {
+    "mtime": 1780569294.1279123,
+    "ast_hash": "7c0729bbb6d3339126f483f02035f4b1",
+    "semantic_hash": "7c0729bbb6d3339126f483f02035f4b1"
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\components\\ui\\avatar.tsx": {
+    "mtime": 1780569294.1427183,
+    "ast_hash": "bafb981a7134ac001e4ab7ad4d5c2006",
+    "semantic_hash": "bafb981a7134ac001e4ab7ad4d5c2006"
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\components\\ui\\badge.tsx": {
+    "mtime": 1780569294.1562216,
+    "ast_hash": "f032bf8cd387cfa6e3989109b017d359",
+    "semantic_hash": "f032bf8cd387cfa6e3989109b017d359"
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\components\\ui\\breadcrumb.tsx": {
+    "mtime": 1780569294.1759691,
+    "ast_hash": "056238ba3f22e275b3001e981d5ea738",
+    "semantic_hash": "056238ba3f22e275b3001e981d5ea738"
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\components\\ui\\button.tsx": {
+    "mtime": 1780569294.191106,
+    "ast_hash": "52bf8d9c892c016c6fc1619bf54a287b",
+    "semantic_hash": "52bf8d9c892c016c6fc1619bf54a287b"
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\components\\ui\\calendar.tsx": {
+    "mtime": 1780571188.8423629,
+    "ast_hash": "fefc18cd0f1146c7634a9da29f2a6f9d",
+    "semantic_hash": "fefc18cd0f1146c7634a9da29f2a6f9d"
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\components\\ui\\card.tsx": {
+    "mtime": 1780569294.2258813,
+    "ast_hash": "14cfac55b230ff1345aa0aae55a20457",
+    "semantic_hash": "14cfac55b230ff1345aa0aae55a20457"
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\components\\ui\\carousel.tsx": {
+    "mtime": 1780571188.844361,
+    "ast_hash": "dd58a78647f655cbfac112e3782fe65b",
+    "semantic_hash": "dd58a78647f655cbfac112e3782fe65b"
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\components\\ui\\chart.tsx": {
+    "mtime": 1780571281.6961339,
+    "ast_hash": "836fd06fe461076b09a588645e7bbca1",
+    "semantic_hash": "836fd06fe461076b09a588645e7bbca1"
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\components\\ui\\checkbox.tsx": {
+    "mtime": 1780569294.3356872,
+    "ast_hash": "d3827427ca2e686b19d2c567a0ffeff9",
+    "semantic_hash": "d3827427ca2e686b19d2c567a0ffeff9"
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\components\\ui\\collapsible.tsx": {
+    "mtime": 1780569294.3426864,
+    "ast_hash": "767631bbc344945c236f185f4078d71d",
+    "semantic_hash": "767631bbc344945c236f185f4078d71d"
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\components\\ui\\command.tsx": {
+    "mtime": 1780569294.3695447,
+    "ast_hash": "995ac5282b33e93e3a4b94af47174642",
+    "semantic_hash": "995ac5282b33e93e3a4b94af47174642"
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\components\\ui\\context-menu.tsx": {
+    "mtime": 1780569294.3966455,
+    "ast_hash": "978ca12a3b13809de43ee6b01ea42f2f",
+    "semantic_hash": "978ca12a3b13809de43ee6b01ea42f2f"
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\components\\ui\\dialog.tsx": {
+    "mtime": 1780569294.4111102,
+    "ast_hash": "9e217e1fe72aa98b9b9ddae8be98bba7",
+    "semantic_hash": "9e217e1fe72aa98b9b9ddae8be98bba7"
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\components\\ui\\drawer.tsx": {
+    "mtime": 1780569294.4360242,
+    "ast_hash": "c853593ef8e1bc0cc5c4267ac6f38ddd",
+    "semantic_hash": "c853593ef8e1bc0cc5c4267ac6f38ddd"
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\components\\ui\\dropdown-menu.tsx": {
+    "mtime": 1780569294.4631271,
+    "ast_hash": "81390aa63bad07a76897dce7d6f2348b",
+    "semantic_hash": "81390aa63bad07a76897dce7d6f2348b"
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\components\\ui\\form.tsx": {
+    "mtime": 1780569294.5049112,
+    "ast_hash": "36bb301d973bd680425c0653e32671a3",
+    "semantic_hash": "36bb301d973bd680425c0653e32671a3"
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\components\\ui\\hover-card.tsx": {
+    "mtime": 1780569294.519085,
+    "ast_hash": "db6af7991dfdce83f83ef396860f9abd",
+    "semantic_hash": "db6af7991dfdce83f83ef396860f9abd"
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\components\\ui\\input-otp.tsx": {
+    "mtime": 1780569294.5454679,
+    "ast_hash": "2a087f3478ed01422e17efaa63422fb6",
+    "semantic_hash": "2a087f3478ed01422e17efaa63422fb6"
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\components\\ui\\input.tsx": {
+    "mtime": 1780569294.5584557,
+    "ast_hash": "b8279d768c2a1ce78a05a369a0502877",
+    "semantic_hash": "b8279d768c2a1ce78a05a369a0502877"
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\components\\ui\\label.tsx": {
+    "mtime": 1780569294.570021,
+    "ast_hash": "49ec723b023c9b1b57dd73cc64e92bb0",
+    "semantic_hash": "49ec723b023c9b1b57dd73cc64e92bb0"
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\components\\ui\\menubar.tsx": {
+    "mtime": 1780569294.6049802,
+    "ast_hash": "d19f8cdd710e0b671a90d119b834b279",
+    "semantic_hash": "d19f8cdd710e0b671a90d119b834b279"
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\components\\ui\\navigation-menu.tsx": {
+    "mtime": 1780569294.626916,
+    "ast_hash": "a3dee0f5f9d94263d4295c63938bbfd9",
+    "semantic_hash": "a3dee0f5f9d94263d4295c63938bbfd9"
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\components\\ui\\pagination.tsx": {
+    "mtime": 1780569294.6534545,
+    "ast_hash": "cf4202a61305490f1939bf0904fd8b39",
+    "semantic_hash": "cf4202a61305490f1939bf0904fd8b39"
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\components\\ui\\popover.tsx": {
+    "mtime": 1780569294.6610668,
+    "ast_hash": "5c77b71ac97d6988227d70fcc504ad80",
+    "semantic_hash": "5c77b71ac97d6988227d70fcc504ad80"
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\components\\ui\\progress-bar.tsx": {
+    "mtime": 1780569294.677072,
+    "ast_hash": "b1d5f425fffd5bfc5bb90053b41ce03a",
+    "semantic_hash": "b1d5f425fffd5bfc5bb90053b41ce03a"
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\components\\ui\\progress.tsx": {
+    "mtime": 1780569294.6890085,
+    "ast_hash": "06d49539102e6c710ca5a0c469cf1467",
+    "semantic_hash": "06d49539102e6c710ca5a0c469cf1467"
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\components\\ui\\radio-group.tsx": {
+    "mtime": 1780569294.700019,
+    "ast_hash": "f8e27397dce1a1a4e741a7381edf225b",
+    "semantic_hash": "f8e27397dce1a1a4e741a7381edf225b"
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\components\\ui\\resizable.tsx": {
+    "mtime": 1780569294.709635,
+    "ast_hash": "45e2b35f412eae616ad10e6ada6f5256",
+    "semantic_hash": "45e2b35f412eae616ad10e6ada6f5256"
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\components\\ui\\scroll-area.tsx": {
+    "mtime": 1780569294.7271872,
+    "ast_hash": "cab8fbdaac6dfa22bb83b96923ac6362",
+    "semantic_hash": "cab8fbdaac6dfa22bb83b96923ac6362"
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\components\\ui\\select.tsx": {
+    "mtime": 1780569294.7511897,
+    "ast_hash": "de80f94bd92116766fd2c76e5103ff04",
+    "semantic_hash": "de80f94bd92116766fd2c76e5103ff04"
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\components\\ui\\separator.tsx": {
+    "mtime": 1780569294.758697,
+    "ast_hash": "af9d07a543b7bc3c7e5e7c545f1213e0",
+    "semantic_hash": "af9d07a543b7bc3c7e5e7c545f1213e0"
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\components\\ui\\sheet.tsx": {
+    "mtime": 1780569294.77919,
+    "ast_hash": "b783c29cb26ac9ebaf96eb736470192d",
+    "semantic_hash": "b783c29cb26ac9ebaf96eb736470192d"
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\components\\ui\\sidebar.tsx": {
+    "mtime": 1780571188.8453815,
+    "ast_hash": "58dd2270efc131d047dc1f416b0884cb",
+    "semantic_hash": "58dd2270efc131d047dc1f416b0884cb"
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\components\\ui\\skeleton.tsx": {
+    "mtime": 1780569294.8674364,
+    "ast_hash": "f0a3e9f04e9c2957b5d733bc0aad0a7f",
+    "semantic_hash": "f0a3e9f04e9c2957b5d733bc0aad0a7f"
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\components\\ui\\slider.tsx": {
+    "mtime": 1780569294.8764372,
+    "ast_hash": "2e3617615aef3f332263a4dcc24ccbe7",
+    "semantic_hash": "2e3617615aef3f332263a4dcc24ccbe7"
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\components\\ui\\sonner.tsx": {
+    "mtime": 1780569294.8880484,
+    "ast_hash": "6059f58cad7ef996baf4262d2b74f74f",
+    "semantic_hash": "6059f58cad7ef996baf4262d2b74f74f"
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\components\\ui\\switch.tsx": {
+    "mtime": 1780569294.8964083,
+    "ast_hash": "54f5cfa3b487ea54ccdf8db9484bc81b",
+    "semantic_hash": "54f5cfa3b487ea54ccdf8db9484bc81b"
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\components\\ui\\table.tsx": {
+    "mtime": 1780569294.9189491,
+    "ast_hash": "feb32da285b8cc9d24db1279aa16b60b",
+    "semantic_hash": "feb32da285b8cc9d24db1279aa16b60b"
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\components\\ui\\tabs.tsx": {
+    "mtime": 1780569294.9279852,
+    "ast_hash": "dee421564a6edd4846f72d696ab03e4f",
+    "semantic_hash": "dee421564a6edd4846f72d696ab03e4f"
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\components\\ui\\textarea.tsx": {
+    "mtime": 1780569294.9364333,
+    "ast_hash": "4ce501c094038b5978a600cd1afea720",
+    "semantic_hash": "4ce501c094038b5978a600cd1afea720"
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\components\\ui\\toast.tsx": {
+    "mtime": 1780571281.7011464,
+    "ast_hash": "5669e445fc6b8ff303965d4587b1b3ef",
+    "semantic_hash": "5669e445fc6b8ff303965d4587b1b3ef"
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\components\\ui\\toaster.tsx": {
+    "mtime": 1780569294.963802,
+    "ast_hash": "3bafa8fbcb9aade0ab5fce5a62f1b88e",
+    "semantic_hash": "3bafa8fbcb9aade0ab5fce5a62f1b88e"
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\components\\ui\\toggle-group.tsx": {
+    "mtime": 1780569294.979101,
+    "ast_hash": "4b71ed5c9c1a26163bc3831bc89b3a49",
+    "semantic_hash": "4b71ed5c9c1a26163bc3831bc89b3a49"
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\components\\ui\\toggle.tsx": {
+    "mtime": 1780569294.9895837,
+    "ast_hash": "6dc565ce124a28aa88b030fc7817b3a0",
+    "semantic_hash": "6dc565ce124a28aa88b030fc7817b3a0"
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\components\\ui\\tooltip.tsx": {
+    "mtime": 1780569294.9959123,
+    "ast_hash": "57e4f1e56e975e7ff0285d130e888a5b",
+    "semantic_hash": "57e4f1e56e975e7ff0285d130e888a5b"
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\components\\ui\\use-mobile.tsx": {
+    "mtime": 1780571188.847393,
+    "ast_hash": "4750559f5d365abd47fd1bd7b770ccdb",
+    "semantic_hash": "4750559f5d365abd47fd1bd7b770ccdb"
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\components\\ui\\use-toast.ts": {
+    "mtime": 1780571188.8505912,
+    "ast_hash": "60ea1a450cfb9ead72a7b606a2c0ab0a",
+    "semantic_hash": "60ea1a450cfb9ead72a7b606a2c0ab0a"
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\data\\timeline.ts": {
+    "mtime": 1787296919.9174266,
+    "ast_hash": "ce9dfaf9b5a58f2bd867e4f1322afa5a",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\hooks\\use-mobile.tsx": {
+    "mtime": 1780571188.8485665,
+    "ast_hash": "4750559f5d365abd47fd1bd7b770ccdb",
+    "semantic_hash": "4750559f5d365abd47fd1bd7b770ccdb"
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\hooks\\use-scroll-animations.ts": {
+    "mtime": 1780569295.0543206,
+    "ast_hash": "7b91f23b86c0df294d5f8b7773ff0ea9",
+    "semantic_hash": "7b91f23b86c0df294d5f8b7773ff0ea9"
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\hooks\\use-toast.ts": {
+    "mtime": 1780571188.8528948,
+    "ast_hash": "ae8b2a55054ec23526a0772036f36e71",
+    "semantic_hash": "ae8b2a55054ec23526a0772036f36e71"
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\lib\\image-optimization.ts": {
+    "mtime": 1780571581.4061525,
+    "ast_hash": "f59fec251428024fbec6f3f94f2371f2",
+    "semantic_hash": "f59fec251428024fbec6f3f94f2371f2"
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\lib\\site.ts": {
+    "mtime": 1780586807.761807,
+    "ast_hash": "d9a45b0c25311c38b602da07aa42bece",
+    "semantic_hash": "d9a45b0c25311c38b602da07aa42bece"
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\lib\\utils.ts": {
+    "mtime": 1780569295.0935123,
+    "ast_hash": "d9837f38cc05303254571985e3164050",
+    "semantic_hash": "d9837f38cc05303254571985e3164050"
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\scripts\\portfolio-run-project.ps1": {
+    "mtime": 1780569059.087551,
+    "ast_hash": "64fbad82e45962c7104f3badd1a8e0a3",
+    "semantic_hash": "64fbad82e45962c7104f3badd1a8e0a3"
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\tests\\setup.ts": {
+    "mtime": 1787298672.5919328,
+    "ast_hash": "7e7d12aa2aba37fd0c2cccad4eac0a10",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\types\\education.ts": {
+    "mtime": 1780551963.2115474,
+    "ast_hash": "ea76b49822d17f20d61f9a7b0d412078",
+    "semantic_hash": "ea76b49822d17f20d61f9a7b0d412078"
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\types\\experience.ts": {
+    "mtime": 1780551963.2115474,
+    "ast_hash": "f5e2edb203701f1a16cb0db74d8dbbc7",
+    "semantic_hash": "f5e2edb203701f1a16cb0db74d8dbbc7"
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\types\\project.ts": {
+    "mtime": 1780551963.2115474,
+    "ast_hash": "250bbec604b7bde4ad9b1a73c831df47",
+    "semantic_hash": "250bbec604b7bde4ad9b1a73c831df47"
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\types\\skill.ts": {
+    "mtime": 1780551963.2125874,
+    "ast_hash": "ac3fd4f9443a77b7b9e93af5b33746d3",
+    "semantic_hash": "ac3fd4f9443a77b7b9e93af5b33746d3"
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\types\\timeline.ts": {
+    "mtime": 1780551963.2125874,
+    "ast_hash": "a54907357212694a8e478093fdb7e65b",
+    "semantic_hash": "a54907357212694a8e478093fdb7e65b"
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\AGENTS.md": {
+    "mtime": 1780587714.6883235,
+    "ast_hash": "f2f8df48cebf3302e98b8fa8bc5e6072",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\CLAUDE.md": {
+    "mtime": 1780587714.7018096,
+    "ast_hash": "878005a4334556454316f115906a8d27",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\README.md": {
+    "mtime": 1787300017.8453321,
+    "ast_hash": "f7b85ab6dc763bb8cbba3ab3c1fb95f6",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\.agents\\rules\\graphify.md": {
+    "mtime": 1780556827.9766538,
+    "ast_hash": "a0e4d192b9e2e17256124dbfc8e24e6a",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\.agents\\workflows\\graphify.md": {
+    "mtime": 1780556827.9766538,
+    "ast_hash": "84de69efd46ab0b8430393bd4188f8f2",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\.github\\workflows\\pages.yml": {
+    "mtime": 1787303898.3459334,
+    "ast_hash": "b6f6a16f890cce5323acfa580a8e7d6c",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\tests\\README.md": {
+    "mtime": 1787298728.0633159,
+    "ast_hash": "714aabbb3c0f6286ab37d60d889a29f1",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\public\\Rohit-Gupta-Resume-2026.pdf": {
+    "mtime": 1787296926.3304687,
+    "ast_hash": "e7e5a7c05938b673054db96b73f21dcb",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\app\\icon.svg": {
+    "mtime": 1780570552.8230436,
+    "ast_hash": "17253cffa105b16e37e79e7abc33055a",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\public\\placeholder-logo.png": {
+    "mtime": 1780551963.2025783,
+    "ast_hash": "95d8d1a4a9bbcccc875e2c381e74064a",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\public\\placeholder-logo.svg": {
+    "mtime": 1780551963.2025783,
+    "ast_hash": "1e16dc7df824652c5906a2ab44aef78c",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\public\\placeholder-user.jpg": {
+    "mtime": 1780551963.2025783,
+    "ast_hash": "7ee6562646feae6d6d77e2c72e204591",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\public\\placeholder.jpg": {
+    "mtime": 1780551963.2025783,
+    "ast_hash": "1e533b7b4545d1d605144ce893afc601",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\public\\placeholder.svg": {
+    "mtime": 1780551963.2040758,
+    "ast_hash": "35707bd9960ba5281c72af927b79291f",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\public\\rohit.png": {
+    "mtime": 1780551963.2080798,
+    "ast_hash": "e0d31d36179174bcc8ff330c31ef207b",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\MCN\\Dev\\Rohit-Gupta-v0\\tests\\home-page.test.tsx": {
+    "mtime": 1787298720.1005096,
+    "ast_hash": "e2f5803602d1cc91e6e7f02cf382409b",
+    "semantic_hash": ""
+  }
+}
