@@ -791,7 +791,8 @@ function useSectionView() {
           const id = entry.target.id;
           if (entry.isIntersecting && id && !seen.has(id)) {
             seen.add(id);
-            trackSectionView(id);
+            // The hero element's id is "top"; report it as "hero".
+            trackSectionView(id === "top" ? "hero" : id);
             io.unobserve(entry.target);
           }
         });
