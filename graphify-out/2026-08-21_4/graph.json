@@ -1021,28 +1021,10 @@
       "norm_label": "geistmono"
     },
     {
-      "label": "siteUrl",
-      "file_type": "code",
-      "source_file": "app/layout.tsx",
-      "source_location": "L19",
-      "id": "app_layout_siteurl",
-      "community": 1,
-      "norm_label": "siteurl"
-    },
-    {
-      "label": "profileLinks",
-      "file_type": "code",
-      "source_file": "app/layout.tsx",
-      "source_location": "L21",
-      "id": "app_layout_profilelinks",
-      "community": 1,
-      "norm_label": "profilelinks"
-    },
-    {
       "label": "metadata",
       "file_type": "code",
       "source_file": "app/layout.tsx",
-      "source_location": "L30",
+      "source_location": "L19",
       "id": "app_layout_metadata",
       "community": 1,
       "norm_label": "metadata"
@@ -1051,7 +1033,7 @@
       "label": "viewport",
       "file_type": "code",
       "source_file": "app/layout.tsx",
-      "source_location": "L78",
+      "source_location": "L50",
       "id": "app_layout_viewport",
       "community": 1,
       "norm_label": "viewport"
@@ -1060,7 +1042,7 @@
       "label": "RootLayout()",
       "file_type": "code",
       "source_file": "app/layout.tsx",
-      "source_location": "L85",
+      "source_location": "L57",
       "id": "app_layout_rootlayout",
       "community": 1,
       "norm_label": "rootlayout()"
@@ -6468,26 +6450,6 @@
       "source_file": "app/layout.tsx",
       "source_location": "L19",
       "weight": 1.0,
-      "source": "app_layout_tsx",
-      "target": "app_layout_siteurl",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "app/layout.tsx",
-      "source_location": "L21",
-      "weight": 1.0,
-      "source": "app_layout_tsx",
-      "target": "app_layout_profilelinks",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "app/layout.tsx",
-      "source_location": "L19",
-      "weight": 1.0,
       "confidence_score": 1.0,
       "source": "app_layout_tsx",
       "target": "app_layout_metadata"
@@ -6813,9 +6775,9 @@
       "source_file": "tests/home-page.test.tsx",
       "source_location": "L15",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "tests_home_page_test_tsx",
-      "target": "app_page_tsx"
+      "target": "app_page_tsx",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -13612,9 +13574,9 @@
       "source_file": "tests/README.md",
       "source_location": "L1",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "tests_readme_md",
-      "target": "tests_readme_portfolio_test_suite"
+      "target": "tests_readme_portfolio_test_suite",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -13632,9 +13594,9 @@
       "source_file": "tests/README.md",
       "source_location": "L3",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "tests_readme_portfolio_test_suite",
-      "target": "tests_readme_overview"
+      "target": "tests_readme_overview",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -13642,9 +13604,9 @@
       "source_file": "tests/README.md",
       "source_location": "L9",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "tests_readme_portfolio_test_suite",
-      "target": "tests_readme_structure"
+      "target": "tests_readme_structure",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -13652,9 +13614,9 @@
       "source_file": "tests/README.md",
       "source_location": "L16",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "tests_readme_portfolio_test_suite",
-      "target": "tests_readme_coverage_focus"
+      "target": "tests_readme_coverage_focus",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -13662,9 +13624,9 @@
       "source_file": "tests/README.md",
       "source_location": "L25",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "tests_readme_portfolio_test_suite",
-      "target": "tests_readme_running"
+      "target": "tests_readme_running",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -13702,9 +13664,9 @@
       "source_file": "tests/README.md",
       "source_location": "L26",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "tests_readme_running",
-      "target": "tests_readme_codeblock_1"
+      "target": "tests_readme_codeblock_1",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports_from",
@@ -14252,5 +14214,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "f2c3ed599933f0200f694daa6fdf14c82bbea1fb"
+  "built_at_commit": "d83baec347b89277ff2f1af115dec352bcf2a9ae"
 }

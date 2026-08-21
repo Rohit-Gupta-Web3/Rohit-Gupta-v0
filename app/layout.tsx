@@ -16,33 +16,61 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
 });
 
+const siteUrl = getSiteUrl();
+
+const profileLinks = {
+  linkedin: "https://www.linkedin.com/in/rohit-gupta-ai/",
+  github: "https://github.com/Rohit-Gupta-Web3",
+  x: "https://x.com/RohitGuptaWeb3",
+};
+
+const description =
+  "Rohit Gupta - AI Product & Technology Leader building agentic AI, voice AI, LLM optimization, and Web3 products end to end. AI Product Manager, Technical Program Manager, AI Transformation lead, and 2x C# Corner MVP based in Noida, India.";
+
 export const metadata: Metadata = {
-  metadataBase: new URL(getSiteUrl()),
+  metadataBase: new URL(siteUrl),
   title: "Rohit Gupta - AI Product & Technology Leader",
-  description:
-    "Rohit Gupta - AI Product & Technology Leader building agentic AI, voice AI, LLM optimization, and Web3 products end to end. Tech Lead, Technical Program Manager, and 2x C# Corner MVP.",
+  description,
   keywords: [
     "Rohit Gupta",
-    "AI Product Leader",
+    "AI Product Manager",
+    "Technical Product Manager",
+    "AI Program Manager",
     "Technical Program Manager",
+    "AI Transformation",
+    "Emerging Technology Leader",
     "Agentic AI",
     "Voice AI",
+    "LLM",
     "Web3",
     "Blockchain",
     "Portfolio",
   ],
+  authors: [{ name: "Rohit Gupta", url: siteUrl }],
+  creator: "Rohit Gupta",
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     title: "Rohit Gupta - AI Product & Technology Leader",
-    description:
-      "Rohit Gupta - AI Product & Technology Leader building agentic AI, voice AI, LLM optimization, and Web3 products end to end.",
-    type: "website",
+    description,
+    url: siteUrl,
+    siteName: "Rohit Gupta",
+    type: "profile",
     locale: "en_US",
+    images: [
+      {
+        url: `${siteUrl}/rohit.png`,
+        alt: "Rohit Gupta - AI Product & Technology Leader",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Rohit Gupta - AI Product & Technology Leader",
-    description:
-      "Rohit Gupta - AI Product & Technology Leader building agentic AI, voice AI, LLM optimization, and Web3 products end to end.",
+    description,
+    creator: "@RohitGuptaWeb3",
+    images: [`${siteUrl}/rohit.png`],
   },
   generator: "v0.dev",
 };
@@ -72,9 +100,63 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
-              "@type": "Person",
-              name: "Rohit Gupta",
-              jobTitle: "AI Product & Technology Leader",
+              "@graph": [
+                {
+                  "@type": "WebSite",
+                  "@id": `${siteUrl}/#website`,
+                  url: siteUrl,
+                  name: "Rohit Gupta",
+                  description,
+                  inLanguage: "en",
+                  publisher: { "@id": `${siteUrl}/#person` },
+                },
+                {
+                  "@type": "Person",
+                  "@id": `${siteUrl}/#person`,
+                  name: "Rohit Gupta",
+                  url: siteUrl,
+                  image: `${siteUrl}/rohit.png`,
+                  jobTitle: "AI Product & Technology Leader",
+                  description,
+                  email: "mailto:gupta.rohitg.rohit900@gmail.com",
+                  address: {
+                    "@type": "PostalAddress",
+                    addressLocality: "Noida",
+                    addressRegion: "Uttar Pradesh",
+                    addressCountry: "IN",
+                  },
+                  worksFor: {
+                    "@type": "Organization",
+                    name: "Thinkverse Labs",
+                  },
+                  alumniOf: [
+                    {
+                      "@type": "CollegeOrUniversity",
+                      name: "University of Delhi",
+                    },
+                  ],
+                  knowsAbout: [
+                    "Artificial Intelligence",
+                    "AI Product Management",
+                    "Technical Program Management",
+                    "Agentic AI",
+                    "Voice AI",
+                    "Large Language Models",
+                    "AI Transformation",
+                    "Web3",
+                    "Blockchain",
+                    "Solidity",
+                    "Algorand",
+                    "Polygon",
+                  ],
+                  award: "C# Corner MVP",
+                  sameAs: [
+                    profileLinks.linkedin,
+                    profileLinks.github,
+                    profileLinks.x,
+                  ],
+                },
+              ],
             }),
           }}
         />

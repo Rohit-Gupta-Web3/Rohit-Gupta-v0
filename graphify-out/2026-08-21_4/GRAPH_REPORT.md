@@ -1,16 +1,16 @@
 # Graph Report - Rohit-Gupta-v0  (2026-08-21)
 
 ## Corpus Check
-- 102 files · ~63,455 words
+- 102 files · ~63,319 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 594 nodes · 853 edges · 63 communities (45 shown, 18 thin omitted)
+- 592 nodes · 851 edges · 63 communities (45 shown, 18 thin omitted)
 - Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 8 edges (avg confidence: 0.69)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `f2c3ed59`
+- Built from commit: `d83baec3`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -98,7 +98,7 @@ Nodes (36): useIsMobile(), SheetContent, SheetContentProps, SheetDescription, Sh
 
 ### Community 1 - "Community 1"
 Cohesion: 0.05
-Nodes (30): geistMono, geistSans, metadata, profileLinks, siteUrl, viewport, aiProjects, education (+22 more)
+Nodes (28): geistMono, geistSans, metadata, viewport, aiProjects, education, experience, featured (+20 more)
 
 ### Community 2 - "Community 2"
 Cohesion: 0.09
@@ -225,7 +225,7 @@ Nodes (3): TabsContent, TabsList, TabsTrigger
   tests/README.md · relation: conceptually_related_to
 
 ## Knowledge Gaps
-- **286 isolated node(s):** `$schema`, `style`, `rsc`, `tsx`, `config` (+281 more)
+- **284 isolated node(s):** `$schema`, `style`, `rsc`, `tsx`, `config` (+279 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **18 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
@@ -235,14 +235,14 @@ _Questions this graph is uniquely positioned to answer:_
 - **What is the exact relationship between `Rohit Gupta Portfolio` and `Todo UI Test Suite`?**
   _Edge tagged AMBIGUOUS (relation: conceptually_related_to) - confidence is low._
 - **Why does `cn()` connect `Community 8` to `Community 0`, `Community 2`, `Community 4`, `Community 5`, `Community 6`, `Community 7`, `Community 11`, `Community 12`, `Community 13`, `Community 14`, `Community 15`, `Community 16`, `Community 17`, `Community 18`, `Community 19`, `Community 20`, `Community 24`, `Community 26`, `Community 31`, `Community 32`, `Community 33`, `Community 40`, `Community 62`?**
-  _High betweenness centrality (0.276) - this node is a cross-community bridge._
+  _High betweenness centrality (0.277) - this node is a cross-community bridge._
 - **Why does `clsx` connect `Community 4` to `Community 8`?**
-  _High betweenness centrality (0.110) - this node is a cross-community bridge._
+  _High betweenness centrality (0.111) - this node is a cross-community bridge._
 - **What connects `$schema`, `style`, `rsc` to the rest of the system?**
-  _286 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _284 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Community 0` be split into smaller, more focused modules?**
   _Cohesion score 0.05226480836236934 - nodes in this community are weakly interconnected._
 - **Should `Community 1` be split into smaller, more focused modules?**
-  _Cohesion score 0.04964539007092199 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.05217391304347826 - nodes in this community are weakly interconnected._
 - **Should `Community 2` be split into smaller, more focused modules?**
   _Cohesion score 0.08974358974358974 - nodes in this community are weakly interconnected._
