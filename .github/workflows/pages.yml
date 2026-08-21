@@ -20,8 +20,10 @@ jobs:
     runs-on: ubuntu-latest
     env:
       GITHUB_PAGES: "true"
-      NEXT_PUBLIC_BASE_PATH: /${{ github.event.repository.name }}
-      NEXT_PUBLIC_SITE_URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}
+      # Custom domain (rohit-gupta.in) is served at the apex, so there is no
+      # repository sub-path — base path must be empty.
+      NEXT_PUBLIC_BASE_PATH: ""
+      NEXT_PUBLIC_SITE_URL: https://rohit-gupta.in
     steps:
       - name: Checkout
         uses: actions/checkout@v4
