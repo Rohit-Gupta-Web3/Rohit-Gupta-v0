@@ -2,8 +2,10 @@
 
 import type { AnchorHTMLAttributes, HTMLAttributes, ReactNode } from "react";
 import Image from "next/image";
+import type { MouseEvent } from "react";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { withBasePath } from "@/lib/site";
+import { trackCta, trackOutbound, trackSectionView } from "@/lib/analytics";
 
 type Theme = "dark" | "light";
 
@@ -775,6 +777,33 @@ function BackgroundCanvas({
   return <canvas id="rg-bg-canvas" ref={canvasRef} />;
 }
 
+function useSectionView() {
+  useEffect(() => {
+    const sections = Array.from(
+      document.querySelectorAll<HTMLElement>("section[id], header[id]"),
+    );
+    if (!sections.length || !("IntersectionObserver" in window)) return;
+
+    const seen = new Set<string>();
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const id = entry.target.id;
+          if (entry.isIntersecting && id && !seen.has(id)) {
+            seen.add(id);
+            trackSectionView(id);
+            io.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.4 },
+    );
+
+    sections.forEach((section) => io.observe(section));
+    return () => io.disconnect();
+  }, []);
+}
+
 function SectionLabel({ children }: { children: React.ReactNode }) {
   return <span className="rg-eyebrow">{children}</span>;
 }
@@ -783,14 +812,27 @@ function AppLink({
   href,
   children,
   className = "",
+  cta,
+  ctaLocation,
+  onClick,
   ...props
 }: {
   href: string;
   children: ReactNode;
   className?: string;
+  /** GA4 cta_click name, e.g. "book_calendar". Fires trackCta on click. */
+  cta?: string;
+  /** Where the CTA lives, e.g. "hero" | "nav" | "contact". */
+  ctaLocation?: string;
 } & AnchorHTMLAttributes<HTMLAnchorElement>) {
+  const handleClick = (event: MouseEvent<HTMLAnchorElement>) => {
+    if (cta) trackCta(cta, ctaLocation ?? "unknown");
+    else if (/^https?:\/\//.test(href)) trackOutbound(href);
+    onClick?.(event);
+  };
+
   return (
-    <a href={href} className={className} {...props}>
+    <a href={href} className={className} onClick={handleClick} {...props}>
       {children}
     </a>
   );
@@ -812,6 +854,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
         href: project.link,
         target: "_blank",
         rel: "noopener noreferrer",
+        onClick: () => trackCta("project_visit", project.name),
       }
     : {};
 
@@ -845,6 +888,7 @@ export default function Home() {
   const [scrolled, setScrolled] = useState(false);
 
   useReveal();
+  useSectionView();
 
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);
@@ -863,7 +907,13 @@ export default function Home() {
   const navButtons = useMemo(
     () =>
       navLinks.map(([label, href]) => (
-        <AppLink key={href} href={href} className="rg-nav-link">
+        <AppLink
+          key={href}
+          href={href}
+          className="rg-nav-link"
+          cta={`nav_${label.toLowerCase()}`}
+          ctaLocation="nav"
+        >
           {label}
         </AppLink>
       )),
@@ -927,6 +977,8 @@ export default function Home() {
                 className="rg-btn rg-btn-primary rg-btn-sm"
                 target="_blank"
                 rel="noopener noreferrer"
+                cta="book_calendar"
+                ctaLocation="nav"
               >
                 Book team calendar <Icon name="arrowUpRight" size={15} />
               </AppLink>
@@ -960,10 +1012,17 @@ export default function Home() {
                       className="rg-btn rg-btn-primary"
                       target="_blank"
                       rel="noopener noreferrer"
+                      cta="book_calendar"
+                      ctaLocation="hero"
                     >
                       Book team calendar <Icon name="arrowUpRight" size={16} />
                     </AppLink>
-                    <AppLink href="#work" className="rg-btn rg-btn-ghost">
+                    <AppLink
+                      href="#work"
+                      className="rg-btn rg-btn-ghost"
+                      cta="view_work"
+                      ctaLocation="hero"
+                    >
                       View selected work
                     </AppLink>
                     <AppLink
@@ -972,6 +1031,8 @@ export default function Home() {
                       target="_blank"
                       rel="noopener noreferrer"
                       download
+                      cta="download_resume"
+                      ctaLocation="hero"
                     >
                       Download résumé <Icon name="doc" size={16} />
                     </AppLink>
@@ -1228,6 +1289,8 @@ export default function Home() {
                             className="rg-case-link"
                             target="_blank"
                             rel="noopener noreferrer"
+                            cta="project_visit"
+                            ctaLocation={item.id}
                           >
                             Visit project <Icon name="arrowUpRight" size={14} />
                           </AppLink>
@@ -1237,6 +1300,8 @@ export default function Home() {
                             className="rg-case-link"
                             target="_blank"
                             rel="noopener noreferrer"
+                            cta="walkthrough_request"
+                            ctaLocation={item.id}
                           >
                             Walkthrough on request{" "}
                             <Icon name="arrowUpRight" size={14} />
@@ -1415,7 +1480,12 @@ export default function Home() {
                         </>
                       );
                       return item.href ? (
-                        <a className="rg-cp" key={item.k} href={item.href}>
+                        <a
+                          className="rg-cp"
+                          key={item.k}
+                          href={item.href}
+                          onClick={() => trackCta("email", "contact")}
+                        >
                           {inner}
                         </a>
                       ) : (
@@ -1441,12 +1511,16 @@ export default function Home() {
                       className="rg-btn rg-btn-primary"
                       target="_blank"
                       rel="noopener noreferrer"
+                      cta="book_calendar"
+                      ctaLocation="contact"
                     >
                       Book team calendar <Icon name="arrowUpRight" size={16} />
                     </AppLink>
                     <AppLink
                       href={`mailto:${profile.email}`}
                       className="rg-btn rg-btn-ghost"
+                      cta="email"
+                      ctaLocation="contact"
                     >
                       Email instead <Icon name="mail" size={16} />
                     </AppLink>
@@ -1456,6 +1530,8 @@ export default function Home() {
                       target="_blank"
                       rel="noopener noreferrer"
                       download
+                      cta="download_resume"
+                      ctaLocation="contact"
                     >
                       Download résumé <Icon name="doc" size={16} />
                     </AppLink>
@@ -1507,6 +1583,7 @@ export default function Home() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={item.ico}
+                  onClick={() => trackOutbound(item.href, item.ico)}
                 >
                   <Icon name={item.ico} size={18} fill={item.fill} />
                 </a>
