@@ -2,12 +2,28 @@ import type { TimelineEntry } from "@/types/timeline"
 
 export const timelineData: TimelineEntry[] = [
   {
+    id: "thinkverse-lead",
+    title: "Tech Lead — Web3",
+    company: "Thinkverse Labs",
+    startDate: "Jan 2026",
+    endDate: "Present",
+    description: "Leading technical design and delivery across Web3 and AI-oriented initiatives.",
+    achievements: [
+      "Lead technical design and delivery across Web3 and AI initiatives",
+      "Build and iterate AI-native apps with Claude and OpenAI Codex",
+      "Coordinate engineering across app, API, data, AI, and infrastructure",
+      "Drive product and program delivery through iterative execution",
+    ],
+    icon: "Code",
+    category: "work",
+  },
+  {
     id: "mcn-lead",
     title: "Technical Lead",
     company: "MCN Solutions",
     startDate: "Apr 2022",
-    endDate: "Present",
-    description: "Leading blockchain and IoT product development with cross-functional teams.",
+    endDate: "Dec 2025",
+    description: "Led blockchain and IoT product development with cross-functional teams.",
     achievements: [
       "Architected and led development of blockchain + IoT products",
       "Managed cross-functional teams (Django, .NET 6, Blazor)",
@@ -41,7 +57,7 @@ export const timelineData: TimelineEntry[] = [
     endDate: "Jun 2025",
     description: "Created technical content reaching thousands of developers worldwide.",
     achievements: [
-      "Authored 80+ articles and 3 eBooks on AI, Python, Web3",
+      "Authored 314 articles and 6 eBooks on AI, Python, Web3",
       "Covered ML, OpenVINO, IoT, Windows 11",
       "Focused on clarity, depth, and beginner-to-pro content",
     ],

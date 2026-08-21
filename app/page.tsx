@@ -10,11 +10,13 @@ type Theme = "dark" | "light";
 const profile = {
   name: "Rohit Gupta",
   initials: "RG",
-  roleLine: ["Technical Lead", "Web3 Lead", "Intel AI Edge Scholar"],
-  tagline: "Intel AI Edge Scholar, Web3 Enthusiast, and 2x C# Corner MVP.",
-  location: "Ghaziabad, India",
+  roleLine: ["AI Product Leader", "Web3 Tech Lead", "Technical Program Manager"],
+  tagline:
+    "AI Product & Technology Leader building agentic AI, voice AI, and Web3 products end to end.",
+  location: "Noida, Uttar Pradesh, India",
   email: "gupta.rohitg.rohit900@gmail.com",
   bookingUrl: "https://outlook.office.com/book/RohitGupta@csharp.com/",
+  resumeUrl: withBasePath("/Rohit-Gupta-Resume-2026.pdf"),
   x: "https://x.com/RohitGuptaWeb3",
   linkedin: "https://www.linkedin.com/in/rohit-gupta-ai/",
   github: "https://github.com/Rohit-Gupta-Web3",
@@ -23,17 +25,17 @@ const profile = {
 
 const stats = [
   { value: "2x", label: "C# Corner MVP", sub: "member since 2019" },
-  { value: "215", label: "articles published", sub: "C# Corner" },
+  { value: "314", label: "articles published", sub: "C# Corner" },
   { value: "6", label: "eBooks published", sub: "C# Corner" },
-  { value: "2019", label: "member since", sub: "Ghaziabad, India" },
+  { value: "2019", label: "member since", sub: "Noida, India" },
 ];
 
 const pillars = [
   {
     code: "01",
     title: "AI-Native Delivery",
-    body: "From LLM cost optimization to AI-enabled developer tooling — I build products where intelligence is the core, not a bolt-on.",
-    tags: ["LLM Ops", "Python", "OpenVINO", "Edge AI"],
+    body: "From voice AI and agentic platforms to LLM cost optimization — I build products where intelligence is the core, not a bolt-on, shipping AI-native with Claude and OpenAI Codex.",
+    tags: ["Agentic AI", "Voice AI", "LLM Ops", "Claude · Codex"],
   },
   {
     code: "02",
@@ -51,72 +53,100 @@ const pillars = [
 
 const featured = [
   {
-    id: "code-quest",
-    name: "Code Quest",
-    client: "Build with AI",
-    role: "Creator",
-    year: "2025",
+    id: "dialtone",
+    name: "DialTone",
+    category: "Voice AI",
+    role: "Product & Tech Lead",
     detail:
-      "Designed the product end-to-end: an AI tutor that scaffolds challenges, reviews submissions, and adapts difficulty in real time to upskill developers.",
+      "Multi-tenant AI outbound calling platform for the US market — configurable campaigns, AI voice scripts, compliance rules, telephony, CRM destinations, real-time AI voice conversations, and auditable post-call data.",
     outcomes: [
-      { k: "Focus", v: "AI tutoring" },
-      { k: "Surface", v: "Web app" },
-      { k: "Stage", v: "Live" },
+      { k: "Market", v: "US" },
+      { k: "Core", v: "Real-time voice" },
+      { k: "Model", v: "Multi-tenant" },
     ],
-    tags: ["AI", "Developer Experience", "Education"],
-    link: "https://code-quest.buildwithai.ai/",
+    tags: ["Voice AI", "Telephony", "Agentic"],
+    link: null,
   },
   {
-    id: "claw",
-    name: "Claw",
-    client: "Build with AI",
-    role: "Creator",
-    year: "2025",
+    id: "sharp-ai-agents",
+    name: "Sharp AI Agents",
+    category: "Agentic AI",
+    role: "Product & Tech Lead",
     detail:
-      "Built an automation-first product that turns multi-step operational workflows into one streamlined, AI-driven execution path.",
+      "No-code AI agent platform for creating and deploying agents across web and communication channels, with multi-model support, monitoring, analytics, and integrations.",
     outcomes: [
-      { k: "Focus", v: "Automation" },
-      { k: "Pattern", v: "Agentic" },
-      { k: "Stage", v: "Live" },
+      { k: "Build", v: "No-code" },
+      { k: "Models", v: "Multi-model" },
+      { k: "Surface", v: "Web + comms" },
     ],
-    tags: ["AI", "Automation", "Product"],
-    link: "https://claw.buildwithai.ai/",
+    tags: ["AI Agents", "No-code", "Platform"],
+    link: null,
   },
   {
     id: "llm-cost",
     name: "LLM Cost Optimizer",
-    client: "Independent",
+    category: "AI FinOps",
     role: "Creator",
-    year: "2025",
     detail:
-      "A team-facing analytics product that surfaces token spend, flags waste, and recommends model routing to reduce LLM bills without hurting quality.",
+      "LLM optimization platform covering token-cost estimation, model comparison, prompt optimization, and context engineering — surfacing spend, flagging waste, and recommending routing without hurting quality.",
     outcomes: [
       { k: "Domain", v: "AI FinOps" },
       { k: "Output", v: "Routing" },
       { k: "Stage", v: "Live" },
     ],
-    tags: ["AI", "FinOps", "Analytics"],
+    tags: ["LLM Ops", "FinOps", "Analytics"],
     link: "https://llmcostoptimizer.com/",
   },
   {
-    id: "mapay",
-    name: "MAPay Credentialing",
-    client: "MPayz LLC",
-    role: "Technical Lead · DBA",
-    year: "2023",
+    id: "sdr-engine",
+    name: "SDR / Growth Opportunity Engine",
+    category: "Sales Intelligence",
+    role: "Product & Tech Lead",
     detail:
-      "Led a secure platform that issues and verifies provider credentials for the Bermuda Health Council — credentials stored on Algorand with a proprietary integrity algorithm, verified via mobile.",
+      "AI sales-intelligence workflow that researches companies, cross-checks public evidence, builds business profiles, and surfaces qualified outreach opportunities.",
     outcomes: [
-      { k: "Chain", v: "Algorand" },
-      { k: "Sector", v: "Healthcare" },
-      { k: "Role", v: "Tech Lead" },
+      { k: "Focus", v: "Prospecting" },
+      { k: "Signal", v: "Public evidence" },
+      { k: "Pattern", v: "Agentic" },
     ],
-    tags: ["Blockchain", "Healthcare", "Algorand"],
+    tags: ["Sales Intel", "Agentic", "Research"],
     link: null,
   },
 ];
 
 const projects = [
+  {
+    name: "Nexus",
+    client: "B2B Contact Data",
+    role: "Product & Tech Lead",
+    tags: ["Data", "Enrichment"],
+    glyph: "NX",
+    link: null,
+  },
+  {
+    name: "HackIndia Learn",
+    client: "Gamified Learning",
+    role: "Product & Tech Lead",
+    tags: ["EdTech", "Web3"],
+    glyph: "HL",
+    link: null,
+  },
+  {
+    name: "TimeLog",
+    client: "Engineering Worklog",
+    role: "Product & Tech Lead",
+    tags: ["SaaS", "Delivery"],
+    glyph: "TL",
+    link: null,
+  },
+  {
+    name: "Sharp Economy Analytics",
+    client: "Sharp Economy",
+    role: "Product & Tech Lead",
+    tags: ["Analytics", "Dashboards"],
+    glyph: "SA",
+    link: null,
+  },
   {
     name: "Sharp Token",
     client: "Sharp Innovation Foundation",
@@ -134,61 +164,40 @@ const projects = [
     link: null,
   },
   {
-    name: "New Sharp Economy",
-    client: "Sharp Innovation Foundation",
-    role: "Contributor",
-    tags: ["AI", "Community"],
-    glyph: "NS",
-    link: "https://new.sharpeconomy.org/",
+    name: "MAPay Credentialing",
+    client: "MPayz LLC",
+    role: "Technical Lead · DBA",
+    tags: ["Algorand", "Healthcare"],
+    glyph: "MA",
+    link: null,
   },
   {
     name: "MPayz Wallet",
     client: "MPayz LLC",
     role: "Technical Lead",
-    tags: ["Python", "Algorand"],
+    tags: ["Django", "Algorand"],
     glyph: "MP",
-    link: null,
-  },
-  {
-    name: "Blockchain + IoT Integration",
-    client: "MCN Solutions",
-    role: "Technical Lead",
-    tags: ["IoT", "Solidity"],
-    glyph: "BI",
-    link: null,
-  },
-  {
-    name: "ALPR System",
-    client: "Aarohi Impex",
-    role: "Software Engineer",
-    tags: ["Python", "Computer Vision"],
-    glyph: "AL",
-    link: null,
-  },
-  {
-    name: "Stratis Student Hackathon",
-    client: "Stratis Blockchain",
-    role: "Organizer · Judge",
-    tags: ["Blockchain", "Event"],
-    glyph: "SH",
-    link: null,
-  },
-  {
-    name: "C# Corner MVP Program",
-    client: "C# Corner",
-    role: "Program Director",
-    tags: ["Community", "DevRel"],
-    glyph: "MV",
     link: null,
   },
 ];
 
 const experience = [
   {
+    role: "Tech Lead — Web3",
+    org: "Thinkverse Labs",
+    period: "Jan 2026 — Present",
+    current: true,
+    points: [
+      "Lead technical design and delivery across Web3 and AI-oriented initiatives",
+      "Build and rapidly iterate AI-native apps with Claude and OpenAI Codex",
+      "Coordinate engineering across app, API, data, AI, automation, and infra",
+      "Drive product and program delivery through iterative execution",
+    ],
+  },
+  {
     role: "Technical Lead",
     org: "MCN Solutions",
-    period: "Apr 2022 — Present",
-    current: true,
+    period: "Apr 2022 — Dec 2025",
     points: [
       "Architected and led blockchain + IoT product development",
       "Managed cross-functional teams across Django, .NET 6, Blazor",
@@ -211,7 +220,7 @@ const experience = [
     org: "C# Corner",
     period: "Jul 2019 — Jun 2025",
     points: [
-      "Authored 215 articles and 6 eBooks on AI, Python, Web3",
+      "Authored 314 articles and 6 eBooks on AI, Python, Web3",
       "Covered ML, OpenVINO, IoT, and Windows 11",
       "Reached thousands of developers worldwide",
     ],
@@ -230,37 +239,37 @@ const experience = [
 
 const skills = [
   {
-    group: "Programming",
+    group: "AI & Development",
     items: [
-      ["Python", 95],
+      ["Claude / Codex", 95],
+      ["AI Agents", 90],
+      ["Prompt & Context Eng", 90],
+      ["Python", 90],
+    ],
+  },
+  {
+    group: "Product & Delivery",
+    items: [
+      ["Program Mgmt", 92],
+      ["Product Mgmt", 90],
+      ["Agile / TPM", 90],
+      ["Stakeholder Mgmt", 88],
+    ],
+  },
+  {
+    group: "Engineering & Web3",
+    items: [
       ["C# / .NET", 90],
-      ["Solidity", 85],
-      ["JavaScript", 80],
-    ],
-  },
-  {
-    group: "Technologies",
-    items: [
-      ["Azure", 90],
-      ["Blockchain", 90],
-      ["IoT", 85],
-      ["AI / ML", 80],
-    ],
-  },
-  {
-    group: "Leadership",
-    items: [
-      ["Problem Solving", 95],
-      ["Leadership", 95],
-      ["Communication", 90],
-      ["Project Mgmt", 85],
+      ["Solidity / EVM", 85],
+      ["Algorand", 85],
+      ["Azure", 88],
     ],
   },
 ];
 
 const writing = {
   blurb:
-    "I publish what I build — 215 technical articles, 6 eBooks, and years of AI/Web3 writing on C# Corner.",
+    "I publish what I build — 314 technical articles, 6 eBooks, and years of AI/Web3 writing on C# Corner.",
   topics: [
     "AI & Machine Learning",
     "OpenVINO & Edge AI",
@@ -271,7 +280,7 @@ const writing = {
   ],
   highlights: [
     {
-      title: "Authored 215 articles & 6 eBooks",
+      title: "Authored 314 articles & 6 eBooks",
       meta: "C# Corner · 2019–2025",
       kind: "Writing",
     },
@@ -892,23 +901,32 @@ export default function Home() {
                     <AppLink href="#work" className="rg-btn rg-btn-ghost">
                       View selected work
                     </AppLink>
+                    <AppLink
+                      href={profile.resumeUrl}
+                      className="rg-btn rg-btn-ghost"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      download
+                    >
+                      Download résumé <Icon name="doc" size={16} />
+                    </AppLink>
                   </Reveal>
                   <Reveal delay={340} className="rg-hero-meta">
                     <div className="m">
                       <span className="v">
-                        <CountUp value="10+" />
+                        <CountUp value="7+" />
                       </span>
-                      <span className="l">AI · Blockchain · IoT</span>
+                      <span className="l">yrs delivery leadership</span>
                     </div>
                     <div className="m">
                       <span className="v">
-                        <CountUp value="13" />
+                        <CountUp value="12" />
                       </span>
                       <span className="l">products shipped</span>
                     </div>
                     <div className="m">
                       <span className="v">
-                        <CountUp value="80+" />
+                        <CountUp value="314" />
                       </span>
                       <span className="l">articles published</span>
                     </div>
@@ -935,7 +953,7 @@ export default function Home() {
                         }}
                       >
                         <span className="rg-dot" />
-                        ghaziabad · ind
+                        noida · ind
                       </span>
                       <span style={{ color: "var(--rg-accent-2)" }}>
                         UTC+5:30
@@ -955,6 +973,10 @@ export default function Home() {
             <div className="rg-marquee-track">
               {[
                 ...[
+                  "Claude",
+                  "OpenAI Codex",
+                  "AI Agents",
+                  "Voice AI",
                   "Python",
                   "Solidity",
                   "Azure",
@@ -963,14 +985,17 @@ export default function Home() {
                   "EVM",
                   "Algorand",
                   "Polygon",
-                  "OpenVINO",
-                  "Edge AI",
-                  "Blazor",
+                  "Base",
+                  "Solana",
                   "Smart Contracts",
                   "LLM Ops",
                   "Agile",
                 ],
                 ...[
+                  "Claude",
+                  "OpenAI Codex",
+                  "AI Agents",
+                  "Voice AI",
                   "Python",
                   "Solidity",
                   "Azure",
@@ -979,9 +1004,8 @@ export default function Home() {
                   "EVM",
                   "Algorand",
                   "Polygon",
-                  "OpenVINO",
-                  "Edge AI",
-                  "Blazor",
+                  "Base",
+                  "Solana",
                   "Smart Contracts",
                   "LLM Ops",
                   "Agile",
@@ -1108,10 +1132,7 @@ export default function Home() {
                   >
                     <div className="rg-case-body">
                       <div className="rg-case-meta">
-                        <span>{item.year}</span>
-                        <span>
-                          Client · <b>{item.client}</b>
-                        </span>
+                        <span>{item.category}</span>
                         <span>
                           Role · <b>{item.role}</b>
                         </span>
@@ -1376,6 +1397,15 @@ export default function Home() {
                     >
                       Email instead <Icon name="mail" size={16} />
                     </AppLink>
+                    <AppLink
+                      href={profile.resumeUrl}
+                      className="rg-btn rg-btn-ghost"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      download
+                    >
+                      Download résumé <Icon name="doc" size={16} />
+                    </AppLink>
                   </div>
                   <p className="rg-booking-note">
                     Replies are routed through email and the team booking page.
@@ -1400,7 +1430,7 @@ export default function Home() {
                   {profile.name}
                 </div>
                 <div className="copy">
-                  Technical PM · AI-Native · Blockchain
+                  AI Product & Technology Leader
                 </div>
               </div>
             </div>

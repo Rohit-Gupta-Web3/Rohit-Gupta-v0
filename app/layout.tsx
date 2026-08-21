@@ -18,29 +18,31 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL(getSiteUrl()),
-  title: "Rohit Gupta - Technical PM - AI-Native - Blockchain",
+  title: "Rohit Gupta - AI Product & Technology Leader",
   description:
-    "Rohit Gupta - Technical Project Manager, AI-Native builder, and Blockchain expert. Architecting and shipping AI, blockchain, and IoT products end to end.",
+    "Rohit Gupta - AI Product & Technology Leader building agentic AI, voice AI, LLM optimization, and Web3 products end to end. Tech Lead, Technical Program Manager, and 2x C# Corner MVP.",
   keywords: [
     "Rohit Gupta",
-    "Technical Project Manager",
-    "AI-Native",
+    "AI Product Leader",
+    "Technical Program Manager",
+    "Agentic AI",
+    "Voice AI",
+    "Web3",
     "Blockchain",
-    "IoT",
     "Portfolio",
   ],
   openGraph: {
-    title: "Rohit Gupta - Technical PM - AI-Native - Blockchain",
+    title: "Rohit Gupta - AI Product & Technology Leader",
     description:
-      "Rohit Gupta - Technical Project Manager, AI-Native builder, and Blockchain expert. Architecting and shipping AI, blockchain, and IoT products end to end.",
+      "Rohit Gupta - AI Product & Technology Leader building agentic AI, voice AI, LLM optimization, and Web3 products end to end.",
     type: "website",
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Rohit Gupta - Technical PM - AI-Native - Blockchain",
+    title: "Rohit Gupta - AI Product & Technology Leader",
     description:
-      "Rohit Gupta - Technical Project Manager, AI-Native builder, and Blockchain expert. Architecting and shipping AI, blockchain, and IoT products end to end.",
+      "Rohit Gupta - AI Product & Technology Leader building agentic AI, voice AI, LLM optimization, and Web3 products end to end.",
   },
   generator: "v0.dev",
 };
@@ -72,7 +74,7 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "Person",
               name: "Rohit Gupta",
-              jobTitle: "Technical Project Manager",
+              jobTitle: "AI Product & Technology Leader",
             }),
           }}
         />
