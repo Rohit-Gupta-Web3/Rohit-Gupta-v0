@@ -10,9 +10,15 @@ type Theme = "dark" | "light";
 const profile = {
   name: "Rohit Gupta",
   initials: "RG",
-  roleLine: ["AI Product Leader", "Web3 Tech Lead", "Technical Program Manager"],
+  roleLine: [
+    "AI Product Manager",
+    "Technical Product Manager",
+    "AI Program Manager",
+    "AI Transformation Lead",
+    "Emerging Technology Lead",
+  ],
   tagline:
-    "AI Product & Technology Leader building agentic AI, voice AI, and Web3 products end to end.",
+    "AI Product & Technical Program leader driving AI transformation across product and program delivery — from agentic AI and voice AI to Web3 and blockchain.",
   location: "Noida, Uttar Pradesh, India",
   email: "gupta.rohitg.rohit900@gmail.com",
   bookingUrl: "https://outlook.office.com/book/RohitGupta@csharp.com/",
@@ -114,7 +120,7 @@ const featured = [
   },
 ];
 
-const projects = [
+const aiProjects = [
   {
     name: "Nexus",
     client: "B2B Contact Data",
@@ -147,6 +153,9 @@ const projects = [
     glyph: "SA",
     link: null,
   },
+];
+
+const web3Projects = [
   {
     name: "Sharp Token",
     client: "Sharp Innovation Foundation",
@@ -241,28 +250,40 @@ const skills = [
   {
     group: "AI & Development",
     items: [
-      ["Claude / Codex", 95],
-      ["AI Agents", 90],
-      ["Prompt & Context Eng", 90],
-      ["Python", 90],
+      "Claude",
+      "OpenAI Codex",
+      "LLMs",
+      "AI Agents",
+      "Prompt Engineering",
+      "Context Engineering",
+      "Machine Learning",
+      "Python",
     ],
   },
   {
     group: "Product & Delivery",
     items: [
-      ["Program Mgmt", 92],
-      ["Product Mgmt", 90],
-      ["Agile / TPM", 90],
-      ["Stakeholder Mgmt", 88],
+      "Product Management",
+      "Program Management",
+      "Technical Program Mgmt",
+      "AI Transformation",
+      "Agile",
+      "JIRA",
+      "ClickUp",
+      "Stakeholder Mgmt",
     ],
   },
   {
     group: "Engineering & Web3",
     items: [
-      ["C# / .NET", 90],
-      ["Solidity / EVM", 85],
-      ["Algorand", 85],
-      ["Azure", 88],
+      "C# / .NET 6",
+      "Solidity",
+      "EVM",
+      "Polygon",
+      "Algorand",
+      "Base",
+      "Azure",
+      "PostgreSQL",
     ],
   },
 ];
@@ -775,6 +796,50 @@ function AppLink({
   );
 }
 
+type Project = {
+  name: string;
+  client: string;
+  role: string;
+  tags: string[];
+  glyph: string;
+  link: string | null;
+};
+
+function ProjectCard({ project, index }: { project: Project; index: number }) {
+  const Wrapper = project.link ? "a" : "div";
+  const wrapperProps = project.link
+    ? {
+        href: project.link,
+        target: "_blank",
+        rel: "noopener noreferrer",
+      }
+    : {};
+
+  return (
+    <Reveal delay={(index % 4) * 60}>
+      <Wrapper className="rg-card rg-card-glow rg-proj" {...wrapperProps}>
+        <div className="top">
+          <span className="pglyph">{project.glyph}</span>
+          <span className="arrow">
+            <Icon name={project.link ? "arrowUpRight" : "link"} size={18} />
+          </span>
+        </div>
+        <h4>{project.name}</h4>
+        <span className="client">
+          {project.client} - {project.role}
+        </span>
+        <div className="ptags">
+          {project.tags.map((tag) => (
+            <span className="rg-tag" key={tag}>
+              {tag}
+            </span>
+          ))}
+        </div>
+      </Wrapper>
+    </Reveal>
+  );
+}
+
 export default function Home() {
   const [theme, setTheme] = useState<Theme>("dark");
   const [scrolled, setScrolled] = useState(false);
@@ -1035,18 +1100,20 @@ export default function Home() {
 
                 <Reveal delay={120} className="rg-about-body">
                   <p>
-                    I am an <strong>Intel® AI Edge Scholar</strong>,{" "}
-                    <strong>Web3 Enthusiast</strong>, and{" "}
-                    <strong>2 times C# Corner MVP</strong>. I feel that bonding
-                    between Machines and Humans will make this world a better
-                    place.
+                    I&apos;m an <strong>AI Product &amp; Technical Program</strong>{" "}
+                    leader focused on <strong>AI transformation</strong> and{" "}
+                    <strong>emerging technology</strong> — turning agentic AI,
+                    voice AI, and LLM systems into shipped products, and aligning
+                    delivery across product, program, and engineering.
                   </p>
                   <p>
-                    I have worked on various blockchains like{" "}
+                    I&apos;m also an <strong>Intel® AI Edge Scholar</strong> and{" "}
+                    <strong>2× C# Corner MVP</strong> with deep{" "}
+                    <strong>Web3 &amp; blockchain</strong> experience across{" "}
                     <strong>Stratis</strong>, <strong>Algorand</strong>,{" "}
                     <strong>Near</strong>, and <strong>Polygon</strong>, and I
-                    write about AI, Web3, and software delivery for the C#
-                    Corner community.
+                    write about AI, Web3, and software delivery for the C# Corner
+                    community.
                   </p>
                   <div className="rg-edu-list">
                     {education.map((item) => (
@@ -1164,7 +1231,17 @@ export default function Home() {
                           >
                             Visit project <Icon name="arrowUpRight" size={14} />
                           </AppLink>
-                        ) : null}
+                        ) : (
+                          <AppLink
+                            href={profile.bookingUrl}
+                            className="rg-case-link"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            Walkthrough on request{" "}
+                            <Icon name="arrowUpRight" size={14} />
+                          </AppLink>
+                        )}
                       </div>
                     </div>
                   </Reveal>
@@ -1172,49 +1249,21 @@ export default function Home() {
               </div>
 
               <Reveal className="rg-eyebrow" style={{ marginTop: 80 }}>
-                More projects
+                AI &amp; product portfolio
               </Reveal>
               <div className="rg-pgrid">
-                {projects.map((project, index) => {
-                  const Wrapper = project.link ? "a" : "div";
-                  const wrapperProps = project.link
-                    ? {
-                        href: project.link,
-                        target: "_blank",
-                        rel: "noopener noreferrer",
-                      }
-                    : {};
+                {aiProjects.map((project, index) => (
+                  <ProjectCard key={project.name} project={project} index={index} />
+                ))}
+              </div>
 
-                  return (
-                    <Reveal delay={(index % 4) * 60} key={project.name}>
-                      <Wrapper
-                        className="rg-card rg-card-glow rg-proj"
-                        {...wrapperProps}
-                      >
-                        <div className="top">
-                          <span className="pglyph">{project.glyph}</span>
-                          <span className="arrow">
-                            <Icon
-                              name={project.link ? "arrowUpRight" : "link"}
-                              size={18}
-                            />
-                          </span>
-                        </div>
-                        <h4>{project.name}</h4>
-                        <span className="client">
-                          {project.client} - {project.role}
-                        </span>
-                        <div className="ptags">
-                          {project.tags.map((tag) => (
-                            <span className="rg-tag" key={tag}>
-                              {tag}
-                            </span>
-                          ))}
-                        </div>
-                      </Wrapper>
-                    </Reveal>
-                  );
-                })}
+              <Reveal className="rg-eyebrow" style={{ marginTop: 56 }}>
+                Selected Web3 projects
+              </Reveal>
+              <div className="rg-pgrid">
+                {web3Projects.map((project, index) => (
+                  <ProjectCard key={project.name} project={project} index={index} />
+                ))}
               </div>
             </div>
           </section>
@@ -1248,9 +1297,13 @@ export default function Home() {
                         {skills.map((group) => (
                           <div className="rg-skillgroup" key={group.group}>
                             <div className="sg-title">{group.group}</div>
-                            {group.items.map(([name, value]) => (
-                              <Skill key={name} name={name} val={value} />
-                            ))}
+                            <div className="rg-skill-tags">
+                              {group.items.map((name) => (
+                                <span className="rg-tag" key={name}>
+                                  {name}
+                                </span>
+                              ))}
+                            </div>
                           </div>
                         ))}
                       </div>
@@ -1466,36 +1519,3 @@ export default function Home() {
   );
 }
 
-function Skill({ name, val }: { name: string; val: number }) {
-  const ref = useRef<HTMLDivElement | null>(null);
-  const [width, setWidth] = useState(0);
-
-  useEffect(() => {
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setWidth(val);
-            io.disconnect();
-          }
-        });
-      },
-      { threshold: 0.4 },
-    );
-
-    if (ref.current) io.observe(ref.current);
-    return () => io.disconnect();
-  }, [val]);
-
-  return (
-    <div className="rg-skill" ref={ref}>
-      <div className="sk-top">
-        <span className="sk-name">{name}</span>
-        <span className="sk-val">{val}%</span>
-      </div>
-      <div className="sk-bar">
-        <div className="sk-fill" style={{ width: `${width}%` }} />
-      </div>
-    </div>
-  );
-}

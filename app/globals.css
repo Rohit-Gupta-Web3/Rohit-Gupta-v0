@@ -1164,42 +1164,10 @@ img {
   margin-bottom: 16px;
 }
 
-.rg-skill {
-  margin-bottom: 16px;
-}
-
-.rg-skill .sk-top {
+.rg-skill-tags {
   display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  margin-bottom: 8px;
-}
-
-.rg-skill .sk-name {
-  font-size: 14.5px;
-  font-weight: 500;
-}
-
-.rg-skill .sk-val {
-  font-family: var(--rg-mono), ui-monospace, monospace;
-  font-size: 12px;
-  color: var(--rg-text-3);
-}
-
-.rg-skill .sk-bar {
-  height: 4px;
-  border-radius: 99px;
-  background: var(--rg-surface-3);
-  overflow: hidden;
-}
-
-.rg-skill .sk-fill {
-  height: 100%;
-  border-radius: 99px;
-  background: linear-gradient(90deg, var(--rg-accent), var(--rg-accent-2));
-  width: 0;
-  transition: width 1.1s var(--rg-ease-out);
-  box-shadow: 0 0 12px var(--rg-glow);
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
 .rg-writing-grid {
