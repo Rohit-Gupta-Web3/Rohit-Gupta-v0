@@ -1,0 +1,831 @@
+{
+  "communities": {
+    "0": [
+      "components_ui_input_tsx",
+      "components_ui_separator_tsx",
+      "components_ui_sheet_tsx",
+      "components_ui_sidebar_tsx",
+      "components_ui_tooltip_tsx",
+      "hooks_use_mobile_tsx",
+      "hooks_use_mobile_useismobile",
+      "ui_input_input",
+      "ui_separator_separator",
+      "ui_sheet_sheetcontent",
+      "ui_sheet_sheetcontentprops",
+      "ui_sheet_sheetdescription",
+      "ui_sheet_sheetfooter",
+      "ui_sheet_sheetheader",
+      "ui_sheet_sheetoverlay",
+      "ui_sheet_sheettitle",
+      "ui_sheet_sheetvariants",
+      "ui_sidebar_sidebar",
+      "ui_sidebar_sidebarcontext",
+      "ui_sidebar_sidebarfooter",
+      "ui_sidebar_sidebargroup",
+      "ui_sidebar_sidebargroupaction",
+      "ui_sidebar_sidebargroupcontent",
+      "ui_sidebar_sidebargrouplabel",
+      "ui_sidebar_sidebarheader",
+      "ui_sidebar_sidebarinput",
+      "ui_sidebar_sidebarinset",
+      "ui_sidebar_sidebarmenu",
+      "ui_sidebar_sidebarmenuaction",
+      "ui_sidebar_sidebarmenubadge",
+      "ui_sidebar_sidebarmenubutton",
+      "ui_sidebar_sidebarmenubuttonvariants",
+      "ui_sidebar_sidebarmenuitem",
+      "ui_sidebar_sidebarmenuskeleton",
+      "ui_sidebar_sidebarmenusub",
+      "ui_sidebar_sidebarmenusubbutton",
+      "ui_sidebar_sidebarmenusubitem",
+      "ui_sidebar_sidebarprovider",
+      "ui_sidebar_sidebarrail",
+      "ui_sidebar_sidebarseparator",
+      "ui_sidebar_sidebartrigger",
+      "ui_sidebar_usesidebar",
+      "ui_tooltip_tooltipcontent"
+    ],
+    "1": [
+      "app_layout_geistmono",
+      "app_layout_geistsans",
+      "app_layout_metadata",
+      "app_layout_rootlayout",
+      "app_layout_tsx",
+      "app_layout_viewport",
+      "app_page_applink",
+      "app_page_backgroundcanvas",
+      "app_page_countup",
+      "app_page_education",
+      "app_page_experience",
+      "app_page_featured",
+      "app_page_home",
+      "app_page_icon",
+      "app_page_icons",
+      "app_page_navlinks",
+      "app_page_pillars",
+      "app_page_profile",
+      "app_page_projects",
+      "app_page_reveal",
+      "app_page_rolerotator",
+      "app_page_sectionlabel",
+      "app_page_skill",
+      "app_page_skills",
+      "app_page_stats",
+      "app_page_theme",
+      "app_page_tsx",
+      "app_page_usereveal",
+      "app_page_writing",
+      "app_robots_txt_route_ts",
+      "app_sitemap_xml_route_ts",
+      "lib_site_getbasepath",
+      "lib_site_getsiteurl",
+      "lib_site_ts",
+      "lib_site_withbasepath",
+      "robots_txt_route_get",
+      "sitemap_xml_route_get",
+      "types_education_education",
+      "types_experience_experience"
+    ],
+    "2": [
+      "components_ui_toast_tsx",
+      "components_ui_toaster_tsx",
+      "hooks_use_toast_action",
+      "hooks_use_toast_actiontype",
+      "hooks_use_toast_addtoremovequeue",
+      "hooks_use_toast_dispatch",
+      "hooks_use_toast_genid",
+      "hooks_use_toast_listeners",
+      "hooks_use_toast_memorystate",
+      "hooks_use_toast_reducer",
+      "hooks_use_toast_state",
+      "hooks_use_toast_toast",
+      "hooks_use_toast_toastertoast",
+      "hooks_use_toast_toasttimeouts",
+      "hooks_use_toast_ts",
+      "hooks_use_toast_usetoast",
+      "ui_toast_toast",
+      "ui_toast_toastaction",
+      "ui_toast_toastactionelement",
+      "ui_toast_toastclose",
+      "ui_toast_toastdescription",
+      "ui_toast_toastprops",
+      "ui_toast_toasttitle",
+      "ui_toast_toastvariants",
+      "ui_toast_toastviewport",
+      "ui_toaster_toaster",
+      "ui_use_toast_action",
+      "ui_use_toast_actiontype",
+      "ui_use_toast_addtoremovequeue",
+      "ui_use_toast_dispatch",
+      "ui_use_toast_genid",
+      "ui_use_toast_listeners",
+      "ui_use_toast_memorystate",
+      "ui_use_toast_reducer",
+      "ui_use_toast_state",
+      "ui_use_toast_toast",
+      "ui_use_toast_toastertoast",
+      "ui_use_toast_toasttimeouts"
+    ],
+    "3": [
+      "package_json",
+      "rohit_gupta_v0_package_devdependencies",
+      "rohit_gupta_v0_package_devdependencies_autoprefixer",
+      "rohit_gupta_v0_package_devdependencies_eslint",
+      "rohit_gupta_v0_package_devdependencies_eslint_config_next",
+      "rohit_gupta_v0_package_devdependencies_jsdom",
+      "rohit_gupta_v0_package_devdependencies_postcss",
+      "rohit_gupta_v0_package_devdependencies_tailwindcss",
+      "rohit_gupta_v0_package_devdependencies_tailwindcss_postcss",
+      "rohit_gupta_v0_package_devdependencies_testing_library_jest_dom",
+      "rohit_gupta_v0_package_devdependencies_testing_library_react",
+      "rohit_gupta_v0_package_devdependencies_testing_library_user_event",
+      "rohit_gupta_v0_package_devdependencies_types_node",
+      "rohit_gupta_v0_package_devdependencies_types_react",
+      "rohit_gupta_v0_package_devdependencies_typescript",
+      "rohit_gupta_v0_package_devdependencies_vitejs_plugin_react",
+      "rohit_gupta_v0_package_devdependencies_vitest",
+      "rohit_gupta_v0_package_name",
+      "rohit_gupta_v0_package_private",
+      "rohit_gupta_v0_package_scripts",
+      "rohit_gupta_v0_package_scripts_build",
+      "rohit_gupta_v0_package_scripts_dev",
+      "rohit_gupta_v0_package_scripts_lint",
+      "rohit_gupta_v0_package_scripts_start",
+      "rohit_gupta_v0_package_scripts_test",
+      "rohit_gupta_v0_package_scripts_test_watch",
+      "rohit_gupta_v0_package_version"
+    ],
+    "4": [
+      "rohit_gupta_v0_package_dependencies",
+      "rohit_gupta_v0_package_dependencies_class_variance_authority",
+      "rohit_gupta_v0_package_dependencies_clsx",
+      "rohit_gupta_v0_package_dependencies_emotion_is_prop_valid",
+      "rohit_gupta_v0_package_dependencies_framer_motion",
+      "rohit_gupta_v0_package_dependencies_lucide_react",
+      "rohit_gupta_v0_package_dependencies_next",
+      "rohit_gupta_v0_package_dependencies_next_themes",
+      "rohit_gupta_v0_package_dependencies_radix_ui_react_accordion",
+      "rohit_gupta_v0_package_dependencies_radix_ui_react_dialog",
+      "rohit_gupta_v0_package_dependencies_radix_ui_react_label",
+      "rohit_gupta_v0_package_dependencies_radix_ui_react_progress",
+      "rohit_gupta_v0_package_dependencies_radix_ui_react_select",
+      "rohit_gupta_v0_package_dependencies_radix_ui_react_separator",
+      "rohit_gupta_v0_package_dependencies_radix_ui_react_slot",
+      "rohit_gupta_v0_package_dependencies_radix_ui_react_toast",
+      "rohit_gupta_v0_package_dependencies_react",
+      "rohit_gupta_v0_package_dependencies_react_dom",
+      "rohit_gupta_v0_package_dependencies_remix_run_react",
+      "rohit_gupta_v0_package_dependencies_svelte",
+      "rohit_gupta_v0_package_dependencies_sveltejs_kit",
+      "rohit_gupta_v0_package_dependencies_tailwind_merge",
+      "rohit_gupta_v0_package_dependencies_tailwindcss_animate",
+      "rohit_gupta_v0_package_dependencies_three",
+      "rohit_gupta_v0_package_dependencies_vercel_analytics",
+      "rohit_gupta_v0_package_dependencies_vue",
+      "rohit_gupta_v0_package_dependencies_vue_router"
+    ],
+    "5": [
+      "app_global_error_globalerror",
+      "app_global_error_tsx",
+      "app_not_found_notfound",
+      "app_not_found_tsx",
+      "components_timeline_timeline_item_tsx",
+      "data_timeline_timelinedata",
+      "data_timeline_ts",
+      "timeline_timeline_filtercategory",
+      "timeline_timeline_item_timelineitem",
+      "timeline_timeline_item_timelineitemprops",
+      "timeline_timeline_timeline",
+      "types_timeline_timelineentry",
+      "types_timeline_ts",
+      "ui_button_button",
+      "ui_carousel_carousel",
+      "ui_carousel_carouselapi",
+      "ui_carousel_carouselcontent",
+      "ui_carousel_carouselcontext",
+      "ui_carousel_carouselcontextprops",
+      "ui_carousel_carouselitem",
+      "ui_carousel_carouselnext",
+      "ui_carousel_carouseloptions",
+      "ui_carousel_carouselplugin",
+      "ui_carousel_carouselprevious",
+      "ui_carousel_carouselprops",
+      "ui_carousel_usecarousel",
+      "ui_carousel_usecarouselparameters"
+    ],
+    "6": [
+      "components_ui_progress_tsx",
+      "components_ui_textarea_tsx",
+      "todo_todo_page_buildseedtasks",
+      "todo_todo_page_createid",
+      "todo_todo_page_formatseeddescription",
+      "todo_todo_page_formatseedlink",
+      "todo_todo_page_formatseedtags",
+      "todo_todo_page_getprioritybadge",
+      "todo_todo_page_getpriorityfromchip",
+      "todo_todo_page_getprogress",
+      "todo_todo_page_normalizestoredtasks",
+      "todo_todo_page_priority_options",
+      "todo_todo_page_sanitizetext",
+      "todo_todo_page_seeditem",
+      "todo_todo_page_seedsection",
+      "todo_todo_page_subtask",
+      "todo_todo_page_task",
+      "todo_todo_page_taskpriority",
+      "todo_todo_page_todopage",
+      "ui_progress_progress",
+      "ui_textarea_textarea"
+    ],
+    "7": [
+      "components_ui_alert_dialog_tsx",
+      "components_ui_button_tsx",
+      "components_ui_calendar_tsx",
+      "ui_alert_dialog_alertdialogaction",
+      "ui_alert_dialog_alertdialogcancel",
+      "ui_alert_dialog_alertdialogcontent",
+      "ui_alert_dialog_alertdialogdescription",
+      "ui_alert_dialog_alertdialogfooter",
+      "ui_alert_dialog_alertdialogheader",
+      "ui_alert_dialog_alertdialogoverlay",
+      "ui_alert_dialog_alertdialogtitle",
+      "ui_button_buttonprops",
+      "ui_button_buttonvariants",
+      "ui_calendar_calendar",
+      "ui_calendar_calendarprops",
+      "ui_pagination_pagination",
+      "ui_pagination_paginationcontent",
+      "ui_pagination_paginationellipsis",
+      "ui_pagination_paginationitem",
+      "ui_pagination_paginationlinkprops",
+      "ui_pagination_paginationprevious"
+    ],
+    "8": [
+      "components_ui_hover_card_tsx",
+      "components_ui_popover_tsx",
+      "components_ui_radio_group_tsx",
+      "components_ui_resizable_tsx",
+      "components_ui_slider_tsx",
+      "components_ui_switch_tsx",
+      "components_ui_toggle_tsx",
+      "lib_utils_cn",
+      "lib_utils_ts",
+      "ui_checkbox_checkbox",
+      "ui_hover_card_hovercardcontent",
+      "ui_popover_popovercontent",
+      "ui_radio_group_radiogroup",
+      "ui_resizable_resizablehandle",
+      "ui_resizable_resizablepanelgroup",
+      "ui_skeleton_skeleton",
+      "ui_slider_slider",
+      "ui_switch_switch",
+      "ui_toggle_group_togglegroup",
+      "ui_toggle_toggle",
+      "ui_toggle_togglevariants"
+    ],
+    "9": [
+      "rohit_gupta_v0_tsconfig_compileroptions",
+      "rohit_gupta_v0_tsconfig_compileroptions_allowjs",
+      "rohit_gupta_v0_tsconfig_compileroptions_esmoduleinterop",
+      "rohit_gupta_v0_tsconfig_compileroptions_incremental",
+      "rohit_gupta_v0_tsconfig_compileroptions_isolatedmodules",
+      "rohit_gupta_v0_tsconfig_compileroptions_jsx",
+      "rohit_gupta_v0_tsconfig_compileroptions_lib",
+      "rohit_gupta_v0_tsconfig_compileroptions_module",
+      "rohit_gupta_v0_tsconfig_compileroptions_moduleresolution",
+      "rohit_gupta_v0_tsconfig_compileroptions_noemit",
+      "rohit_gupta_v0_tsconfig_compileroptions_paths",
+      "rohit_gupta_v0_tsconfig_compileroptions_plugins",
+      "rohit_gupta_v0_tsconfig_compileroptions_resolvejsonmodule",
+      "rohit_gupta_v0_tsconfig_compileroptions_skiplibcheck",
+      "rohit_gupta_v0_tsconfig_compileroptions_strict",
+      "rohit_gupta_v0_tsconfig_compileroptions_target",
+      "rohit_gupta_v0_tsconfig_exclude",
+      "rohit_gupta_v0_tsconfig_include",
+      "rohit_gupta_v0_tsconfig_paths",
+      "tsconfig_json"
+    ],
+    "10": [
+      "components_json",
+      "rohit_gupta_v0_components_aliases",
+      "rohit_gupta_v0_components_aliases_components",
+      "rohit_gupta_v0_components_aliases_hooks",
+      "rohit_gupta_v0_components_aliases_lib",
+      "rohit_gupta_v0_components_aliases_ui",
+      "rohit_gupta_v0_components_aliases_utils",
+      "rohit_gupta_v0_components_iconlibrary",
+      "rohit_gupta_v0_components_rsc",
+      "rohit_gupta_v0_components_schema",
+      "rohit_gupta_v0_components_style",
+      "rohit_gupta_v0_components_tailwind",
+      "rohit_gupta_v0_components_tailwind_basecolor",
+      "rohit_gupta_v0_components_tailwind_config",
+      "rohit_gupta_v0_components_tailwind_css",
+      "rohit_gupta_v0_components_tailwind_cssvariables",
+      "rohit_gupta_v0_components_tailwind_prefix",
+      "rohit_gupta_v0_components_tsx"
+    ],
+    "11": [
+      "components_ui_command_tsx",
+      "components_ui_dialog_tsx",
+      "ui_command_command",
+      "ui_command_commanddialog",
+      "ui_command_commandempty",
+      "ui_command_commandgroup",
+      "ui_command_commandinput",
+      "ui_command_commanditem",
+      "ui_command_commandlist",
+      "ui_command_commandseparator",
+      "ui_command_commandshortcut",
+      "ui_dialog_dialogcontent",
+      "ui_dialog_dialogdescription",
+      "ui_dialog_dialogfooter",
+      "ui_dialog_dialogheader",
+      "ui_dialog_dialogoverlay",
+      "ui_dialog_dialogtitle"
+    ],
+    "12": [
+      "components_ui_form_tsx",
+      "components_ui_label_tsx",
+      "ui_form_formcontrol",
+      "ui_form_formdescription",
+      "ui_form_formfield",
+      "ui_form_formfieldcontext",
+      "ui_form_formfieldcontextvalue",
+      "ui_form_formitem",
+      "ui_form_formitemcontext",
+      "ui_form_formlabel",
+      "ui_form_formmessage",
+      "ui_form_useformfield",
+      "ui_label_label",
+      "ui_label_labelvariants"
+    ],
+    "13": [
+      "components_ui_menubar_tsx",
+      "ui_menubar_menubar",
+      "ui_menubar_menubarcheckboxitem",
+      "ui_menubar_menubarcontent",
+      "ui_menubar_menubaritem",
+      "ui_menubar_menubarlabel",
+      "ui_menubar_menubarradioitem",
+      "ui_menubar_menubarseparator",
+      "ui_menubar_menubarshortcut",
+      "ui_menubar_menubarsubcontent",
+      "ui_menubar_menubarsubtrigger",
+      "ui_menubar_menubartrigger"
+    ],
+    "14": [
+      "components_ui_chart_tsx",
+      "ui_chart_chartconfig",
+      "ui_chart_chartcontainer",
+      "ui_chart_chartcontext",
+      "ui_chart_chartcontextprops",
+      "ui_chart_chartlegendcontent",
+      "ui_chart_chartstyle",
+      "ui_chart_charttooltipcontent",
+      "ui_chart_getpayloadconfigfrompayload",
+      "ui_chart_themes",
+      "ui_chart_usechart"
+    ],
+    "15": [
+      "components_ui_dropdown_menu_tsx",
+      "ui_dropdown_menu_dropdownmenucheckboxitem",
+      "ui_dropdown_menu_dropdownmenucontent",
+      "ui_dropdown_menu_dropdownmenuitem",
+      "ui_dropdown_menu_dropdownmenulabel",
+      "ui_dropdown_menu_dropdownmenuradioitem",
+      "ui_dropdown_menu_dropdownmenuseparator",
+      "ui_dropdown_menu_dropdownmenushortcut",
+      "ui_dropdown_menu_dropdownmenusubcontent",
+      "ui_dropdown_menu_dropdownmenusubtrigger"
+    ],
+    "16": [
+      "components_ui_context_menu_tsx",
+      "ui_context_menu_contextmenucheckboxitem",
+      "ui_context_menu_contextmenucontent",
+      "ui_context_menu_contextmenuitem",
+      "ui_context_menu_contextmenulabel",
+      "ui_context_menu_contextmenuradioitem",
+      "ui_context_menu_contextmenuseparator",
+      "ui_context_menu_contextmenushortcut",
+      "ui_context_menu_contextmenusubcontent",
+      "ui_context_menu_contextmenusubtrigger"
+    ],
+    "17": [
+      "components_ui_table_tsx",
+      "ui_table_table",
+      "ui_table_tablebody",
+      "ui_table_tablecaption",
+      "ui_table_tablecell",
+      "ui_table_tablefooter",
+      "ui_table_tablehead",
+      "ui_table_tableheader",
+      "ui_table_tablerow"
+    ],
+    "18": [
+      "components_ui_select_tsx",
+      "ui_select_selectcontent",
+      "ui_select_selectitem",
+      "ui_select_selectlabel",
+      "ui_select_selectscrolldownbutton",
+      "ui_select_selectscrollupbutton",
+      "ui_select_selectseparator",
+      "ui_select_selecttrigger"
+    ],
+    "19": [
+      "components_ui_drawer_tsx",
+      "ui_drawer_drawer",
+      "ui_drawer_drawercontent",
+      "ui_drawer_drawerdescription",
+      "ui_drawer_drawerfooter",
+      "ui_drawer_drawerheader",
+      "ui_drawer_draweroverlay",
+      "ui_drawer_drawertitle"
+    ],
+    "20": [
+      "components_ui_progress_bar_tsx",
+      "skills_skill_badge_skillbadge",
+      "skills_skill_badge_skillbadgeprops",
+      "skills_skill_category_skill",
+      "skills_skill_category_skillcategory",
+      "skills_skills_grid_skillsgrid",
+      "ui_progress_bar_progressbar",
+      "ui_progress_bar_progressbarprops"
+    ],
+    "21": [
+      "components_ui_card_tsx",
+      "ui_card_card",
+      "ui_card_cardcontent",
+      "ui_card_carddescription",
+      "ui_card_cardfooter",
+      "ui_card_cardheader",
+      "ui_card_cardtitle"
+    ],
+    "22": [
+      "agents_md_graphify",
+      "claude_md_graphify",
+      "github_workflows_pages_yml_deploy_github_pages",
+      "readme_md_rohit_gupta_portfolio",
+      "rohit_gupta_resume_2025_pdf_rohit_gupta_resume_2025",
+      "tests_readme_md_todo_ui_test_suite"
+    ],
+    "23": [
+      "tests_setup_intersectionobservermock",
+      "tests_setup_intersectionobservermock_disconnect",
+      "tests_setup_intersectionobservermock_observe",
+      "tests_setup_intersectionobservermock_takerecords",
+      "tests_setup_intersectionobservermock_unobserve",
+      "tests_setup_ts"
+    ],
+    "24": [
+      "components_ui_breadcrumb_tsx",
+      "ui_breadcrumb_breadcrumb",
+      "ui_breadcrumb_breadcrumbellipsis",
+      "ui_breadcrumb_breadcrumbitem",
+      "ui_breadcrumb_breadcrumbpage",
+      "ui_breadcrumb_breadcrumbseparator"
+    ],
+    "25": [
+      "components_ui_alert_tsx",
+      "ui_alert_alert",
+      "ui_alert_alertdescription",
+      "ui_alert_alerttitle",
+      "ui_alert_alertvariants"
+    ],
+    "26": [
+      "components_ui_input_otp_tsx",
+      "ui_input_otp_inputotp",
+      "ui_input_otp_inputotpgroup",
+      "ui_input_otp_inputotpseparator",
+      "ui_input_otp_inputotpslot"
+    ],
+    "27": [
+      "components_ui_accordion_tsx",
+      "ui_accordion_accordioncontent",
+      "ui_accordion_accordionitem",
+      "ui_accordion_accordiontrigger"
+    ],
+    "28": [
+      "tests_todo_page_test_combobox",
+      "tests_todo_page_test_setitemspy",
+      "tests_todo_page_test_tsx",
+      "tests_todo_page_test_user"
+    ],
+    "29": [
+      "components_ui_badge_tsx",
+      "ui_badge_badge",
+      "ui_badge_badgeprops",
+      "ui_badge_badgevariants"
+    ],
+    "30": [
+      "components_animations_floating_elements_tsx",
+      "hooks_use_scroll_animations_ts",
+      "hooks_use_scroll_animations_useparallax",
+      "hooks_use_scroll_animations_userevealanimation"
+    ],
+    "31": [
+      "components_ui_tabs_tsx",
+      "ui_tabs_tabscontent",
+      "ui_tabs_tabslist",
+      "ui_tabs_tabstrigger"
+    ],
+    "32": [
+      "components_ui_avatar_tsx",
+      "ui_avatar_avatar",
+      "ui_avatar_avatarfallback",
+      "ui_avatar_avatarimage"
+    ],
+    "33": [
+      "components_ui_navigation_menu_tsx",
+      "ui_navigation_menu_navigationmenucontent",
+      "ui_navigation_menu_navigationmenuindicator",
+      "ui_navigation_menu_navigationmenuviewport"
+    ],
+    "34": [
+      "animations_text_reveal_textreveal",
+      "animations_text_reveal_textrevealprops",
+      "components_animations_text_reveal_tsx"
+    ],
+    "35": [
+      "app_icon_svg_circle",
+      "app_icon_svg_path",
+      "app_icon_svg_rect"
+    ],
+    "36": [
+      "claude_settings_hooks",
+      "claude_settings_hooks_pretooluse",
+      "claude_settings_json"
+    ],
+    "37": [
+      "codex_hooks_hooks",
+      "codex_hooks_hooks_pretooluse",
+      "codex_hooks_json"
+    ],
+    "38": [
+      "app_todo_page_tsx",
+      "todo_page_metadata",
+      "todo_page_todoroute"
+    ],
+    "39": [
+      "public_placeholder_svg_circle",
+      "public_placeholder_svg_path",
+      "public_placeholder_svg_rect"
+    ],
+    "40": [
+      "components_ui_scroll_area_tsx",
+      "ui_scroll_area_scrollarea",
+      "ui_scroll_area_scrollbar"
+    ],
+    "41": [
+      "components_ui_sonner_tsx",
+      "ui_sonner_toaster",
+      "ui_sonner_toasterprops"
+    ],
+    "42": [
+      "animations_staggered_grid_staggeredgrid",
+      "animations_staggered_grid_staggeredgridprops"
+    ],
+    "43": [
+      "app_icon_svg_lineargradient",
+      "app_icon_svg_radialgradient"
+    ],
+    "44": [
+      "animations_morphing_blob_morphingblob",
+      "components_animations_morphing_blob_tsx"
+    ],
+    "45": [
+      "animations_parallax_section_parallaxsectionprops",
+      "components_animations_parallax_section_tsx"
+    ],
+    "46": [
+      "components_ui_use_mobile_tsx",
+      "ui_use_mobile_useismobile"
+    ],
+    "47": [
+      "lib_image_optimization_getoptimizedimageurl",
+      "lib_image_optimization_ts"
+    ],
+    "48": [
+      "postcss_config_mjs",
+      "rohit_gupta_v0_postcss_config_config"
+    ],
+    "49": [
+      "rohit_gupta_v0_run_project_invoke_step",
+      "run_project_ps1"
+    ],
+    "50": [
+      "types_project_project",
+      "types_project_ts"
+    ],
+    "51": [
+      "types_skill_skill",
+      "types_skill_ts"
+    ],
+    "52": [
+      "eslint_config_mjs"
+    ],
+    "53": [
+      "next_config_mjs"
+    ],
+    "54": [
+      "tailwind_config_ts"
+    ],
+    "55": [
+      "vitest_config_ts"
+    ],
+    "56": [
+      "components_theme_provider_tsx"
+    ],
+    "57": [
+      "components_animations_scroll_progress_tsx"
+    ],
+    "58": [
+      "components_animations_three_background_tsx"
+    ],
+    "59": [
+      "components_ui_aspect_ratio_tsx"
+    ],
+    "60": [
+      "components_ui_collapsible_tsx"
+    ],
+    "61": [
+      "scripts_portfolio_run_project_ps1"
+    ]
+  },
+  "cohesion": {
+    "0": 0.05204872646733112,
+    "1": 0.06342780026990553,
+    "2": 0.07681365576102418,
+    "3": 0.07407407407407407,
+    "4": 0.07407407407407407,
+    "5": 0.08547008547008547,
+    "6": 0.10476190476190476,
+    "7": 0.11904761904761904,
+    "8": 0.1619047619047619,
+    "9": 0.1,
+    "10": 0.1111111111111111,
+    "11": 0.125,
+    "12": 0.15384615384615385,
+    "13": 0.16666666666666666,
+    "14": 0.18181818181818182,
+    "15": 0.2,
+    "16": 0.2,
+    "17": 0.2222222222222222,
+    "18": 0.25,
+    "19": 0.25,
+    "20": 0.2857142857142857,
+    "21": 0.2857142857142857,
+    "22": 0.4,
+    "23": 0.3333333333333333,
+    "24": 0.3333333333333333,
+    "25": 0.4,
+    "26": 0.4,
+    "27": 0.5,
+    "28": 0.5,
+    "29": 0.6666666666666666,
+    "30": 0.5,
+    "31": 0.5,
+    "32": 0.5,
+    "33": 0.5,
+    "34": 0.6666666666666666,
+    "35": 0.6666666666666666,
+    "36": 0.6666666666666666,
+    "37": 0.6666666666666666,
+    "38": 0.6666666666666666,
+    "39": 0.6666666666666666,
+    "40": 0.6666666666666666,
+    "41": 0.6666666666666666,
+    "42": 1.0,
+    "43": 1.0,
+    "44": 1.0,
+    "45": 1.0,
+    "46": 1.0,
+    "47": 1.0,
+    "48": 1.0,
+    "49": 1.0,
+    "50": 1.0,
+    "51": 1.0,
+    "52": 1.0,
+    "53": 1.0,
+    "54": 1.0,
+    "55": 1.0,
+    "56": 1.0,
+    "57": 1.0,
+    "58": 1.0,
+    "59": 1.0,
+    "60": 1.0,
+    "61": 1.0
+  },
+  "gods": [
+    {
+      "id": "lib_utils_cn",
+      "label": "cn()",
+      "degree": 71
+    },
+    {
+      "id": "todo_todo_page_todopage",
+      "label": "TodoPage()",
+      "degree": 51
+    },
+    {
+      "id": "rohit_gupta_v0_tsconfig_compileroptions",
+      "label": "compilerOptions",
+      "degree": 16
+    },
+    {
+      "id": "ui_carousel_carousel",
+      "label": "Carousel",
+      "degree": 16
+    },
+    {
+      "id": "ui_pagination_pagination",
+      "label": "Pagination()",
+      "degree": 10
+    },
+    {
+      "id": "ui_button_button",
+      "label": "Button",
+      "degree": 8
+    },
+    {
+      "id": "rohit_gupta_v0_package_scripts",
+      "label": "scripts",
+      "degree": 7
+    },
+    {
+      "id": "rohit_gupta_v0_components_tailwind",
+      "label": "tailwind",
+      "degree": 6
+    },
+    {
+      "id": "rohit_gupta_v0_components_aliases",
+      "label": "aliases",
+      "degree": 6
+    },
+    {
+      "id": "lib_site_getsiteurl",
+      "label": "getSiteUrl()",
+      "degree": 6
+    }
+  ],
+  "surprises": [
+    {
+      "source": "cn()",
+      "target": "clsx",
+      "source_files": [
+        "lib/utils.ts",
+        "package.json"
+      ],
+      "confidence": "INFERRED",
+      "relation": "calls",
+      "why": "inferred connection - not explicitly stated in source; connects across different repos/directories; bridges separate communities; peripheral node `clsx` unexpectedly reaches hub `cn()`"
+    },
+    {
+      "source": "Rohit Gupta Portfolio",
+      "target": "Rohit Gupta Resume 2025",
+      "source_files": [
+        "README.md",
+        "Rohit-Gupta-Resume 2025.pdf"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "references",
+      "why": "crosses file types (doc \u2194 paper); connects across different repos/directories; peripheral node `Rohit Gupta Resume 2025` unexpectedly reaches hub `Rohit Gupta Portfolio`"
+    },
+    {
+      "source": "Todo UI Test Suite",
+      "target": "Rohit Gupta Portfolio",
+      "source_files": [
+        "tests/README.md",
+        "README.md"
+      ],
+      "confidence": "AMBIGUOUS",
+      "relation": "conceptually_related_to",
+      "why": "ambiguous connection - not explicitly stated in source; connects across different repos/directories; peripheral node `Todo UI Test Suite` unexpectedly reaches hub `Rohit Gupta Portfolio`"
+    },
+    {
+      "source": "AlertDialogHeader()",
+      "target": "cn()",
+      "source_files": [
+        "components/ui/alert-dialog.tsx",
+        "lib/utils.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "connects across different repos/directories; bridges separate communities; peripheral node `AlertDialogHeader()` unexpectedly reaches hub `cn()`"
+    },
+    {
+      "source": "AlertDialogFooter()",
+      "target": "cn()",
+      "source_files": [
+        "components/ui/alert-dialog.tsx",
+        "lib/utils.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "connects across different repos/directories; bridges separate communities; peripheral node `AlertDialogFooter()` unexpectedly reaches hub `cn()`"
+    }
+  ],
+  "tokens": {
+    "input": 40249,
+    "output": 1392
+  }
+}
