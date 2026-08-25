@@ -3,7 +3,7 @@ import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
-import { getSiteUrl } from "@/lib/site";
+import { getSiteUrl, withBasePath } from "@/lib/site";
 
 // Google Analytics 4 measurement id (e.g. "G-XXXXXXXXXX"), supplied at build
 // time. Analytics only render when this is set, so local/dev builds stay clean.
@@ -22,6 +22,8 @@ const geistMono = Geist_Mono({
 });
 
 const siteUrl = getSiteUrl();
+const cspPolicy =
+  "default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'self'; upgrade-insecure-requests; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; font-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://www.googletagmanager.com";
 
 const profileLinks = {
   linkedin: "https://www.linkedin.com/in/rohit-gupta-ai/",
@@ -98,6 +100,18 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable}`}
     >
       <head>
+        <meta httpEquiv="Content-Security-Policy" content={cspPolicy} />
+        <meta
+          name="referrer"
+          content="strict-origin-when-cross-origin"
+        />
+        <link
+          rel="preload"
+          as="image"
+          href={withBasePath("/rohit.avif")}
+          type="image/avif"
+          fetchPriority="high"
+        />
         <meta name="color-scheme" content="dark light" />
         <script
           type="application/ld+json"
@@ -172,12 +186,11 @@ export default function RootLayout({
               src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
               strategy="afterInteractive"
             />
-            <Script id="ga4-init" strategy="afterInteractive">
-              {`window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', '${gaId}', { anonymize_ip: true });`}
-            </Script>
+            <Script
+              id="ga4-init"
+              src={withBasePath(`/analytics-init.js?gaId=${encodeURIComponent(gaId)}`)}
+              strategy="afterInteractive"
+            />
           </>
         ) : null}
         {children}
