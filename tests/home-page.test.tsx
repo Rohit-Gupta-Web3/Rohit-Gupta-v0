@@ -1,16 +1,6 @@
 import React from "react"
 import { render, screen } from "@testing-library/react"
-import { describe, expect, it, vi } from "vitest"
-
-// next/image needs a lightweight stand-in under jsdom. Strip Next-specific
-// props so React doesn't warn about unknown DOM attributes.
-vi.mock("next/image", () => ({
-  default: ({ src, alt }: { src: string | { src: string }; alt: string }) =>
-    React.createElement("img", {
-      src: typeof src === "string" ? src : src?.src ?? "",
-      alt,
-    }),
-}))
+import { describe, expect, it } from "vitest"
 
 import Home from "@/app/page"
 
@@ -40,6 +30,23 @@ describe("Portfolio home page", () => {
 
     expect(screen.getByText("DialTone")).toBeInTheDocument()
     expect(screen.getByText("Sharp AI Agents")).toBeInTheDocument()
+  })
+
+  it("uses an explicit picture element for the hero portrait", () => {
+    const { container } = render(<Home />)
+
+    expect(
+      container.querySelector('source[type="image/avif"]')
+    ).toHaveAttribute("srcset", "/rohit.avif")
+    expect(
+      container.querySelector('source[type="image/webp"]')
+    ).toHaveAttribute("srcset", "/rohit.webp")
+
+    const portrait = screen.getByAltText("Rohit Gupta")
+    expect(portrait).toHaveAttribute("src", "/rohit.png")
+    expect(portrait).toHaveAttribute("width", "380")
+    expect(portrait).toHaveAttribute("height", "475")
+    expect(portrait).toHaveAttribute("loading", "eager")
   })
 
   it("separates AI and Web3 project groups", () => {

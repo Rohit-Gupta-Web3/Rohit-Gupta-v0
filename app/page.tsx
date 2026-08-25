@@ -1095,14 +1095,26 @@ export default function Home() {
                 <Reveal delay={180} className="rg-hero-portrait">
                   <div className="rg-portrait-deco" />
                   <div className="rg-portrait-frame">
-                      <Image
-                      src={withBasePath("/rohit.png")}
-                      alt="Rohit Gupta"
-                      className="rg-portrait-image"
-                      fill
-                      priority
-                      sizes="(max-width: 768px) 90vw, (max-width: 1200px) 30vw, 380px"
-                    />
+                    <picture>
+                      <source
+                        srcSet={withBasePath("/rohit.avif")}
+                        type="image/avif"
+                      />
+                      <source
+                        srcSet={withBasePath("/rohit.webp")}
+                        type="image/webp"
+                      />
+                      <img
+                        src={withBasePath("/rohit.png")}
+                        width={380}
+                        height={475}
+                        alt="Rohit Gupta"
+                        fetchPriority="high"
+                        loading="eager"
+                        decoding="async"
+                        className="rg-portrait-image"
+                      />
+                    </picture>
                     <div className="rg-portrait-badge">
                       <span
                         style={{
