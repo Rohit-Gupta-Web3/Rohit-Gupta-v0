@@ -1,16 +1,16 @@
-# Graph Report - Rohit-Gupta-v0  (2026-08-25)
+# Graph Report - Rohit-Gupta-v0  (2026-08-21)
 
 ## Corpus Check
-- 105 files · ~53,724 words
+- 103 files · ~63,904 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 615 nodes · 882 edges · 65 communities (48 shown, 17 thin omitted)
+- 604 nodes · 871 edges · 69 communities (49 shown, 20 thin omitted)
 - Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 8 edges (avg confidence: 0.69)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `1902b6bc`
+- Built from commit: `795900bf`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -65,7 +65,12 @@
 - [[_COMMUNITY_Community 51|Community 51]]
 - [[_COMMUNITY_Community 53|Community 53]]
 - [[_COMMUNITY_Community 62|Community 62]]
+- [[_COMMUNITY_Community 63|Community 63]]
 - [[_COMMUNITY_Community 64|Community 64]]
+- [[_COMMUNITY_Community 65|Community 65]]
+- [[_COMMUNITY_Community 66|Community 66]]
+- [[_COMMUNITY_Community 67|Community 67]]
+- [[_COMMUNITY_Community 68|Community 68]]
 
 ## God Nodes (most connected - your core abstractions)
 1. `cn()` - 79 edges
@@ -91,27 +96,27 @@
 - `AlertDialogFooter()` --calls--> `cn()`  [EXTRACTED]
   components/ui/alert-dialog.tsx → lib/utils.ts
 
-## Communities (65 total, 17 thin omitted)
+## Communities (69 total, 20 thin omitted)
 
 ### Community 0 - "Community 0"
 Cohesion: 0.05
 Nodes (36): useIsMobile(), SheetContent, SheetContentProps, SheetDescription, SheetFooter(), SheetHeader(), SheetOverlay, SheetTitle (+28 more)
 
 ### Community 1 - "Community 1"
-Cohesion: 0.05
-Nodes (30): aiProjects, education, experience, featured, Home(), icons, navLinks, pillars (+22 more)
+Cohesion: 0.08
+Nodes (13): aiProjects, featured, icons, navLinks, pillars, profile, Project, projects (+5 more)
 
 ### Community 2 - "Community 2"
 Cohesion: 0.09
 Nodes (35): Action, ActionType, addToRemoveQueue(), dispatch(), genId(), listeners, memoryState, reducer() (+27 more)
 
 ### Community 3 - "Community 3"
-Cohesion: 0.12
-Nodes (17): devDependencies, autoprefixer, eslint, eslint-config-next, jsdom, postcss, tailwindcss, @tailwindcss/postcss (+9 more)
+Cohesion: 0.07
+Nodes (27): devDependencies, autoprefixer, eslint, eslint-config-next, jsdom, postcss, tailwindcss, @tailwindcss/postcss (+19 more)
 
 ### Community 4 - "Community 4"
-Cohesion: 0.05
-Nodes (37): dependencies, class-variance-authority, clsx, @emotion/is-prop-valid, framer-motion, lucide-react, next, next-themes (+29 more)
+Cohesion: 0.07
+Nodes (27): dependencies, class-variance-authority, clsx, @emotion/is-prop-valid, framer-motion, lucide-react, next, next-themes (+19 more)
 
 ### Community 5 - "Community 5"
 Cohesion: 0.13
@@ -126,8 +131,8 @@ Cohesion: 0.29
 Nodes (11): ButtonProps, buttonVariants, Calendar(), CalendarProps, Pagination(), PaginationContent, PaginationEllipsis(), PaginationItem (+3 more)
 
 ### Community 8 - "Community 8"
-Cohesion: 0.14
-Nodes (13): cn(), Checkbox, HoverCardContent, PaginationNext(), PopoverContent, RadioGroup, RadioGroupItem, ResizableHandle() (+5 more)
+Cohesion: 0.17
+Nodes (11): cn(), Checkbox, HoverCardContent, PaginationNext(), PopoverContent, ResizableHandle(), ResizablePanelGroup(), ScrollArea (+3 more)
 
 ### Community 9 - "Community 9"
 Cohesion: 0.10
@@ -218,40 +223,48 @@ Cohesion: 0.67
 Nodes (3): circle, path, rect
 
 ### Community 40 - "Community 40"
-Cohesion: 0.18
-Nodes (13): gaId, geistMono, geistSans, metadata, profileLinks, RootLayout(), siteUrl, viewport (+5 more)
+Cohesion: 0.22
+Nodes (7): gaId, geistMono, geistSans, metadata, profileLinks, siteUrl, viewport
 
 ### Community 62 - "Community 62"
-Cohesion: 0.33
-Nodes (5): Alternative hosting option, Analytics note, code:text (Content-Security-Policy: default-src 'self'; base-uri 'self'), Recommended option: Cloudflare in front of GitHub Pages, Security Headers Setup
+Cohesion: 0.43
+Nodes (5): getBasePath(), getSiteUrl(), withBasePath(), GET(), GET()
+
+### Community 63 - "Community 63"
+Cohesion: 0.39
+Nodes (7): GtagParams, gtagReady(), trackCta(), trackEvent(), trackOutbound(), trackSectionView(), Window
 
 ### Community 64 - "Community 64"
 Cohesion: 0.50
 Nodes (3): TabsContent, TabsList, TabsTrigger
+
+### Community 67 - "Community 67"
+Cohesion: 0.67
+Nodes (3): Home(), useReveal(), useSectionView()
 
 ## Ambiguous Edges - Review These
 - `Rohit Gupta Portfolio` → `Todo UI Test Suite`  [AMBIGUOUS]
   tests/README.md · relation: conceptually_related_to
 
 ## Knowledge Gaps
-- **295 isolated node(s):** `$schema`, `style`, `rsc`, `tsx`, `config` (+290 more)
+- **289 isolated node(s):** `$schema`, `style`, `rsc`, `tsx`, `config` (+284 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **17 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **20 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
 - **What is the exact relationship between `Rohit Gupta Portfolio` and `Todo UI Test Suite`?**
   _Edge tagged AMBIGUOUS (relation: conceptually_related_to) - confidence is low._
-- **Why does `cn()` connect `Community 8` to `Community 0`, `Community 2`, `Community 4`, `Community 5`, `Community 6`, `Community 7`, `Community 11`, `Community 12`, `Community 13`, `Community 14`, `Community 15`, `Community 16`, `Community 17`, `Community 18`, `Community 19`, `Community 20`, `Community 24`, `Community 26`, `Community 31`, `Community 32`, `Community 33`, `Community 64`?**
-  _High betweenness centrality (0.257) - this node is a cross-community bridge._
+- **Why does `cn()` connect `Community 8` to `Community 0`, `Community 2`, `Community 4`, `Community 5`, `Community 6`, `Community 7`, `Community 11`, `Community 12`, `Community 13`, `Community 14`, `Community 15`, `Community 16`, `Community 17`, `Community 18`, `Community 19`, `Community 20`, `Community 24`, `Community 26`, `Community 31`, `Community 32`, `Community 33`, `Community 64`, `Community 68`?**
+  _High betweenness centrality (0.267) - this node is a cross-community bridge._
+- **Why does `dependencies` connect `Community 4` to `Community 3`?**
+  _High betweenness centrality (0.110) - this node is a cross-community bridge._
 - **Why does `clsx` connect `Community 4` to `Community 8`?**
-  _High betweenness centrality (0.103) - this node is a cross-community bridge._
+  _High betweenness centrality (0.107) - this node is a cross-community bridge._
 - **What connects `$schema`, `style`, `rsc` to the rest of the system?**
-  _295 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _289 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Community 0` be split into smaller, more focused modules?**
   _Cohesion score 0.05226480836236934 - nodes in this community are weakly interconnected._
 - **Should `Community 1` be split into smaller, more focused modules?**
-  _Cohesion score 0.05496828752642706 - nodes in this community are weakly interconnected._
-- **Should `Community 2` be split into smaller, more focused modules?**
-  _Cohesion score 0.08974358974358974 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.08333333333333333 - nodes in this community are weakly interconnected._

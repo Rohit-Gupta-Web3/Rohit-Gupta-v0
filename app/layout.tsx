@@ -145,7 +145,7 @@ export default function RootLayout({
                   },
                   worksFor: {
                     "@type": "Organization",
-                    name: "Thinkverse Labs",
+                    name: "Thinkverse Labs Pvt Ltd",
                   },
                   alumniOf: [
                     {
