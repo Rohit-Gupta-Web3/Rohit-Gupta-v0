@@ -18,7 +18,22 @@ The site is a Next.js **static export on GitHub Pages**, which cannot emit custo
 response headers (and `next.config` `headers()` is a no-op under
 `output: "export"`). So the grade only moves once an edge layer sets real headers.
 
-### Recommended: Cloudflare in front of GitHub Pages (free, no migration)
+### Decision (2026-08-28): stay on GitHub Pages
+
+DNS is managed at GoDaddy and we are keeping the current GitHub Pages hosting, so
+**no response-header layer is being added.** The `<meta>` CSP + referrer policy
+shipped in `app/layout.tsx` are the accepted final state: they give real
+browser-side protection (content-injection defense, `upgrade-insecure-requests`),
+but the Mozilla Observatory grade will remain ~D because its `X-Content-Type-
+Options`, `X-Frame-Options`, and HSTS tests require real headers this host cannot
+send. This is an accepted trade-off for a static portfolio with no logins, forms,
+or sensitive actions.
+
+The two options below are **not currently in use** — they are kept only in case we
+revisit the grade later. Both move real headers to the response boundary without
+changing the registrar (GoDaddy stays the registrar in every case).
+
+### Option A (future): Cloudflare in front of GitHub Pages (free, no migration)
 
 Keeps GitHub Pages as the origin; Cloudflare adds the headers at the edge.
 
@@ -43,7 +58,7 @@ Referrer-Policy: strict-origin-when-cross-origin
 
 (HSTS is delivered by step 5, so it is not repeated in the Transform Rule.)
 
-### Alternative: migrate hosting
+### Option B (future): migrate hosting (keeps GoDaddy DNS)
 
 If you would rather not use Cloudflare, host on Cloudflare Pages or Netlify and
 ship the same headers via a `_headers` file or `netlify.toml [[headers]]`. This
