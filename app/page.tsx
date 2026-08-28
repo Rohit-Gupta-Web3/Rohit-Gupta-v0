@@ -826,42 +826,9 @@ function AppLink({
   ctaLocation?: string;
 } & AnchorHTMLAttributes<HTMLAnchorElement>) {
   const handleClick = (event: MouseEvent<HTMLAnchorElement>) => {
-    onClick?.(event);
-
-    if (event.defaultPrevented) return;
-
-    const isExternal = /^https?:\/\//.test(href);
-    const shouldDeferNavigation = Boolean(cta || isExternal || props.download);
-
     if (cta) trackCta(cta, ctaLocation ?? "unknown");
-    else if (isExternal) trackOutbound(href);
-
-    if (!shouldDeferNavigation || typeof window === "undefined") return;
-
-    event.preventDefault();
-    window.setTimeout(() => {
-      if (props.download) {
-        const anchor = document.createElement("a");
-        anchor.href = href;
-        if (typeof props.download === "string") {
-          anchor.download = props.download;
-        } else {
-          anchor.download = "";
-        }
-        anchor.rel = props.rel?.toString() ?? "noopener noreferrer";
-        document.body.appendChild(anchor);
-        anchor.click();
-        anchor.remove();
-        return;
-      }
-
-      if (props.target === "_blank") {
-        window.open(href, "_blank", "noopener,noreferrer");
-        return;
-      }
-
-      window.location.href = href;
-    }, 150);
+    else if (/^https?:\/\//.test(href)) trackOutbound(href);
+    onClick?.(event);
   };
 
   return (
