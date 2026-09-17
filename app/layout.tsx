@@ -5,9 +5,8 @@ import Script from "next/script";
 import "./globals.css";
 import { getSiteUrl, withBasePath } from "@/lib/site";
 
-// Google Analytics 4 measurement ID. An environment value can override the
-// default for alternate deployments.
-const gaId = process.env.NEXT_PUBLIC_GA_ID?.trim() || "G-XB0KV4PZCT";
+// Google Analytics 4 measurement ID for the production property.
+const gaId = "G-XB0KV4PZCT";
 
 const geistSans = Geist({
   subsets: ["latin"],
